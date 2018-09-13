@@ -1,0 +1,38 @@
+<form (ngSubmit)="saveFile()">
+  <div class="container">
+    <div class="row">
+    <div class="col">
+      <input [(ngModel)]="JObPOsterProfile.comapanyname" name="comapanyname" placeholder="Company Name" type="text" required>
+      <input [(ngModel)]="JObPOsterProfile.address" name="address" class="set" placeholder="Address" type="text" required>
+      <input [(ngModel)]="JObPOsterProfile.city" name="city" placeholder="City" type="text" required>
+      <input [(ngModel)]="JObPOsterProfile.contactnumber" name="contactnumber" placeholder="Contact Number" type="text" required>
+
+
+    </div>
+      <div class="col">
+      <input [(ngModel)]="JObPOsterProfile.email" name="email" placeholder="E-mail" type="text" required>
+        <br>
+        <br>
+        <input [(ngModel)]="JObPOsterProfile.province" name="province" placeholder="Province" type="text" required>
+
+      </div>
+
+      <input [(ngModel)]="JObPOsterProfile.companyBackground" name="companyBackground" class="background" placeholder="Company Background" type="text" required>
+
+    </div>
+
+    <div class="col-md-6">
+      <form method="post" action="#" id="#">
+
+
+
+
+        <div class="form-group files color">
+          <label>Upload Your File </label>
+          <input type="file" class="form-control" multiple="" (change)="setImages($event)">
+        </div>
+      </form>
+    </div>
+  </div>
+  <button type="submit" class="button"><span>Save Details</span></button>
+</form>

@@ -1,0 +1,141 @@
+.blogShort{ border-bottom:1px solid #ddd;}
+.add{background: #333; padding: 10%; height: 300px;}
+
+.nav-sidebar {
+  width: 100%;
+  padding: 8px 0;
+  border-right: 1px solid #ddd;
+}
+.nav-sidebar a {
+  color: #333;
+  -webkit-transition: all 0.08s linear;
+  -moz-transition: all 0.08s linear;
+  -o-transition: all 0.08s linear;
+  transition: all 0.08s linear;
+}
+.nav-sidebar .active a {
+  cursor: default;
+  background-color: #34ca78;
+  color: #fff;
+}
+.nav-sidebar .active a:hover {
+  background-color: #37D980;
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.btn-blog {
+  color: #ffffff;
+  background-color: #37d980;
+  border-color: #37d980;
+  border-radius:0;
+  margin-bottom:10px
+}
+.btn-blog:hover,
+.btn-blog:focus,
+.btn-blog:active,
+.btn-blog.active,
+.open .dropdown-toggle.btn-blog {
+  color: white;
+  background-color:#34ca78;
+  border-color: #34ca78;
+}
+h2{color:#34ca78;}
+.margin10{margin-bottom:10px; margin-right:10px;}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "PT Sans";
+  background-color: #ddd;
+  color: #333;
+}
+
+.section {
+  position: relative;
+  width: 900px;
+  max-width: 80%;
+  border: 2px solid #333;
+  border-top: none;
+  text-align: center;
+  margin: 60px auto;
+}
+
+.section h1 {
+  position: relative;
+  margin-top: -14px;
+  display: inline-block;
+  letter-spacing: 4px;
+}
+
+.top-border{
+  position: absolute;
+  height: 2px;
+  width: 24%;
+  background-color: #333;
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
+}
+
+@media (max-width: 685px) {
+  .top-border {
+    width: 18%;
+  }
+}
+
+.section p {
+  width: 61%;
+  margin: 20px auto 40px auto;
+  line-height: 30px;
+}
+
+.section a {
+  outline: 0;
+  display: inline-block;
+  padding: 20px;
+  margin-bottom: 40px;
+  width: 440px;
+  max-width: 80%;
+  background-color: #333;
+  color: #fff;
+  font-size: 22px;
+  letter-spacing: 3px;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+}
+
+.section a:hover {
+  background-color: #1D222D;
+}
+
+.section a:link, .section a:visited, .section a:link:hover, .section a:visited:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+@media (max-width: 500px) {
+  .top-border {
+    display: none;
+  }
+  .section {
+    border-top: 2px solid #333;
+  }
+  .section h1 {
+    margin: 20px 6px;
+  }
+}

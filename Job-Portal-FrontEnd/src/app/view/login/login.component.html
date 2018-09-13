@@ -1,0 +1,37 @@
+
+<div class="wrapper fadeInDown">
+  <br>
+  <br>
+  <br>
+  <br>
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form #frmLogin="ngForm" (ngSubmit)="logIn()">
+      <input [(ngModel)]="user.username" type="text" id="login" class="fadeIn second" name="UserName" placeholder="User Name">
+      <input [(ngModel)]="user.password" type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+      <div class="row">
+
+        <div class="col-md-3 mb-3">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+        </div>
+        &nbsp;	&nbsp;
+      <div class="col-md-3 offset-md-2">
+        <a routerLink="LoginRegister"><input type="button" class="fadeIn fourth" value="Register" ></a>
+      </div>
+      </div>
+    </form>
+
+
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>

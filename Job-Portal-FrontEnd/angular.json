@@ -1,0 +1,166 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Job-Portal-FrontEnd": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/Job-Portal-FrontEnd",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/admin-lte/plugins/font-awesome/css/font-awesome.min.css",
+              "node_modules/admin-lte/dist/css/adminlte.min.css",
+              "src/assets/css/dropzone.css",
+              "src/assets/css/bootstrap-material-datetimepicker.css",
+              "src/assets/css/waitMe.css",
+              "src/assets/css/bootstrap-select.css",
+              "src/assets/css/bar.css",
+              "src/assets/css/pignose.calender.css",
+              "src/assets/css/simplyCountdown.css",
+              "src/assets/css/style.css",
+              "src/assets/css/style4.css",
+              "src/assets/css/widgets.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/admin-lte/plugins/jquery/jquery.min.js",
+              "node_modules/admin-lte/plugins/jQueryUI/jquery-ui.min.js",
+              "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "node_modules/admin-lte/dist/js/adminlte.js",
+              "src/assets/js/amcharts.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/chart1.js",
+              "src/assets/js/circle_bar.js",
+              "src/assets/js/example.js",
+              "src/assets/js/index.js",
+              "src/assets/js/jquery.charts.js",
+              "src/assets/js/jquery-2.2.3.min.js",
+              "src/assets/js/kuma-gauge.jquery.js",
+              "src/assets/js/modernizr.js",
+              "src/assets/js/moment.min.js",
+              "src/assets/js/percentage-circles.js",
+              "src/assets/js/pignose.calender.js",
+              "src/assets/js/prettymaps.js",
+              "src/assets/js/raphael-min.js",
+              "src/assets/js/rumcaJS.js",
+              "src/assets/js/script.js",
+              "src/assets/js/SimpleChart.js",
+              "src/assets/js/simplyCountdown.js",
+              "src/assets/js/skycons.js"
+
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "Job-Portal-FrontEnd:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Job-Portal-FrontEnd:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Job-Portal-FrontEnd:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "Job-Portal-FrontEnd-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "Job-Portal-FrontEnd:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Job-Portal-FrontEnd:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "Job-Portal-FrontEnd"
+}

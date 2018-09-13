@@ -1,0 +1,18 @@
+.navbar-nav>li:hover{
+  color: #dce8f1;
+  background-color:#212529;
+}
+
+.main-sidebar sidebar-dark-primary elevation-4{
+  background-image: url("../../../assets/images/header.jpg");
+  background-color: red;
+}
+h3{
+  color: #E2E2E2;
+  font-size: 30px;
+}
+
+h6{
+  color: #dce8f1;
+  font-size: 15px;
+}

@@ -1,0 +1,106 @@
+<form>
+  <br>
+  <br>
+  <br>
+<div class="container" style="margin-top: 30px;">
+
+  <div class="profile-head">
+    <!--col-md-4 col-sm-4 col-xs-12 close-->
+    <div class="col-md- col-sm-4 col-xs-12">
+
+      <br>
+      <h6>{{job.jobsDTO.jobtitle}}</h6>
+      <div class="container"style="margin-left: 90px;">
+
+      </div>
+    </div>
+    <!--col-md-4 col-sm-4 col-xs-12 close-->
+<div class="row">
+  <div class="col">
+    <div class="col-md-5 col-sm-5 col-xs-12">
+      <br>
+      <h5>{{job.jobsDTO.jobPosterDTO.companyname}}</h5>
+      <p>{{job.jobsDTO.category}}</p>
+      <ul>
+        <li><span class="glyphicon glyphicon-briefcase"></span> {{job.qulificationDTO.genderpreference}}</li>
+        <li><span class="glyphicon glyphicon-map-marker"></span> {{job.jobsDTO.bussinessfuntion}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col">
+    <div class="news-footer">
+      <div class="news-likes">
+        <button type="button" class="button" (click)="applyNewJob()"><i class="far fa-edit" ></i> <span class="badge ">Apply Now</span></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <!--profile-head close-->
+</div>
+<!--container close-->
+
+
+<br/>
+<br/>
+
+<div class="container">
+  <div class="col-sm-8">
+    <div data-spy="scroll" class="tabbable-panel">
+      <div class="tabbable-line">
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_default_1">
+            <div class="well well-sm">
+              <h4>PERSONAL DATA</h4>
+            </div>
+            <p align="right">
+              <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-edit"></span> Edit</button>
+            </p>
+            <table class="table bio-table">
+              <tbody>
+              <tr>
+                <td>Firstname</td>
+                <td>: {{jobseker.firstName}}</td>
+              </tr>
+              <tr>
+                <td>Lastname</td>
+                <td>: {{jobseker.lastName}}</td>
+              </tr>
+              <tr>
+                <td>Date of Birthday</td>
+                <td>: {{jobseker.birthDay}}</td>
+              </tr>
+              <tr>
+                <td>Interest In </td>
+                <td>: {{jobseker.interstIn}}}</td>
+              </tr>
+              <tr>
+                <td>Stream</td>
+                <td>: {{jobseker.stream}}</td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>: {{jobseker.address}}</td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td>: {{jobseker.city}}</td>
+              </tr>
+              <tr>
+                <td>E-Mail</td>
+                <td>: {{jobseker.emailAddress}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</form>

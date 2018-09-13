@@ -1,0 +1,35 @@
+<section class="cards-section">
+    <div class="card-columns" >
+      <div class="card" *ngFor="let jobs of jobsList">
+        <img class="card-img-top" [src]="jobs.jobsDTO.iamgePath" alt="Card image cap" height="160" width="42">
+        <div class="card-body" >
+
+          <h5 class="card-title" id="title" name="jobtitle">{{jobs.jobsDTO.jobtitle}}</h5>
+
+          <p class="card-text">{{jobs.jobsDTO.discription}}</p>
+          <a  class="btn more mt-3" data-toggle="modal" data-target="#exampleModal" (click)="getJobDetails(jobs.jobsDTO.id)">Read More</a>
+          <!-- Modal -->
+
+          <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel5"  >Title goes here</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p class="paragraph-agileits-w3layouts my-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla ornare
+                    purus id tempor. Ut non volutpat libero.Donec pellentesque, mi id rhoncus
+                    sagittis, ipsum augue vehicula elit, nec mollis metus lectus quis nibh.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Modal -->
+        </div>
+      </div>
+
+    </div>
+  </section>

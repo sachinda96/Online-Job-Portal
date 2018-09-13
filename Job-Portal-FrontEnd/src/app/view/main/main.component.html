@@ -1,0 +1,146 @@
+<html lang="en">
+
+<head>
+
+  <title>Job Portal DashBoard</title>
+
+
+</head>
+
+<body id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top nav-bar dark bg-black" >
+  <div class="container">
+
+    <a class="navbar-brand js-scroll-trigger" href="#page-top"><h3>Start Bootstrap</h3></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger " href="#about"><h3>About</h3></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#services"><h3>Services</h3></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#portfolio"><h3>Portfolio</h3></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact"><h3>Contact</h3></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact" routerLink="login"><h3>Login</h3></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger"  routerLink="SelectRegistation"><h3>Register</h3></a>
+        </li>
+
+      </ul>
+      <div class="dropdown" id="divButton" [hidden]="!user">
+        <button class="dropbtn"><i class="fas fa-user"></i> Welcome, {{user.username}}</button>
+        <div class="dropdown-content">
+          <div class="profile-userpic">
+            <img [src]="jobSeeker.imagePath" class="img-responsive" alt="">
+          </div>
+          <!-- END SIDEBAR USERPIC -->
+          <!-- SIDEBAR USER TITLE -->
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+              {{jobSeeker.firstName}}
+            </div>
+            <div class="profile-usertitle-job">
+              I'm interestIn  {{jobSeeker.interstIn}}
+            </div>
+          </div>
+          <!-- END SIDEBAR USER TITLE -->
+          <!-- SIDEBAR BUTTONS -->
+          <div class="profile-userbuttons">
+            <button type="button" class="btn btn-success btn-sm" (click)="routeDashBoard()">DashBoard</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="logout()">Logout</button>
+          </div>
+          <!-- END SIDEBAR BUTTONS -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<router-outlet></router-outlet>
+
+
+<div class="footer-bottom-area bg-dark-light section-padding-sm">
+  <div class="container">
+    <br><br>
+    <div class="row widgets footer-widgets">
+
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="single-widget widget-about">
+          <h5 class="widget-title">About Us</h5>
+          <img src="images/others/about-widget-image.jpg" alt="about widget image">
+          <p>We are a team of designers and developers that create high quality <a href="www.dkstudio.in">Readmore...</a></p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="single-widget widget-quick-links">
+          <h5 class="widget-title">My Account</h5>
+          <ul>
+            <li><a href="#">Sitemap</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Your Account</a></li>
+            <li><a href="#">Advanced Search</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="single-widget widget-quick-links">
+          <h5 class="widget-title">Customer Service</h5>
+          <ul>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Compensation First</a></li>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="single-widget widget-contact">
+          <h5 class="widget-title">Contact Us</h5>
+          <ul>
+            <li class="address">
+              <span class="icon"><i class="fa fa-map-marker"></i></span>
+              <p>9/B Madaptaha Piliyanadala</p>
+            </li>
+            <li class="phone">
+              <span class="icon"><i class="fa fa-phone"></i></span>
+              <p><a href="#">+94 7742 73 305</a></p>
+            </li>
+            <li class="fax">
+              <span class="icon"><i class="fa fa-fax"></i></span>
+              <p><a href="#">+94 7742 73 305</a></p>
+            </li>
+            <li class="email">
+              <span class="icon"><i class="fa fa-envelope-o"></i></span>
+              <p><a href="#">sachinda9696@gmail,com</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

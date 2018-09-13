@@ -1,0 +1,97 @@
+<form (ngSubmit)="addJOb()">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <input [(ngModel)]="jobs.jobtitle" name="jobtitle" class="set" placeholder="Job Title" type="text" required>
+        <select #industry name="industry" id="industry" class="outer" required>
+          <option>--Select a Industry*--</option>
+          <option></option>
+        </select>
+        <input [(ngModel)]="jobs.role"  name="role" placeholder="Role" type="text" required>
+        <input [(ngModel)]="jobs.minsalary" name="minsalary" placeholder="Salary min" type="text" required>
+        <input [(ngModel)]="jobs.totalvacncis" name="totalvacncis" value="" placeholder="Total Vacanices" type="text" required>
+
+
+      </div>
+      <div class="col">
+          <select  #category name="category" id="category" class="outer" data-cke-caption-placeholder="--Select Category*--" >
+        <option value="--Select Category*--">--Select Category*--</option>
+            <option></option>
+      </select>
+        <select #bussinessfuntion name="bussinessfuntion" id="bussinessfuntion"  class="set">
+          <option>--Select a Bussiness Funtion *--</option>
+          <option></option>
+        </select>
+        <br>
+        <br>
+        <input [(ngModel)]="jobs.maxsalary" name="maxsalary"  placeholder="Salary Max" type="text" required>
+        <input [(ngModel)]="jobs.dedlinedate" name="Role" placeholder="Dedline Date" type="text"  required>
+      </div>
+      <textarea rows="4" cols="50" [(ngModel)]="jobs.discription" class="background" name="discription" placeholder=" Jobs Discription"  type="text" required>
+      </textarea>
+    </div>
+
+
+
+      <h5>Candidate Referances</h5>
+      <hr>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <select #minimumqulification name="minimumqulification" id="minimumqulification" class="outer" >
+            <option>--Select a Minimum Qulification*--</option>
+
+          </select>
+          <select #educationalspecialization name="educationalspecialization" id="educationalspecialization" class="outer">
+            <option>--Select a Educational Specialization*--</option>
+
+          </select>
+          <input #maimumage name="maimumage" id="maimumage" placeholder="Maximum Age"  type="text" required>
+
+
+
+        </div>
+        <div class="col">
+          <input #requiredexperience name="requiredexperience" id="requiredexperience" placeholder="Required experience (years)" type="text" required>
+          <input #skill name="skill" id="skill" placeholder="Skil" type="text"  required>
+
+          <select #genderpreference name="genderpreference" id="genderpreference" class="outer"  placeholder="Gender Preferances">
+            <option>Select a Gender Preferances</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Any</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-6">
+      <form method="post" action="#" id="#">
+        <div class="form-group files color">
+          <label>Upload Your File </label>
+          <input type="file" class="form-control" multiple="" (change)="setIma($event)">
+        </div>
+
+
+      </form>
+
+
+
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div class="col">
+  <button type="submit" class="button"><span>Save Details</span></button>
+  </div>
+    <div class="col">
+      <button type="button" class="button" (click)="addJOb()"><span>Update Details</span></button>
+    </div>
+  </div>
+</form>
