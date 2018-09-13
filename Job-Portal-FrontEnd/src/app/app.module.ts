@@ -31,6 +31,7 @@ import { JobseekerDashboardComponent } from './view/jobseeker-dashboard/jobseeke
 import { JobseekerManageProfileComponent } from './view/jobseeker-manage-profile/jobseeker-manage-profile.component';
 import {JobSeekerProfileService} from "./service/job-seeker-profile.service";
 import {ApplyJobService} from "./service/apply-job.service";
+import { ViewApplyedJobComponent } from './view/view-applyed-job/view-applyed-job.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {ApplyJobService} from "./service/apply-job.service";
     JobseekerMainComponent,
     JobseekerDashboardComponent,
     JobseekerManageProfileComponent,
+    ViewApplyedJobComponent,
   ],
   imports: [
     BrowserModule,
