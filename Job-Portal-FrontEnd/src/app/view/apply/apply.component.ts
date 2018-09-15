@@ -11,6 +11,7 @@ import {ApplyJobMain} from "../../dto/apply-job-main";
 import {ApllyJob} from "../../dto/aplly-job";
 import {ApllyJobDetails} from "../../dto/aplly-job-details";
 import {ApplyJobService} from "../../service/apply-job.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-apply',
@@ -28,7 +29,7 @@ export class ApplyComponent implements OnInit {
   applyJobsDetails:ApllyJobDetails=new ApllyJobDetails();
   applyJobMain:ApplyJobMain=new ApplyJobMain();
   id:number=1;
-  constructor(private authService:AuthService,private jobService:JobsService,private jobSeekerService:JobSeekerProfileService,private applyJobService:ApplyJobService) { }
+  constructor(private authService:AuthService,private jobService:JobsService,private jobSeekerService:JobSeekerProfileService,private applyJobService:ApplyJobService,private route:Router) { }
 
   ngOnInit() {
     this.getUser();
@@ -57,29 +58,36 @@ export class ApplyComponent implements OnInit {
   }
 
   applyNewJob():void{
-    console.log("Sucsess")
-    this.getLastJob();
-    this.applyJobs.aid=this.id;
-    this.applyJobs.data=String(this.date);
-    this.applyJobs.jobSeeker=this.jobseker;
-
-    this.applyJobsDetails.applyData=this.applyJobs.data;
-    this.applyJobsDetails.jobs=this.job.jobsDTO;
-    this.applyJobsDetails.applyJob=this.applyJobs;
-
-    this.applyJobMain.applyJobDetails=this.applyJobsDetails;
-    this.applyJobMain.applyJobDTO=this.applyJobs;
-    this.applyJobMain.jobsDTO=this.job.jobsDTO;
-
-    this.applyJobService.saveApplyJob(this.applyJobMain).subscribe(
+    this.applyJobService.getLastJob().subscribe(
       (result)=>{
+        this.lastApplyJob=result;
+        this.id=this.id+this.lastApplyJob.aid;
         if(result){
-          alert("Sucses");
-        }else{
-          alert("Failed");
-        }
-      }
-    )
+          this.applyJobs.aid = this.id;
+          this.applyJobs.data = String(this.date);
+          this.applyJobs.jobSeeker = this.jobseker;
+
+          this.applyJobsDetails.applyData = this.applyJobs.data;
+          this.applyJobsDetails.jobs = this.job.jobsDTO;
+          this.applyJobsDetails.applyJob = this.applyJobs;
+
+          this.applyJobMain.applyJobDetails = this.applyJobsDetails;
+          this.applyJobMain.applyJobDTO = this.applyJobs;
+          this.applyJobMain.jobsDTO = this.job.jobsDTO;
+
+          this.applyJobService.saveApplyJob(this.applyJobMain).subscribe(
+            (result) => {
+              if (result) {
+                alert("Sucses");
+                this.route.navigate(['/Main/ViewAllJobs'])
+
+              } else {
+                alert("Failed");
+              }
+            }
+          )
+        }}
+        )
   }
 
   getLastJob():void{

@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 @RestController
 @CrossOrigin
@@ -26,4 +27,10 @@ public class ApplyJobController {
     public ApplyJobDTO getLastData(){
         return applyJobService.getLastData();
     }
+
+    @GetMapping(value = "/{username}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ArrayList<ApplyJobMainDTO> getApplyJobs(@PathVariable("username") String userName) {
+        return applyJobService.getApplyJob(userName);
+    }
+
 }

@@ -175,7 +175,6 @@ public class JobsServiceImpl implements JobsService {
         for (PostJobDTO postJobDTO:allPostJob
              ) {
 
-            System.out.println(postJobDTO.getJobsDTO().getJobPosterDTO().getUsername());
             if (username.equals(postJobDTO.getJobsDTO().getJobPosterDTO().getUsername())) {
                 System.out.println(username.equals(postJobDTO.getJobsDTO().getJobPosterDTO().getUsername()));
                 jobs = postJobDTO.getJobsDTO();

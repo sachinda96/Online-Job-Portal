@@ -33,6 +33,7 @@ export class AuthService {
 
   logout(): void{
     sessionStorage.removeItem("token");
+
   }
 
   getUser(){

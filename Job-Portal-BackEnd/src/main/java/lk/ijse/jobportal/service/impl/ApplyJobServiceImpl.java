@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+
 @Service
 @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
 public class ApplyJobServiceImpl implements ApplyJobService {
@@ -100,4 +102,68 @@ public class ApplyJobServiceImpl implements ApplyJobService {
 
         return applyJobDTO;
     }
+
+    @Override
+    public ArrayList<ApplyJobMainDTO> getApplyJob(String userName) {
+        ArrayList<ApplyJobDetails> aLlApplyJobDetails = applyDetailReposotory.getALlApplyJobDetails();
+
+        ArrayList<ApplyJobMainDTO> applyJobMainDTOList=new ArrayList<>();
+        ApplyJobDTO applyJobDTO=null;
+        UserDTO userDTO=null;
+        JobsDTO jobsDTO=null;
+        JobPosterDTO jobPosterDTO=null;
+        ApplyJobDetailsDTO applyJobDetailsDTO=null;
+        JobSeekerProfileDTO jobSeekerProfileDTO=null;
+        ApplyJobMainDTO applyJobMainDTO=null;
+        for (ApplyJobDetails applyJobDetails:aLlApplyJobDetails
+             ) {
+            if (applyJobDetails.getJobs().getJobPoster().getUsername().equals(userName)) {
+
+                User user = applyJobDetails.getApplyJob().getJobSeeker().getUser();
+                userDTO = new UserDTO(user.getUsername(), user.getEmail(), user.getPassword());
+                JobSeeker jobSeeker = applyJobDetails.getApplyJob().getJobSeeker();
+                jobSeekerProfileDTO = new JobSeekerProfileDTO();
+                jobSeekerProfileDTO.setId(jobSeeker.getId());
+                jobSeekerProfileDTO.setFirstName(jobSeeker.getFirstName());
+                jobSeekerProfileDTO.setLastName(jobSeeker.getLastName());
+                jobSeekerProfileDTO.setEmailAddress(jobSeeker.getEmailAddress());
+                jobSeekerProfileDTO.setAddress(jobSeeker.getAddress());
+                jobSeekerProfileDTO.setCity(jobSeeker.getCity());
+                jobSeekerProfileDTO.setProvince(jobSeeker.getProvince());
+                jobSeekerProfileDTO.setPhoneNumber(jobSeeker.getPhoneNumber());
+                jobSeekerProfileDTO.setInterstIn(jobSeeker.getInterstIn());
+                jobSeekerProfileDTO.setStream(jobSeeker.getStream());
+                jobSeekerProfileDTO.setImagePath(jobSeeker.getImagePath());
+                jobSeekerProfileDTO.setCvPath(jobSeeker.getCvPath());
+                jobSeekerProfileDTO.setHighestEducation(jobSeeker.getHighestEducation());
+                jobSeekerProfileDTO.setUserDTO(userDTO);
+
+                jobSeekerProfileDTO.setBirthDay(jobSeeker.getBirthDay());
+                ApplyJob applyJob = applyJobDetails.getApplyJob();
+                applyJobDTO = new ApplyJobDTO();
+                applyJobDTO.setAid(applyJob.getId());
+                applyJobDTO.setData(applyJob.getData());
+                applyJobDTO.setJobSeeker(jobSeekerProfileDTO);
+
+                JobPoster jobPoster = applyJobDetails.getJobs().getJobPoster();
+                jobPosterDTO = new JobPosterDTO(jobPoster.getUsername(), jobPoster.getEmail(), jobPoster.getCompanyname(), jobPoster.getPassword());
+                Jobs jobs = applyJobDetails.getJobs();
+                jobsDTO = new JobsDTO(jobs.getId(), jobs.getJobtitle(), jobs.getDiscription(), jobs.getCategory(), jobs.getIndustry(),
+                        jobs.getBussinessFuntion(), jobs.getRole(), jobs.getMinsalary(), jobs.getMaxsalary(), jobs.getTotalvacncies(), jobs.getDedlinedate(),
+                        jobs.getImagePath(), jobPosterDTO);
+
+                applyJobDetailsDTO = new ApplyJobDetailsDTO(applyJobDetails.getApplyData(), jobsDTO, applyJobDTO);
+
+                applyJobMainDTO = new ApplyJobMainDTO();
+                applyJobMainDTO.setApplyJobDetails(applyJobDetailsDTO);
+                applyJobMainDTO.setApplyJobDTO(applyJobDTO);
+                applyJobMainDTO.setJobsDTO(jobsDTO);
+
+                applyJobMainDTOList.add(applyJobMainDTO);
+            }
+        }
+        return applyJobMainDTOList;
+    }
+
+
 }

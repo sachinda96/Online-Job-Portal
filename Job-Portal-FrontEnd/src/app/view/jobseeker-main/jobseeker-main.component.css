@@ -16,3 +16,10 @@ h6{
   color: #dce8f1;
   font-size: 15px;
 }
+
+.h1 {
+  text-indent: 50px;
+  text-align: justify;
+  letter-spacing: 3px;
+  color: #0d0d0d;
+}
