@@ -23,9 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/admin-lte/plugins/font-awesome/css/font-awesome.min.css",
-              "node_modules/admin-lte/dist/css/adminlte.min.css",
+
               "src/assets/css/dropzone.css",
               "src/assets/css/bootstrap-material-datetimepicker.css",
               "src/assets/css/waitMe.css",
@@ -39,10 +37,8 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/admin-lte/plugins/jquery/jquery.min.js",
-              "node_modules/admin-lte/plugins/jQueryUI/jquery-ui.min.js",
-              "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
-              "node_modules/admin-lte/dist/js/adminlte.js",
+
+
               "src/assets/js/amcharts.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/chart1.js",
