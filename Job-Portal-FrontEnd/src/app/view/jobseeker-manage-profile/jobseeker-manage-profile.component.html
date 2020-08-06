@@ -1,50 +1,127 @@
-<form (ngSubmit)="saveProfile()">
-  <div class="container">
-    <div class="form-group files color">
-      <label>Upload Your Image</label>
-      <input type="file" class="form-control" multiple="" (change)="setImages($event)">
+<!--<form (ngSubmit)="saveProfile()">-->
+<!--  <div class="container">-->
+<!--    <div class="form-group files color">-->
+<!--      <label>Upload Your Image</label>-->
+<!--      <input type="file" class="form-control" multiple="" (change)="setImages($event)">-->
+<!--    </div>-->
+
+<!--    <div class="row">-->
+<!--      <div class="col">-->
+<!--        <input [(ngModel)]="jobSeekerProfile.firstName" name="firstName" placeholder="First Name" type="text" required>-->
+<!--        <select [(ngModel)]="jobSeekerProfile.interstIn" name="interstIn"  id="interstIn" class="set" >-->
+<!--          <option>I am Interst In</option>-->
+<!--        </select>-->
+<!--        <input [(ngModel)]="jobSeekerProfile.address" name="address" placeholder="Address" type="text" required>-->
+<!--        <input [(ngModel)]="jobSeekerProfile.city" name="city" placeholder="City" type="text" required>-->
+<!--        Birthday (month and year): <input [(ngModel)]="jobSeekerProfile.birthDay" name="birthDay" placeholder="Birth Day" type="month" class="calenderSet" required>-->
+
+<!--        <select [(ngModel)]="jobSeekerProfile.highestEducation" name="highestEducation" id="highestEducation" class="outer" >-->
+<!--          <option>Highest Education</option>-->
+<!--        </select>-->
+
+
+<!--      </div>-->
+<!--      <div class="col">-->
+<!--        <input [(ngModel)]="jobSeekerProfile.lastName" name="lastName" placeholder="Last Name" type="text" required>-->
+<!--        <input [(ngModel)]="jobSeekerProfile.emailAddress" name="emailAddress" placeholder="Email Address" type="text" required>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <input [(ngModel)]="jobSeekerProfile.province" name="province" placeholder="Province" type="text" required>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <input [(ngModel)]="jobSeekerProfile.phoneNumber" name="phoneNumber" placeholder="Phone Number" type="text" required>-->
+<!--        <input [(ngModel)]="jobSeekerProfile.stream" name="stream" placeholder="Stream" type="text" required>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--    <div class="col-md-6">-->
+<!--      <form method="post" action="#" id="#">-->
+<!--        <div class="form-group files color">-->
+<!--          <label>Upload Your Own CV </label>-->
+<!--          <input type="file" class="form-control" multiple="" (change)="setCV($event)">-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <button type="submit" class="button"><span>Save Details</span></button>-->
+<!--</form>-->
+
+<form >
+
+  <div id="loading" *ngIf="loading"></div>
+  <div class="preview text-center">
+    <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="200"/>
+    <div class="browse-button">
+      <input class="browse-input" type="file" required name="UploadedFile"  id="UploadedFile" (change)="setImages($event)"/>
     </div>
-
-    <div class="row">
-      <div class="col">
-        <input [(ngModel)]="jobSeekerProfile.firstName" name="firstName" placeholder="First Name" type="text" required>
-        <select [(ngModel)]="jobSeekerProfile.interstIn" name="interstIn"  id="interstIn" class="set" >
-          <option>I am Interst In</option>
-        </select>
-        <input [(ngModel)]="jobSeekerProfile.address" name="address" placeholder="Address" type="text" required>
-        <input [(ngModel)]="jobSeekerProfile.city" name="city" placeholder="City" type="text" required>
-        Birthday (month and year): <input [(ngModel)]="jobSeekerProfile.birthDay" name="birthDay" placeholder="Birth Day" type="month" class="calenderSet" required>
-
-        <select [(ngModel)]="jobSeekerProfile.highestEducation" name="highestEducation" id="highestEducation" class="outer" >
-          <option>Highest Education</option>
-        </select>
-
-
-      </div>
-      <div class="col">
-        <input [(ngModel)]="jobSeekerProfile.lastName" name="lastName" placeholder="Last Name" type="text" required>
-        <input [(ngModel)]="jobSeekerProfile.emailAddress" name="emailAddress" placeholder="Email Address" type="text" required>
-        <br>
-        <br>
-        <input [(ngModel)]="jobSeekerProfile.province" name="province" placeholder="Province" type="text" required>
-        <br>
-        <br>
-        <br>
-        <br>
-        <input [(ngModel)]="jobSeekerProfile.phoneNumber" name="phoneNumber" placeholder="Phone Number" type="text" required>
-        <input [(ngModel)]="jobSeekerProfile.stream" name="stream" placeholder="Stream" type="text" required>
-      </div>
-
+    <span class="Error"></span>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="firstName">First Name</label>
+      <input type="text" [(ngModel)]="jobSeekerProfile.firstName" name="firstName" class="form-control" id="firstName" >
     </div>
-
-    <div class="col-md-6">
-      <form method="post" action="#" id="#">
-        <div class="form-group files color">
-          <label>Upload Your Own CV </label>
-          <input type="file" class="form-control" multiple="" (change)="setCV($event)">
-        </div>
-      </form>
+    <div class="form-group col-md-6">
+      <label for="lastName">Last Name</label>
+      <input type="text" [(ngModel)]="jobSeekerProfile.lastName" name="lastName"  class="form-control" id="lastName" >
     </div>
   </div>
-  <button type="submit" class="button"><span>Save Details</span></button>
+  <div class="form-row">
+  <div class="form-group col-md-8">
+    <label for="address">Address</label>
+    <input type="text" class="form-control" [(ngModel)]="jobSeekerProfile.address" name="address" id="address" >
+  </div>
+
+  <div class="form-group col-md-4">
+    <label for="city">City</label>
+    <input type="text" class="form-control"  [(ngModel)]="jobSeekerProfile.city" name="city" id="city">
+  </div>
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-4">
+      <label for="birthDay">Birath Day</label>
+      <input type="date" class="form-control" [(ngModel)]="jobSeekerProfile.birthDay" name="birthDay"  id="birthday">
+    </div>
+
+    <div class="form-group col-md-4" style="margin-top: 5px">
+      <label for="emailAddress">Email Address</label>
+      <input type="email" class="form-control" [(ngModel)]="jobSeekerProfile.emailAddress" name="emailAddress" id="emailAddress" disabled>
+    </div>
+
+
+    <div class="form-group col-md-4" style="margin-top: 5px">
+      <label for="phoneNumber">Mobile Number</label>
+      <input type="number" class="form-control"  [(ngModel)]="jobSeekerProfile.phoneNumber" name="phoneNumber" id="phoneNumber" >
+    </div>
+
+  </div>
+
+  <div class="form-row">
+      <div class="col-md-6">
+        <form method="post" action="#" id="#">
+          <div class="form-group files color">
+            <label>Upload Your Own CV </label>
+            <input type="file" class="form-control" multiple="" (change)="setCV($event)">
+          </div>
+        </form>
+      </div>
+  </div>
+
+  <button type="button" style="float: right;background-color:#0c5460;color: white" class="btn btn-primary" (click)="saveProfile()">SAVE</button>
 </form>
+
+
+<!--  <form>-->
+<!--    <div class="row">-->
+<!--      <div class="col">-->
+<!--        <input type="text" class="form-control" placeholder="First name">-->
+<!--      </div>-->
+<!--      <div class="col">-->
+<!--        <input type="text" class="form-control" placeholder="Last name">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </form>-->

@@ -21,16 +21,15 @@ export class ViewallPostedJobsComponent implements OnInit {
   getAllJobs():void{
     this.jobService.getAllJobs().subscribe(
       (result)=>{
+        console.log(result)
         this.allPostedJobs=result
       }
     )
   }
 
   setSelectedJob(id:string):void {
-    this.id = id;
-    console.log(this.id)
     this.jobService.setId(id) ;
-    this.router.navigate(['/Main/SelectedJob']);
+    this.router.navigate(['/Main/SelectedJob/'+id]);
 
   }
 }

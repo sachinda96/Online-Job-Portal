@@ -11,7 +11,7 @@ export class Jobs {
   role:string;
   minsalary:number;
   maxsalary:number;
-  totalvacncis:number;
+  totalvacncies:number;
   dedlinedate:string;
   iamgePath:string;
   jobPosterDTO:JobPoster;

@@ -58,6 +58,7 @@ import { ViewApplyedJobComponent } from './view/view-applyed-job/view-applyed-jo
     ViewApplyedJobComponent,
   ],
   imports: [
+
     BrowserModule,
     FormsModule,
     HttpClientModule,

@@ -85,7 +85,7 @@ const routes: Routes = [
         component: PosterRegistationComponent},
 
       {
-        path: 'SelectedJob',
+        path: 'SelectedJob/:id',
         component: ApplyselectjobComponent,
         children:[
           {
@@ -136,6 +136,10 @@ const routes: Routes = [
       {
         path: "PostJob",
         component: PostjobComponent
+      },
+      {
+      path: "PostJob/:id",
+      component: PostjobComponent
       },
 
       {

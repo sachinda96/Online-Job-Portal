@@ -2,6 +2,7 @@ import {JobPoster} from "./job-poster";
 
 export class JobPosterProfile {
 
+  id : string;
   comapanyname:string;
   email:string;
   address:string;

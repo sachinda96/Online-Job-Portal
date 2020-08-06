@@ -22,6 +22,7 @@ export class PosterJobDetailsComponent implements OnInit {
   getSelectedJobDetails(){
 
     var id=this.jobService.getId();
+
     this.jobService.getSelectedJobDetails(id).subscribe(
       (result)=>{
         if(result){
@@ -46,10 +47,10 @@ export class PosterJobDetailsComponent implements OnInit {
     )
   }
 
-  setPostJob(){
-    console.log("set")
+  setPostJob(id:String){
     this.jobService.setJobDetails(this.postjob);
-      this.router.navigate(['/JobPosterMain/PostJob']);
+      // @ts-ignore
+    this.router.navigate(['/JobPosterMain/PostJob',id],);
 
   }
 }

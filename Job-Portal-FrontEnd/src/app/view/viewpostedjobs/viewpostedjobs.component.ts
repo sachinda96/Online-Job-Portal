@@ -23,7 +23,7 @@ export class ViewpostedjobsComponent implements OnInit {
   constructor(private jobPosterService:JObPosterService,private jobService:JobsService,private elem:ElementRef,private router:Router) { }
 
   ngOnInit() {
-    this.getLoginedPoster();
+    //this.getLoginedPoster();
     this.getPostedJobs();
   }
 

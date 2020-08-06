@@ -16,9 +16,15 @@ export class AuthService {
     return this.http.post<User>(MAIN_URL + URL, user)
       .pipe(
         map((result)=>{
+          console.log(result)
           sessionStorage.setItem("token", JSON.stringify(result) );
           if (result){
-            this.router.navigate(['/JobSeekerMain/dashboard']);
+            if(result.type === "SEEKER"){
+              this.router.navigate(['/JobSeekerMain/dashboard']);
+            }else{
+              this.router.navigate(['/JobPosterMain/dashboard']);
+            }
+
           }
           return result;
         })

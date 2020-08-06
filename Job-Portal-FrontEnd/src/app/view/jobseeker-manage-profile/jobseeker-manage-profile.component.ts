@@ -17,6 +17,7 @@ export class JobseekerManageProfileComponent implements OnInit {
   CvFile:File;
   user:User;
   MainUser:User=new User();
+  loading :boolean =false;
   constructor(private authService:AuthService,private jobSeekerProfileService:JobSeekerProfileService) { }
 
   ngOnInit() {
@@ -51,6 +52,7 @@ export class JobseekerManageProfileComponent implements OnInit {
 
   saveProfile():void{
 
+    this.loading = true;
     const formdata:FormData=new FormData();
     formdata.append("imageFile",this.imagefile)
     this.jobSeekerProfileService.uploadImage(formdata).subscribe(
@@ -65,17 +67,24 @@ export class JobseekerManageProfileComponent implements OnInit {
                 this.jobSeekerProfile.userDTO=this.MainUser;
                 this.jobSeekerProfileService.saveProfile(this.jobSeekerProfile).subscribe(
                   (result)=>{
+                    this.loading =false;
                     if(result){
                       alert("Sucsess")
                     }else{
                       alert("fail")
                     }
+                  },error => {
+                    this.loading =false;
                   }
                 )
               }
+            },error => {
+              this.loading = false
             }
           )
         }
+      },error => {
+        this.loading =true;
       }
     )
    }

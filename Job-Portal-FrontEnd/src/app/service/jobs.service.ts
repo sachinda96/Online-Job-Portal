@@ -27,13 +27,10 @@ export class JobsService {
         return this.http.get<Array<PostJob>>(MAIN_URL+URLS+"/"+username);
     }
 
-  saveFile(file:FormData): Observable<boolean> {
-    return this.http.post<boolean>(MAIN_URL + ImageURLS,file);
+  saveFile(file:FormData): Observable<any> {
+    return this.http.post<any>(MAIN_URL + ImageURLS,file);
   }
 
-  getFile(path : String): Observable<HttpEvent<{}>>{
-    return this.http.get<HttpEvent<{}>>(MAIN_URL+URLS+"/file"+path);
-  }
 
   getSelectedJobDetails(id : String): Observable<PostJob>{
     return this.http.get<PostJob>(MAIN_URL+URLS+"/search/"+id);

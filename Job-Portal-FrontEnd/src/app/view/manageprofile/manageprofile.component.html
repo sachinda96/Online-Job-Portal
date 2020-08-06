@@ -1,38 +1,92 @@
-<form (ngSubmit)="saveFile()">
-  <div class="container">
-    <div class="row">
-    <div class="col">
-      <input [(ngModel)]="JObPOsterProfile.comapanyname" name="comapanyname" placeholder="Company Name" type="text" required>
-      <input [(ngModel)]="JObPOsterProfile.address" name="address" class="set" placeholder="Address" type="text" required>
-      <input [(ngModel)]="JObPOsterProfile.city" name="city" placeholder="City" type="text" required>
-      <input [(ngModel)]="JObPOsterProfile.contactnumber" name="contactnumber" placeholder="Contact Number" type="text" required>
+<!--<form (ngSubmit)="saveFile()">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--    <div class="col">-->
+<!--      <input [(ngModel)]="JObPOsterProfile.comapanyname" name="comapanyname" placeholder="Company Name" type="text" required>-->
+<!--      <input [(ngModel)]="JObPOsterProfile.address" name="address" class="set" placeholder="Address" type="text" required>-->
+<!--      <input [(ngModel)]="JObPOsterProfile.city" name="city" placeholder="City" type="text" required>-->
+<!--      <input [(ngModel)]="JObPOsterProfile.contactnumber" name="contactnumber" placeholder="Contact Number" type="text" required>-->
 
 
+<!--    </div>-->
+<!--      <div class="col">-->
+<!--      <input [(ngModel)]="JObPOsterProfile.email" name="email" placeholder="E-mail" type="text" required>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <input [(ngModel)]="JObPOsterProfile.province" name="province" placeholder="Province" type="text" required>-->
+
+<!--      </div>-->
+
+<!--      <input [(ngModel)]="JObPOsterProfile.companyBackground" name="companyBackground" class="background" placeholder="Company Background" type="text" required>-->
+
+<!--    </div>-->
+
+<!--    <div class="col-md-6">-->
+<!--      <form method="post" action="#" id="#">-->
+
+
+
+
+<!--        <div class="form-group files color">-->
+<!--          <label>Upload Your File </label>-->
+<!--          <input type="file" class="form-control" multiple="" (change)="setImages($event)">-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <button type="submit" class="button"><span>Save Details</span></button>-->
+<!--</form>-->
+
+
+
+<form >
+
+  <div id="loading" *ngIf="loading"></div>
+  <div class="preview text-center">
+    <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="200"/>
+    <div class="browse-button">
+      <input class="browse-input" type="file" required name="UploadedFile"  id="UploadedFile" (change)="setImages($event)"/>
     </div>
-      <div class="col">
-      <input [(ngModel)]="JObPOsterProfile.email" name="email" placeholder="E-mail" type="text" required>
-        <br>
-        <br>
-        <input [(ngModel)]="JObPOsterProfile.province" name="province" placeholder="Province" type="text" required>
-
-      </div>
-
-      <input [(ngModel)]="JObPOsterProfile.companyBackground" name="companyBackground" class="background" placeholder="Company Background" type="text" required>
-
+    <span class="Error"></span>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="comapanyname">Company Name</label>
+      <input type="text" [(ngModel)]="JObPOsterProfile.comapanyname" name="comapanyname" class="form-control" id="comapanyname" >
     </div>
-
-    <div class="col-md-6">
-      <form method="post" action="#" id="#">
-
-
-
-
-        <div class="form-group files color">
-          <label>Upload Your File </label>
-          <input type="file" class="form-control" multiple="" (change)="setImages($event)">
-        </div>
-      </form>
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" [(ngModel)]="JObPOsterProfile.email" name="email"  class="form-control" id="email" disabled>
     </div>
   </div>
-  <button type="submit" class="button"><span>Save Details</span></button>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="address">Address</label>
+      <input type="text" class="form-control" [(ngModel)]="JObPOsterProfile.address" name="address" id="address" >
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="city">City</label>
+      <input type="text" class="form-control"  [(ngModel)]="JObPOsterProfile.city" name="city" id="city">
+    </div>
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-4" style="margin-top: 5px">
+      <label for="phoneNumber">Mobile Number</label>
+      <input type="number" class="form-control"  [(ngModel)]="JObPOsterProfile.contactnumber" name="phoneNumber" id="phoneNumber" >
+    </div>
+
+  </div>
+
+  <div class="form-row">
+
+    <div class="form-group col-md-12">
+      <label for="companyBackground">Company Background</label>
+      <textarea  type="text" class="form-control"  [(ngModel)]="JObPOsterProfile.companyBackground" name="companyBackground" id="companyBackground"></textarea>
+    </div>
+
+  </div>
+
+  <button type="button" style="float: right;background-color:#0c5460;color: white" class="btn btn-primary" (click)="saveJobPOsterProfile()">SAVE</button>
 </form>

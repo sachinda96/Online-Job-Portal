@@ -22,7 +22,7 @@
                   <hr>
                   <div class="news-footer">
                     <div class="news-likes">
-                      <button type="button" class="btn btn-outline-secondary" (click)="setPostJob()"><i class="far fa-edit" ></i> <span class="badge ">Update</span></button>
+                      <button type="button" class="btn btn-outline-secondary" (click)="setPostJob(postjob.jobsDTO.id)"><i class="far fa-edit" ></i> <span class="badge ">Update</span></button>
                       &nbsp;&nbsp; <button type="button" class="btn btn-outline-secondary" (click)="deletePost()"><i class="far fa-trash-alt"></i><span class="badge">Delete</span></button>
                     </div>
                   </div>
@@ -87,9 +87,7 @@
               <label>Category</label>
               <a >	&nbsp;<li>{{postjob.jobsDTO.category}}</li></a>
               <br>
-              <label>Bussiness Funtion</label>
-              <a>	&nbsp;<li>{{postjob.jobsDTO.bussinessfuntion}}</li></a>
-              <br>
+
               <label>Industry</label>
               <a>	&nbsp;<li>{{postjob.jobsDTO.industry}}</li></a>
               <br>
@@ -104,7 +102,7 @@
           <div class="card">
             <div class="card-body">
               <label>Min Salary</label>
-              <a><li>{{postjob.jobsDTO.minsalarysalary}}</li></a>
+              <a><li>{{postjob.jobsDTO.minsalary}}</li></a>
               <br>
               <label>Max Salary</label>
               <a><li>{{postjob.jobsDTO.maxsalary}}</li></a>

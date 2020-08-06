@@ -19,8 +19,8 @@ export class JobPosterMainComponent implements OnInit {
   constructor(private authService:AuthService,private jobPosterProfileService:JobPosterProfileService,private jobposterService:JObPosterService ) { }
 
   ngOnInit() {
-    this.loadLoginedPoster();
-    this.setUserDeatils();
+    //this.loadLoginedPoster();
+    //this.setUserDeatils();
   }
 
   logout(): void{

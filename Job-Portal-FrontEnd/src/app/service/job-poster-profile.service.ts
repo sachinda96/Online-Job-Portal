@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {MAIN_URL} from "./user-service.service";
-import {Observable} from "rxjs/index";
+import {Observable, throwError} from "rxjs/index";
 import {JobPosterProfile} from "../dto/job-poster-profile";
 import {JObPosterService} from "./job-poster.service";
 import {JobPoster} from "../dto/job-poster";
 import {ImageFile} from "../dto/image-file";
+import {catchError} from "rxjs/operators";
 
 const URL="/api/v1/profile"
 const URLS="/api/v1/profile/saveprofile"
@@ -16,10 +17,17 @@ export class JobPosterProfileService {
 
   constructor(private http:HttpClient) { }
 
-  saveFile(file:FormData): Observable<boolean> {
-    console.log(file)
-    return this.http.post<boolean>(MAIN_URL + ImageURLS,file);
+  saveFile(file:FormData): Observable<any> {
+    const reqHeader = new  HttpHeaders().set('Accept','application/json')
+    return this.http.post<any>(MAIN_URL + ImageURLS,file,{headers:reqHeader});
     }
+
+
+  getJobPoster(userName : String) : Observable<any>{
+    return this.http.get<any>(MAIN_URL+ URL+ "/getJobPoster/"+userName);
+
+  }
+
 
   saveJobPosterProfile(posterProfile:JobPosterProfile): Observable<boolean> {
     return this.http.post<boolean>(MAIN_URL +URLS,posterProfile);

@@ -7,4 +7,5 @@ export class Qulification {
   skill:string;
   genderpreference:string;
   maximumage:number;
+  minimumage:number;
 }
