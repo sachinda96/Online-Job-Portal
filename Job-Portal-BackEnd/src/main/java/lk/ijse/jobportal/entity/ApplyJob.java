@@ -6,10 +6,11 @@ import javax.persistence.*;
 
 @Entity
 public class ApplyJob {
+
     @Id
     private Long aid;
     private String data;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     private JobSeeker jobSeeker;
 
     public ApplyJob() {

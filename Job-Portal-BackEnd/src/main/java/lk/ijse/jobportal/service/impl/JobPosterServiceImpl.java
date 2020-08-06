@@ -21,6 +21,7 @@ public class JobPosterServiceImpl implements JobPosterService {
     private JobPosterReposistory jobPosterReposistory;
 
     private JobPoster jobPosterMain;
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public boolean addJobPoaser(JobPosterDTO jobPosterDTO) {
@@ -39,7 +40,6 @@ public class JobPosterServiceImpl implements JobPosterService {
 
         JobPoster jobPoster = jobPosterReposistory.findById(username).get();
 
-
         jobPosterMain=new JobPoster(jobPoster.getUsername(),jobPoster.getEmail(),jobPoster.getCompanyname(),jobPoster.getPassword());
 
         return jobPoster.getPassword().equals(pasword);
@@ -47,7 +47,6 @@ public class JobPosterServiceImpl implements JobPosterService {
 
     @Override
     public JobPosterDTO loginPoster() {
-
         JobPosterDTO jobPosterDTO=new JobPosterDTO(jobPosterMain.getUsername(),jobPosterMain.getEmail(),jobPosterMain.getCompanyname(),jobPosterMain.getPassword());
         return  jobPosterDTO;
     }

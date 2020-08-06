@@ -6,12 +6,12 @@ import java.io.Serializable;
 @Embeddable
 public class ApplyJobDetails_PK implements Serializable {
     private Long aid;
-    private Long id;
+    private String id;
 
     public ApplyJobDetails_PK() {
     }
 
-    public ApplyJobDetails_PK(Long aid, Long id) {
+    public ApplyJobDetails_PK(Long aid, String id) {
         this.aid = aid;
         this.id = id;
     }
@@ -24,11 +24,11 @@ public class ApplyJobDetails_PK implements Serializable {
         this.aid = aid;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

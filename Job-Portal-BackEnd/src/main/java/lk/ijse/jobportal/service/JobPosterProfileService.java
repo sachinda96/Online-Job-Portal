@@ -12,13 +12,15 @@ import java.util.ArrayList;
 
 public interface JobPosterProfileService {
 
-    public boolean savePosterProfile(JObPosterProfileDTO posterProfileDTO);
+    public ResponseEntity<?> savePosterProfile(JObPosterProfileDTO posterProfileDTO);
 
     public ArrayList<JObPosterProfileDTO> viewProfileData();
 
     public JObPosterProfileDTO searchPosterProfile(String name);
 
-    public boolean uploadFile(MultipartFile file);
+    public ResponseEntity<?> uploadFile(MultipartFile file);
 
     public ResponseEntity<InputStreamResource> getImage(String path);
+
+    public ResponseEntity<?> getJobPosterProfile(String userName);
 }

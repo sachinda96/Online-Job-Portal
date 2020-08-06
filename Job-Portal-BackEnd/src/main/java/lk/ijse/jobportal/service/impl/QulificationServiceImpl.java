@@ -17,7 +17,7 @@ public class QulificationServiceImpl implements QulificationService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public boolean deleteQulification(Long id) {
-        qulificationRepository.deleteById(id);
+        qulificationRepository.deleteById(id.toString());
         return true;
     }
 }

@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 @Entity
 public class Jobs {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String jobtitle;
     private String discription;
     private String category;
@@ -21,7 +21,7 @@ public class Jobs {
     private String dedlinedate;
     private String imagePath;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private JobPoster jobPoster;
 
    
@@ -43,11 +43,11 @@ public class Jobs {
         this.jobPoster = jobPoster;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

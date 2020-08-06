@@ -2,18 +2,19 @@ package lk.ijse.jobportal.dto;
 
 public class QulificationDTO {
 
-    private Long id;
+    private String id ="0";
     private String minimumqulification;
     private String requiredexperience;
     private String educationalspecialization;
     private String skill;
     private String genderpreference;
     private int maximumage;
+    private int minimumage;
 
     public QulificationDTO() {
     }
 
-    public QulificationDTO(Long id, String minimumqulification, String requiredexperience, String educationalspecialization, String skill, String genderpreference, int maximumage) {
+    public QulificationDTO(String id, String minimumqulification, String requiredexperience, String educationalspecialization, String skill, String genderpreference, int maximumage) {
         this.id = id;
         this.minimumqulification = minimumqulification;
         this.requiredexperience = requiredexperience;
@@ -23,11 +24,11 @@ public class QulificationDTO {
         this.maximumage = maximumage;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -77,5 +78,13 @@ public class QulificationDTO {
 
     public void setMaximumage(int maximumage) {
         this.maximumage = maximumage;
+    }
+
+    public int getMinimumage() {
+        return minimumage;
+    }
+
+    public void setMinimumage(int minimumage) {
+        this.minimumage = minimumage;
     }
 }

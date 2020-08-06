@@ -24,15 +24,19 @@ public class JobPosterProfileController {
     private JobPosterProfileService jobPosterProfileService;
 
     @PostMapping(value = "/saveprofile",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean savePosterProfile(@RequestBody JObPosterProfileDTO jObPosterProfileDTO){
+    public ResponseEntity<?> savePosterProfile(@RequestBody JObPosterProfileDTO jObPosterProfileDTO){
         return jobPosterProfileService.savePosterProfile(jObPosterProfileDTO);
     }
 
     @PostMapping(value = "/file")
-    public boolean postImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> postImage(@RequestParam("file") MultipartFile file) {
         return jobPosterProfileService.uploadFile(file);
         }
 
+    @GetMapping(value = "/getJobPoster/{username}")
+    public ResponseEntity<?> getJobPoster(@PathVariable String username) {
+        return jobPosterProfileService.getJobPosterProfile(username);
+    }
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<JObPosterProfileDTO> getAllJobsPosterProfiles() {
         return jobPosterProfileService.viewProfileData();

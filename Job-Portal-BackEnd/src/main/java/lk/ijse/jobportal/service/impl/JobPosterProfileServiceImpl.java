@@ -2,13 +2,16 @@ package lk.ijse.jobportal.service.impl;
 
 import lk.ijse.jobportal.dto.JObPosterProfileDTO;
 import lk.ijse.jobportal.dto.JobPosterDTO;
+import lk.ijse.jobportal.dto.JsonFile;
 import lk.ijse.jobportal.entity.JobPoster;
 import lk.ijse.jobportal.entity.JobPosterProfile;
 import lk.ijse.jobportal.repository.JobPosterProfileRepository;
+import lk.ijse.jobportal.repository.JobPosterReposistory;
 import lk.ijse.jobportal.service.JobPosterProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
@@ -32,6 +36,8 @@ public class JobPosterProfileServiceImpl implements JobPosterProfileService {
     private String path;
     private String FILE_PATH;
 
+    @Autowired
+    private JobPosterReposistory jobPosterReposistory;
 
 
     @Autowired
@@ -39,25 +45,47 @@ public class JobPosterProfileServiceImpl implements JobPosterProfileService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public boolean savePosterProfile( JObPosterProfileDTO posterProfileDTO) {
+    public ResponseEntity<?> savePosterProfile( JObPosterProfileDTO posterProfileDTO) {
+
+
+        try {
 
         JobPosterDTO jobPosterDTO=posterProfileDTO.getJobPosterDTO();
-        JobPoster jobPoster=new JobPoster(jobPosterDTO.getUsername(),jobPosterDTO.getEmail(),jobPosterDTO.getCompanyname(),jobPosterDTO.getPassword());
 
-        JobPosterProfile jobPosterProfile=new JobPosterProfile();
-        jobPosterProfile.setComapanyname(posterProfileDTO.getComapanyname());
-        jobPosterProfile.setEmail(posterProfileDTO.getEmail());
-        jobPosterProfile.setAddress(posterProfileDTO.getAddress());
-        jobPosterProfile.setCity(posterProfileDTO.getCity());
-        jobPosterProfile.setProvince(posterProfileDTO.getProvince());
-        jobPosterProfile.setContactnumber(posterProfileDTO.getContactnumber());
-        jobPosterProfile.setCompanyBackground(posterProfileDTO.getCompanyBackground());
-        jobPosterProfile.setImagepaht(path);
-        jobPosterProfile.setJobPoster(jobPoster);
+        Optional<JobPoster> jobPoster = jobPosterReposistory.findById(jobPosterDTO.getUsername());
 
-        jobPosterProfileRepository.save(jobPosterProfile);
+        if(jobPoster.isPresent()){
 
-        return true;
+            System.out.println(posterProfileDTO.getId());
+            Optional<JobPosterProfile> jobPosterProfile =jobPosterProfileRepository.findById(posterProfileDTO.getId());
+
+            if(!jobPosterProfile.isPresent()){
+                jobPosterProfile= Optional.of(new JobPosterProfile());
+                jobPosterProfile.get().setId(UUID.randomUUID().toString());
+            }
+
+            jobPosterProfile.get().setComapanyname(posterProfileDTO.getComapanyname());
+            jobPosterProfile.get().setEmail(posterProfileDTO.getEmail());
+            jobPosterProfile.get().setAddress(posterProfileDTO.getAddress());
+            jobPosterProfile.get().setCity(posterProfileDTO.getCity());
+            jobPosterProfile.get().setProvince(posterProfileDTO.getProvince());
+            jobPosterProfile.get().setContactnumber(posterProfileDTO.getContactnumber());
+            jobPosterProfile.get().setCompanyBackground(posterProfileDTO.getCompanyBackground());
+            jobPosterProfile.get().setImagepaht(posterProfileDTO.getImagePath());
+            jobPosterProfile.get().setJobPoster(jobPoster.get());
+            jobPosterProfileRepository.save(jobPosterProfile.get());
+
+            return new ResponseEntity<>("200",HttpStatus.OK);
+
+        }
+
+        return new ResponseEntity<>("204",HttpStatus.NO_CONTENT);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @Override
@@ -87,6 +115,7 @@ public class JobPosterProfileServiceImpl implements JobPosterProfileService {
 
     @Override
     public JObPosterProfileDTO searchPosterProfile(String name) {
+
         Optional<JobPosterProfile> byId = jobPosterProfileRepository.findById(name);
         JobPosterProfile jobPosterProfile=byId.get();
 
@@ -100,36 +129,37 @@ public class JobPosterProfileServiceImpl implements JobPosterProfileService {
         jobPosterProfileDTO.setProvince(jobPosterProfile.getProvince());
         jobPosterProfileDTO.setContactnumber(jobPosterProfile.getContactnumber());
         jobPosterProfileDTO.setCompanyBackground(jobPosterProfile.getCompanyBackground());
-        jobPosterProfileDTO.setImagePath(path);
+        jobPosterProfileDTO.setImagePath(jobPosterProfile.getImagepaht());
         jobPosterProfileDTO.setJobPosterDTO(jobPosterDTO);
-
 
         return jobPosterProfileDTO;
     }
 
     @Override
-    public boolean uploadFile(MultipartFile file) {
+    public ResponseEntity<?> uploadFile(MultipartFile file) {
 
-        if (!file.getOriginalFilename().isEmpty()) {
-            BufferedOutputStream outputStream = null;
-            try {
 
-                outputStream = new BufferedOutputStream(
-                        new FileOutputStream(
-                                new File("F:/Server Images", file.getOriginalFilename())));
-                path = "http://localhost:8080/api/v1/profile/file?file=F:/Server Images/" + file.getOriginalFilename();
-                //  System.out.println(multipartFile.getOriginalFilename());
-                outputStream.write(file.getBytes());
-                outputStream.flush();
-                outputStream.close();
+        try {
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            String filePath = "";
+
+                BufferedOutputStream outputStream = null;
+                    outputStream = new BufferedOutputStream(
+                            new FileOutputStream(
+                                    new File("src/main/resources/images", file.getOriginalFilename())));
+                    filePath = "http://localhost:8080/api/v1/profile/file?file=src/main/resources/images/" + file.getOriginalFilename();
+                    //  System.out.println(multipartFile.getOriginalFilename());
+                    outputStream.write(file.getBytes());
+                    outputStream.flush();
+                    outputStream.close();
+
+                    return new ResponseEntity<>(new JsonFile(filePath), HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return true;
+
     }
 
     @Override
@@ -148,6 +178,43 @@ public class JobPosterProfileServiceImpl implements JobPosterProfileService {
                         "attachment;filename=" + file.getName())
                 .contentType(MediaType.APPLICATION_PDF).contentLength(file.length())
                 .body(resource);
+
+
+    }
+
+    @Override
+    public ResponseEntity<?> getJobPosterProfile(String userName) {
+
+        try {
+
+            Optional<JobPoster> jobPoster = jobPosterReposistory.findById(userName);
+
+
+            JObPosterProfileDTO jObPosterProfileDTO=new JObPosterProfileDTO();
+            if(jobPoster.isPresent()){
+
+                Optional<JobPosterProfile> jobPosterProfile = jobPosterProfileRepository.findOneByJobPoster(jobPoster.get());
+
+                if(jobPosterProfile.isPresent()){
+
+                    jObPosterProfileDTO.setId(jobPosterProfile.get().getId());
+                    jObPosterProfileDTO.setAddress(jobPosterProfile.get().getAddress());
+                    jObPosterProfileDTO.setCity(jobPosterProfile.get().getCity());
+                    jObPosterProfileDTO.setComapanyname(jobPosterProfile.get().getComapanyname());
+                    jObPosterProfileDTO.setCompanyBackground(jobPosterProfile.get().getCompanyBackground());
+                    jObPosterProfileDTO.setImagePath(jobPosterProfile.get().getImagepaht());
+                    jObPosterProfileDTO.setContactnumber(jobPosterProfile.get().getContactnumber());
+                }
+
+
+            }
+
+            return new ResponseEntity<>(jObPosterProfileDTO,HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.OK);
+        }
 
 
     }

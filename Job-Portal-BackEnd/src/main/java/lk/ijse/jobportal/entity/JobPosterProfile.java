@@ -8,6 +8,7 @@ import java.util.Arrays;
 @Entity
 public class JobPosterProfile {
     @Id
+    private String id;
     private String comapanyname;
     private String email;
     private String address;
@@ -34,6 +35,14 @@ public class JobPosterProfile {
         this.companyBackground = companyBackground;
         this.imagepaht = imagepaht;
         this.jobPoster = jobPoster;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getComapanyname() {

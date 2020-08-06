@@ -73,7 +73,7 @@ public class ApplyJobServiceImpl implements ApplyJobService {
 
 
         ApplyJobDetails_PK applyJobDetails_pk=new ApplyJobDetails_PK();
-        applyJobDetails_pk.setId(jobs.getId());
+        //applyJobDetails_pk.setId(jobs.getId().toString());
         applyJobDetails_pk.setAid(applyJob.getId());
 
         ApplyJobDetailsDTO applyJobDetailsDTO=applyJobMainDTO.getApplyJobDetails();
@@ -81,7 +81,7 @@ public class ApplyJobServiceImpl implements ApplyJobService {
         applyJobDetails.setApplyData(applyJobDetailsDTO.getApplyData());
         applyJobDetails.setApplyJob(applyJob);
         applyJobDetails.setJobs(jobs);
-        applyJobDetails.setApplyJobDetails_pk(applyJobDetails_pk);
+        //applyJobDetails.setApplyJobDetails_pk(applyJobDetails_pk);
 
         applyJobRepository.save(applyJob);
 

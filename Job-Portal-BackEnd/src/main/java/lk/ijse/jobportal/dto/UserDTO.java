@@ -4,6 +4,7 @@ public class UserDTO {
     private String username;
     private String email;
     private String password;
+    private String type;
 
     public UserDTO() {
     }
@@ -36,6 +37,14 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override

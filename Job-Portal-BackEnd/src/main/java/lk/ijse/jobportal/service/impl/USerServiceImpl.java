@@ -47,16 +47,41 @@ public class USerServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO loginUser(String username, String password) {
+    public UserDTO loginUser(String username, String password)throws Exception {
         boolean exists = userRepository.existsById(username);
-        User user = userRepository.findById(username).get();
-        UserDTO userDTO=null;
-        if (user.getPassword().equals(password)){
-            userDTO=new UserDTO();
-            userDTO.setUsername(user.getUsername());
-            userDTO.setEmail(user.getEmail());
-            userDTO.setPassword(user.getPassword());
+
+        if(!exists){
+            jobPosterReposistory.existsById(username);
+            JobPoster jobPoster = jobPosterReposistory.findById(username).get();
+
+            if(jobPoster.getPassword().equalsIgnoreCase(password)){
+                UserDTO userDTO = new UserDTO();
+                userDTO.setEmail(jobPoster.getEmail());
+                userDTO.setUsername(jobPoster.getUsername());
+                userDTO.setType("POSTER");
+                return userDTO;
+            }
+
+            throw new Exception("Invalid UserName Or Password");
+
+        }else{
+            boolean existsuser = userRepository.existsById(username);
+            if(existsuser){
+                User user = userRepository.findById(username).get();
+                if (user.getPassword().equals(password)){
+                    UserDTO userDTO=new UserDTO();
+                    userDTO.setUsername(user.getUsername());
+                    userDTO.setEmail(user.getEmail());
+                    userDTO.setPassword(user.getPassword());
+                    userDTO.setType("SEEKER");
+                    return userDTO;
+                }
+                throw new Exception("Invalid UserName Or Password");
+            }
+
+
         }
-        return userDTO;
+        throw new Exception("Failed to login");
+
     }
 }

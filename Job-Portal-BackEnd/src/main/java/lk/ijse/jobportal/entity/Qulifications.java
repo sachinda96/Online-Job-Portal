@@ -5,14 +5,14 @@ import javax.persistence.*;
 @Entity
 public class Qulifications {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
     private String minimumqulification;
     private String requiredexperience;
     private String educationalspecialization;
     private String skill;
     private String genderpreference;
     private int maximumage;
+    private int minimumage;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Jobs jobs;
@@ -29,11 +29,11 @@ public class Qulifications {
         this.jobs = jobs;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -91,6 +91,14 @@ public class Qulifications {
 
     public void setJobs(Jobs jobs) {
         this.jobs = jobs;
+    }
+
+    public int getMinimumage() {
+        return minimumage;
+    }
+
+    public void setMinimumage(int minimumage) {
+        this.minimumage = minimumage;
     }
 
     @Override

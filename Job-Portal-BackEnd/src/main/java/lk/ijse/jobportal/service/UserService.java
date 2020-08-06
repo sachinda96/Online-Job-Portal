@@ -8,5 +8,5 @@ public interface UserService {
 
     public boolean login(String username,String pasword);
 
-    public UserDTO loginUser(String username,String password);
+    public UserDTO loginUser(String username,String password)throws Exception;
 }

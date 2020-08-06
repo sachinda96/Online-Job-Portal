@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface JobsRepository extends JpaRepository<Jobs,Long> {
+public interface JobsRepository extends JpaRepository<Jobs,String> {
 
     @Query("SELECT count(j.id) FROM Jobs j")
     long getTotalCustomers();

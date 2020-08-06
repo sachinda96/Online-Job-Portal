@@ -6,6 +6,7 @@ import lk.ijse.jobportal.entity.JobPoster;
 import lk.ijse.jobportal.service.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +21,7 @@ public class JobsContoller {
     private JobsService jobsService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean addJobs(@RequestBody PostJobDTO postJobDTO){
+    public ResponseEntity<?> addJobs(@RequestBody PostJobDTO postJobDTO){
         return jobsService.addJob(postJobDTO);
     }
 
@@ -39,9 +40,8 @@ public class JobsContoller {
 
     }
 
-    @GetMapping(value = "search/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public PostJobDTO searchJobs(@PathVariable("id") Long id){
-        System.out.println(id);
+    @GetMapping(value = "/search/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> searchJobs(@PathVariable String id){
         return jobsService.searchJob(id);
     }
 

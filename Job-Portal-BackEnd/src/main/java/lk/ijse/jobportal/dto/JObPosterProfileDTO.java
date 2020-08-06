@@ -5,6 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 
 public class JObPosterProfileDTO {
+
+    private String id;
     private String comapanyname;
     private String email;
     private String address;
@@ -30,6 +32,14 @@ public class JObPosterProfileDTO {
         this.imagePath = imagePath;
         this.jobPosterDTO = jobPosterDTO;
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getComapanyname() {

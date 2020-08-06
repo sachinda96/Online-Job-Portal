@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class JobsDTO {
 
-    private Long id;
+    private String id = "0";
     private String jobtitle;
     private String discription;
     private String category;
@@ -24,7 +24,7 @@ public class JobsDTO {
     public JobsDTO() {
     }
 
-    public JobsDTO(Long id, String jobtitle, String discription, String category, String industry, String bussinessfuntion, String role, BigDecimal minsalary, BigDecimal maxsalary, int totalvacncies, String dedlinedate, String iamgePath, JobPosterDTO jobPosterDTO) {
+    public JobsDTO(String id, String jobtitle, String discription, String category, String industry, String bussinessfuntion, String role, BigDecimal minsalary, BigDecimal maxsalary, int totalvacncies, String dedlinedate, String iamgePath, JobPosterDTO jobPosterDTO) {
         this.id = id;
         this.jobtitle = jobtitle;
         this.discription = discription;
@@ -40,11 +40,11 @@ public class JobsDTO {
         this.jobPosterDTO = jobPosterDTO;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

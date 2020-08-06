@@ -19,7 +19,7 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO Login(@RequestBody UserDTO userDTO){
+    public UserDTO Login(@RequestBody UserDTO userDTO)throws Exception{
         return userService.loginUser(userDTO.getUsername(),userDTO.getPassword());
     }
 }
