@@ -8,34 +8,44 @@ import javax.persistence.*;
 public class ApplyJob {
 
     @Id
-    private Long aid;
-    private String data;
+    private String id;
+    private String applyDate;
     @ManyToOne(cascade = CascadeType.ALL)
     private JobSeeker jobSeeker;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Jobs jobs;
+
+    private String cvPath;
 
     public ApplyJob() {
     }
 
-    public ApplyJob(Long id, String data, JobSeeker jobSeeker) {
-        this.aid = id;
-        this.data = data;
-        this.jobSeeker = jobSeeker;
+
+
+    public String  getId() {
+        return id=id;
     }
 
-    public Long getId() {
-        return aid;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setId(Long id) {
-        this.aid = id;
+
+    public String getApplyDate() {
+        return applyDate;
     }
 
-    public String getData() {
-        return data;
+    public void setApplyDate(String applyDate) {
+        this.applyDate = applyDate;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public Jobs getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
     }
 
     public JobSeeker getJobSeeker() {
@@ -46,13 +56,11 @@ public class ApplyJob {
         this.jobSeeker = jobSeeker;
     }
 
-    @Override
-    public String toString() {
-        return "ApplyJob{" +
-                "id=" + aid +
-                ", data='" + data + '\'' +
-                ", jobSeeker=" + jobSeeker +
-                '}';
+    public String getCvPath() {
+        return cvPath;
     }
 
+    public void setCvPath(String cvPath) {
+        this.cvPath = cvPath;
+    }
 }

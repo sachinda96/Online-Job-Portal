@@ -4,7 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
 
 public class JobSeekerProfileDTO {
-    private Long id;
+    private String id ="0";
     private String firstName;
     private String lastName;
     private String interstIn;
@@ -24,8 +24,7 @@ public class JobSeekerProfileDTO {
     public JobSeekerProfileDTO() {
     }
 
-    public JobSeekerProfileDTO(Long id, String firstName, String lastName, String interstIn, String emailAddress, String address, String province, String city, String birthDay, String phoneNumber, String highestEducation, String stream, String imagePath, String cvPath, UserDTO userDTO) {
-        this.id = id;
+    public JobSeekerProfileDTO(String firstName, String lastName, String interstIn, String emailAddress, String address, String province, String city, String birthDay, String phoneNumber, String highestEducation, String stream, String imagePath, String cvPath, UserDTO userDTO) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.interstIn = interstIn;
@@ -42,11 +41,11 @@ public class JobSeekerProfileDTO {
         this.userDTO = userDTO;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

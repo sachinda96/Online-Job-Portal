@@ -5,15 +5,21 @@ import lk.ijse.jobportal.dto.UserDTO;
 import lk.ijse.jobportal.entity.JobSeeker;
 import lk.ijse.jobportal.entity.User;
 import lk.ijse.jobportal.repository.JObSeekerRepository;
+import lk.ijse.jobportal.repository.UserRepository;
 import lk.ijse.jobportal.service.JobSekerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.ws.Response;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
@@ -21,35 +27,57 @@ public class JobSeekerProfileServiceimpl implements JobSekerProfileService{
     @Autowired
     private JObSeekerRepository jobSeekerRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private String imagePath;
 
     private String CVPath;
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public boolean saveSeekerDetails(JobSeekerProfileDTO jobSeekerProfileDTO) {
-        User user=new User(jobSeekerProfileDTO.getUserDTO().getUsername(),
-                jobSeekerProfileDTO.getUserDTO().getEmail(),
-                jobSeekerProfileDTO.getUserDTO().getPassword());
+    public ResponseEntity<?> saveSeekerDetails(JobSeekerProfileDTO jobSeekerProfileDTO) {
 
-        JobSeeker jobSeeker=new JobSeeker();
-        jobSeeker.setId(jobSeekerProfileDTO.getId());
-        jobSeeker.setFirstName(jobSeekerProfileDTO.getFirstName());
-        jobSeeker.setLastName(jobSeekerProfileDTO.getLastName());
-        jobSeeker.setInterstIn(jobSeekerProfileDTO.getInterstIn());
-        jobSeeker.setEmailAddress(jobSeekerProfileDTO.getEmailAddress());
-        jobSeeker.setAddress(jobSeekerProfileDTO.getAddress());
-        jobSeeker.setProvince(jobSeekerProfileDTO.getProvince());
-        jobSeeker.setCity(jobSeekerProfileDTO.getCity());
-        jobSeeker.setBirthDay(jobSeekerProfileDTO.getBirthDay());
-        jobSeeker.setPhoneNumber(jobSeekerProfileDTO.getPhoneNumber());
-        jobSeeker.setHighestEducation(jobSeekerProfileDTO.getHighestEducation());
-        jobSeeker.setStream(jobSeekerProfileDTO.getStream());
-        jobSeeker.setImagePath(imagePath);
-        jobSeeker.setCvPath(CVPath);
-        jobSeeker.setUser(user);
+        try {
 
-        jobSeekerRepository.save(jobSeeker);
-        return true;
+            Optional<User> user=userRepository.findById(jobSeekerProfileDTO.getUserDTO().getUsername());
+
+            if(user.isPresent()) {
+
+                Optional<JobSeeker> jobSeeker = jobSeekerRepository.findById(jobSeekerProfileDTO.getId());
+
+                if (!jobSeeker.isPresent()) {
+                    jobSeeker = Optional.of(new JobSeeker());
+                    ;
+                    jobSeeker.get().setId(UUID.randomUUID().toString());
+                }
+
+                jobSeeker.get().setFirstName(jobSeekerProfileDTO.getFirstName());
+                jobSeeker.get().setLastName(jobSeekerProfileDTO.getLastName());
+                jobSeeker.get().setInterstIn(jobSeekerProfileDTO.getInterstIn());
+                jobSeeker.get().setEmailAddress(jobSeekerProfileDTO.getEmailAddress());
+                jobSeeker.get().setAddress(jobSeekerProfileDTO.getAddress());
+                jobSeeker.get().setProvince(jobSeekerProfileDTO.getProvince());
+                jobSeeker.get().setCity(jobSeekerProfileDTO.getCity());
+                jobSeeker.get().setBirthDay(jobSeekerProfileDTO.getBirthDay());
+                jobSeeker.get().setPhoneNumber(jobSeekerProfileDTO.getPhoneNumber());
+                jobSeeker.get().setHighestEducation(jobSeekerProfileDTO.getHighestEducation());
+                jobSeeker.get().setStream(jobSeekerProfileDTO.getStream());
+                jobSeeker.get().setImagePath(jobSeekerProfileDTO.getImagePath());
+                jobSeeker.get().setCvPath(jobSeekerProfileDTO.getCvPath());
+                jobSeeker.get().setUser(user.get());
+
+                jobSeekerRepository.save(jobSeeker.get());
+
+                return new ResponseEntity<>("200",HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>("204",HttpStatus.NO_CONTENT);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
+
     }
 
     @Override
@@ -99,37 +127,53 @@ public class JobSeekerProfileServiceimpl implements JobSekerProfileService{
     }
 
     @Override
-    public JobSeekerProfileDTO searchSeeker(String userName) {
-        ArrayList<JobSeeker> aLlJobSeeker = jobSeekerRepository.getALlJobSeeker();
+    public ResponseEntity<?> searchSeeker(String userName) {
 
-        JobSeekerProfileDTO jobSeekerProfileDTO=null;
-        for (JobSeeker jobSeeker:aLlJobSeeker
-             ) {
-            if (jobSeeker.getUser().getUsername().equals(userName)){
-                User user=jobSeeker.getUser();
-                UserDTO userDTO=new UserDTO(
-                        user.getUsername(),user.getEmail(),user.getPassword());
-                System.out.println(jobSeeker.getBirthDay());
-                jobSeekerProfileDTO=new JobSeekerProfileDTO();
-                jobSeekerProfileDTO.setId(jobSeeker.getId());
-                jobSeekerProfileDTO.setFirstName(jobSeeker.getFirstName());
-                jobSeekerProfileDTO.setLastName(jobSeeker.getLastName());
-                jobSeekerProfileDTO.setInterstIn(jobSeeker.getInterstIn());
-                jobSeekerProfileDTO.setEmailAddress(jobSeeker.getEmailAddress());
-                jobSeekerProfileDTO.setAddress(jobSeeker.getAddress());
-                jobSeekerProfileDTO.setProvince(jobSeeker.getProvince());
-                jobSeekerProfileDTO.setCity(jobSeeker.getCity());
-                jobSeekerProfileDTO.setBirthDay(jobSeeker.getBirthDay());
-                jobSeekerProfileDTO.setPhoneNumber(jobSeeker.getPhoneNumber());
-                jobSeekerProfileDTO.setHighestEducation(jobSeeker.getHighestEducation());
-                jobSeekerProfileDTO.setStream(jobSeeker.getStream());
-                jobSeekerProfileDTO.setImagePath(imagePath);
-                jobSeekerProfileDTO.setCvPath(CVPath);
-                jobSeekerProfileDTO.setUserDTO(userDTO);
-                System.out.println(jobSeekerProfileDTO.getAddress());
+        try {
+
+
+            Optional<User> user = userRepository.findById(userName);
+
+            JobSeekerProfileDTO jobSeekerProfileDTO=new JobSeekerProfileDTO();
+
+            if(user.isPresent()) {
+
+                Optional<JobSeeker> jobSeeker = jobSeekerRepository.findTopByUser(user.get());
+
+                if (jobSeeker.isPresent()) {
+
+                    jobSeekerProfileDTO.setId(jobSeeker.get().getId());
+                    jobSeekerProfileDTO.setFirstName(jobSeeker.get().getFirstName());
+                    jobSeekerProfileDTO.setLastName(jobSeeker.get().getLastName());
+                    jobSeekerProfileDTO.setInterstIn(jobSeeker.get().getInterstIn());
+                    jobSeekerProfileDTO.setEmailAddress(jobSeeker.get().getEmailAddress());
+                    jobSeekerProfileDTO.setAddress(jobSeeker.get().getAddress());
+                    jobSeekerProfileDTO.setProvince(jobSeeker.get().getProvince());
+                    jobSeekerProfileDTO.setCity(jobSeeker.get().getCity());
+                    jobSeekerProfileDTO.setBirthDay(jobSeeker.get().getBirthDay());
+                    jobSeekerProfileDTO.setPhoneNumber(jobSeeker.get().getPhoneNumber());
+                    jobSeekerProfileDTO.setHighestEducation(jobSeeker.get().getHighestEducation());
+                    jobSeekerProfileDTO.setStream(jobSeeker.get().getStream());
+                    jobSeekerProfileDTO.setImagePath(jobSeeker.get().getImagePath());
+                    jobSeekerProfileDTO.setCvPath(jobSeeker.get().getCvPath());
+
+
+                }
 
             }
+
+                return new ResponseEntity<>(jobSeekerProfileDTO,HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return jobSeekerProfileDTO;
-    }
+
+
+
+        }
+
+
+
+
 }

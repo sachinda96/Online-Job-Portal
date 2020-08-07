@@ -4,6 +4,7 @@ import lk.ijse.jobportal.dto.JobSeekerProfileDTO;
 import lk.ijse.jobportal.service.JobSekerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +17,7 @@ public class JobSeekerController{
     private JobSekerProfileService jobSekerProfileService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean addJobSeekerProfile(@RequestBody JobSeekerProfileDTO jobSeekerProfileDTO) {
+    public ResponseEntity<?> addJobSeekerProfile(@RequestBody JobSeekerProfileDTO jobSeekerProfileDTO) {
         return jobSekerProfileService.saveSeekerDetails(jobSeekerProfileDTO);
     }
 
@@ -31,7 +32,7 @@ public class JobSeekerController{
     }
 
     @GetMapping(value = "/{username}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public JobSeekerProfileDTO searchJobSeeker(@PathVariable("username") String username){
+    public ResponseEntity<?> searchJobSeeker(@PathVariable("username") String username){
         return jobSekerProfileService.searchSeeker(username);
     }
 }

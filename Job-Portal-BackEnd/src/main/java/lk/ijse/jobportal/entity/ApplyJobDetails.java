@@ -3,7 +3,7 @@ package lk.ijse.jobportal.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+//@Entity
 public class ApplyJobDetails {
 
     @Id

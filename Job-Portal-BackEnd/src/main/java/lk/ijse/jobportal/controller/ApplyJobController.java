@@ -5,6 +5,7 @@ import lk.ijse.jobportal.dto.ApplyJobMainDTO;
 import lk.ijse.jobportal.service.ApplyJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
@@ -18,12 +19,17 @@ public class ApplyJobController {
     private ApplyJobService applyJobService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean applyJob(@RequestBody ApplyJobMainDTO applyJobMainDTO){
+    public ResponseEntity<?> applyJob(@RequestBody ApplyJobMainDTO applyJobMainDTO){
         return applyJobService.applyJob(applyJobMainDTO);
     }
 
     @GetMapping(value = "/Last",produces = MediaType.APPLICATION_JSON_VALUE)
     public ApplyJobDTO getLastData(){
         return applyJobService.getLastData();
+    }
+
+    @GetMapping(value = "/getAllAppliedJobsByUser/{username}")
+    public ResponseEntity<?> getAllAppliedJobsByUser(@PathVariable  String username){
+        return applyJobService.getAllAppliedJobsByUser(username);
     }
 }

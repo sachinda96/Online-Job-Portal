@@ -6,9 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public interface ApplyJobRepository extends JpaRepository<ApplyJob,Long> {
+public interface ApplyJobRepository extends JpaRepository<ApplyJob,String> {
 
     @Query(value = " select * from ApplyJob ORDER BY aid DESC LIMIT 1",nativeQuery = true)
     ApplyJob getJob();
+
+    List<ApplyJob> findAllByJobSeeker(JobSeeker jobSeeker);
 }
