@@ -7,4 +7,8 @@ export class ApplyJobMain {
   applyJobDTO:ApllyJob;
   applyJobDetails:ApllyJobDetails;
   jobsDTO:Jobs;
+  userName:String;
+  jobSeekerId:String;
+  jobId:String;
+  cvPath:String;
 }

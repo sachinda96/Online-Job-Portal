@@ -18,18 +18,18 @@ export class JobseekerManageProfileComponent implements OnInit {
   user:User;
   MainUser:User=new User();
   loading :boolean =false;
-  constructor(private authService:AuthService,private jobSeekerProfileService:JobSeekerProfileService) { }
+  constructor(private authService:AuthService,private jobSeekerProfileService:JobSeekerProfileService,private jobPosterProfileService:JobPosterProfileService) { }
 
   ngOnInit() {
+    this.MainUser =JSON.parse(sessionStorage.getItem("token"));
+    this.jobSeekerProfile.emailAddress =this.MainUser.email;
     this.getJobSeeker();
   }
 
   getJobSeeker():void{
-    this.user=this.authService.getUser();
-    this.MainUser.username=this.user.username;
-    this.MainUser.email=this.user.email;
-    this.MainUser.password=this.user.password;
-    console.log(this.MainUser)
+  this.jobSeekerProfileService.searchJobSeeker(this.MainUser.username).subscribe(res=>{
+    this.jobSeekerProfile = res;
+  })
   }
 
   setImages(event){
@@ -54,37 +54,42 @@ export class JobseekerManageProfileComponent implements OnInit {
 
     this.loading = true;
     const formdata:FormData=new FormData();
-    formdata.append("imageFile",this.imagefile)
-    this.jobSeekerProfileService.uploadImage(formdata).subscribe(
+    formdata.append("file",this.imagefile)
+    this.jobPosterProfileService.saveFile(formdata).subscribe(
       (result)=>{
         if(result){
+          this.jobSeekerProfile.imagePath = result.path
           const  formdataCv:FormData=new FormData();
-          formdataCv.append("CVFile",this.CvFile)
-          this.jobSeekerProfileService.uploadCV(formdataCv).subscribe(
+          formdataCv.append("file",this.CvFile)
+          this.jobPosterProfileService.saveFile(formdataCv).subscribe(
             (result)=>{
               if(result){
-                this.user=this.authService.getUser();
+                this.jobSeekerProfile.cvPath = result.path;
                 this.jobSeekerProfile.userDTO=this.MainUser;
+                console.log(this.jobSeekerProfile)
                 this.jobSeekerProfileService.saveProfile(this.jobSeekerProfile).subscribe(
                   (result)=>{
                     this.loading =false;
-                    if(result){
-                      alert("Sucsess")
+                    if(result == 200){
+                      alert("Successfully saved")
                     }else{
-                      alert("fail")
+                      alert("Fail to save")
                     }
                   },error => {
                     this.loading =false;
+                    alert("Fail to save")
                   }
                 )
               }
             },error => {
-              this.loading = false
+              this.loading = false;
+              alert("Fail to save")
             }
           )
         }
       },error => {
         this.loading =true;
+        alert("Fail to save")
       }
     )
    }

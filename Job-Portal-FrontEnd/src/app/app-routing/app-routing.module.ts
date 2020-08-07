@@ -19,6 +19,7 @@ import {JobseekerDashboardComponent} from "../view/jobseeker-dashboard/jobseeker
 import {JobseekerMainComponent} from "../view/jobseeker-main/jobseeker-main.component";
 import {JobseekerManageProfileComponent} from "../view/jobseeker-manage-profile/jobseeker-manage-profile.component";
 import {ApplyComponent} from "../view/apply/apply.component";
+import {ViewApplyedJobComponent} from "../view/view-applyed-job/view-applyed-job.component";
 
 const routes: Routes = [
   {path : 'Main', component: MainComponent,
@@ -99,6 +100,9 @@ const routes: Routes = [
         path: 'ApplyJob',
         component: ApplyComponent},
       {
+        path: 'ApplyJob/:id',
+        component: ApplyComponent},
+      {
         path: '',
         pathMatch : 'full',
         redirectTo: '/Main/Dashboard'
@@ -117,6 +121,7 @@ const routes: Routes = [
         path: "ManagePosterProfile",
         component: ManageprofileComponent
       },
+
       {
         path: "jobDetails",
         component: PosterJobDetailsComponent
@@ -142,6 +147,9 @@ const routes: Routes = [
       component: PostjobComponent
       },
 
+
+
+
       {
         path: "jobDetails",
         component: PosterJobDetailsComponent
@@ -164,6 +172,10 @@ const routes: Routes = [
     children: [
       {path: "dashboard", component: JobseekerDashboardComponent},
       {path: "ManageProfile", component: JobseekerManageProfileComponent},
+      {
+        path: "ApplyedJob",
+        component: ViewApplyedJobComponent
+      },
       {
         path: "",
         pathMatch : "full",

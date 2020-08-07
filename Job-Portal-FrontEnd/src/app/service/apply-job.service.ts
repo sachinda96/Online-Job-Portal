@@ -11,8 +11,12 @@ export class ApplyJobService {
 
   constructor(private http:HttpClient) { }
 
-  saveApplyJob(applyJob:ApplyJobMain):Observable<boolean>{
-    return this.http.post<boolean>(MAIN_URL+URLS,applyJob);
+  saveApplyJob(applyJob:ApplyJobMain):Observable<any>{
+    return this.http.post<any>(MAIN_URL+URLS,applyJob);
+  }
+
+  getAllAppliedJobsByUser(user:String){
+    return this.http.get<any>(MAIN_URL+URLS+"/getAllAppliedJobsByUser/"+user)
   }
 
   getLastJob():Observable<ApllyJob>{

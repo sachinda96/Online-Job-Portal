@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {JobsService} from "../../service/jobs.service";
 import {PostJob} from "../../dto/post-job";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-applyselectjob',
@@ -11,15 +11,19 @@ import {Router} from "@angular/router";
 export class ApplyselectjobComponent implements OnInit {
 
   postjob:PostJob=new PostJob();
-  constructor(private jobService:JobsService,private router:Router) { }
+  constructor(private jobService:JobsService,private router:Router,private  routerActive :ActivatedRoute) { }
 
   ngOnInit() {
-    this.getSelectedJobDetails();
+
+    this.routerActive.params.subscribe(params =>{
+      this.getSelectedJobDetails(params.id)
+
+    })
+
   }
 
-  getSelectedJobDetails(){
+  getSelectedJobDetails(id:any){
 
-    var id=this.jobService.getId();
     this.jobService.getSelectedJobDetails(id).subscribe(
       (result)=>{
         if(result){
@@ -29,9 +33,9 @@ export class ApplyselectjobComponent implements OnInit {
     )
   }
 
-  setPostJob():void{
+  setPostJob(id:any):void{
     this.jobService.setJobDetails(this.postjob);
-    this.router.navigate(['/Main/ApplyJob']);
+    this.router.navigate(['/Main/ApplyJob',id]);
   }
 
 }

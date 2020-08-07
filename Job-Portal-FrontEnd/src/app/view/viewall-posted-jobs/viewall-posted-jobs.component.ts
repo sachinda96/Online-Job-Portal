@@ -28,8 +28,6 @@ export class ViewallPostedJobsComponent implements OnInit {
   }
 
   setSelectedJob(id:string):void {
-    this.jobService.setId(id) ;
     this.router.navigate(['/Main/SelectedJob/'+id]);
-
   }
 }

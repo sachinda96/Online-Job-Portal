@@ -20,12 +20,12 @@ export class JobSeekerProfileService {
     return this.http.post<boolean>(MAIN_URL+URLS+"/CVFile",formdata);
   }
 
-  saveProfile(jobSeekerProfile:JobSeekerProfile):Observable<boolean>{
-    return this.http.post<boolean>(MAIN_URL+URLS,jobSeekerProfile);
+  saveProfile(jobSeekerProfile:JobSeekerProfile):Observable<any>{
+    return this.http.post<any>(MAIN_URL+URLS,jobSeekerProfile);
   }
 
-  searchJobSeeker(username:string):Observable<JobSeekerProfile>{
-    return this.http.get<JobSeekerProfile>(MAIN_URL+URLS+"/"+username);
+  searchJobSeeker(username:string):Observable<any>{
+    return this.http.get<any>(MAIN_URL+URLS+"/"+username);
   }
 }
 

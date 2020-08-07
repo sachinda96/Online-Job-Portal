@@ -11,6 +11,7 @@ import {ApplyJobMain} from "../../dto/apply-job-main";
 import {ApllyJob} from "../../dto/aplly-job";
 import {ApllyJobDetails} from "../../dto/aplly-job-details";
 import {ApplyJobService} from "../../service/apply-job.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-apply',
@@ -28,17 +29,23 @@ export class ApplyComponent implements OnInit {
   applyJobsDetails:ApllyJobDetails=new ApllyJobDetails();
   applyJobMain:ApplyJobMain=new ApplyJobMain();
   id:number=1;
-  constructor(private authService:AuthService,private jobService:JobsService,private jobSeekerService:JobSeekerProfileService,private applyJobService:ApplyJobService) { }
+  constructor(private authService:AuthService,private jobService:JobsService,private routerActive :ActivatedRoute,private jobSeekerService:JobSeekerProfileService,private applyJobService:ApplyJobService) { }
 
   ngOnInit() {
+
     this.getUser();
     this.getJobSeeker();
     this.getCurrentDate();
-    this.getSelectedJob();
+    this.routerActive.params.subscribe(params =>{
+      this.getSelectedJob(params.id)
+
+    })
+
   }
 
   getUser():void{
     this.user=this.authService.getUser();
+
   }
 
   getJobSeeker():void{
@@ -49,35 +56,38 @@ export class ApplyComponent implements OnInit {
     )
   }
 
-  getSelectedJob():void{
-   this.job=this.jobService.getJobDetails();
+  getSelectedJob(id:any):void{
+    this.jobService.getSelectedJobDetails(id).subscribe(
+      (result)=>{
+        if(result){
+          this.job=result;
+        }
+      },error => {
+        console.log("Failed To Load JOb Details")
+      }
+    )
   }
+
+
   getCurrentDate():void{
     this.date=new Date();
   }
 
   applyNewJob():void{
-    console.log("Sucsess")
-    this.getLastJob();
-    this.applyJobs.aid=this.id;
-    this.applyJobs.data=String(this.date);
-    this.applyJobs.jobSeeker=this.jobseker;
 
-    this.applyJobsDetails.applyData=this.applyJobs.data;
-    this.applyJobsDetails.jobs=this.job.jobsDTO;
-    this.applyJobsDetails.applyJob=this.applyJobs;
-
-    this.applyJobMain.applyJobDetails=this.applyJobsDetails;
-    this.applyJobMain.applyJobDTO=this.applyJobs;
-    this.applyJobMain.jobsDTO=this.job.jobsDTO;
-
+    this.applyJobMain = new ApplyJobMain();
+    this.applyJobMain.userName = this.user.username;
+    this.applyJobMain.jobId = this.job.jobsDTO.id.toString();
+    
     this.applyJobService.saveApplyJob(this.applyJobMain).subscribe(
       (result)=>{
-        if(result){
+        if(result == 200){
           alert("Sucses");
         }else{
           alert("Failed");
         }
+      },error => {
+        alert("Failed to Apply to Job")
       }
     )
   }

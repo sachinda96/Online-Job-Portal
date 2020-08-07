@@ -33,12 +33,9 @@ export class PostjobComponent implements OnInit {
               private routerActive:ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.routerActive.snapshot.queryParamMap)
-    this,this.routerActive.params.subscribe(params =>{
-      console.log(params.id)
+    this.routerActive.params.subscribe(params =>{
       this.jobService.getSelectedJobDetails(params.id).subscribe(res =>{
           this.postJob =res;
-          console.log(res)
           this.jobs =this.postJob.jobsDTO;
           this.elem.nativeElement.querySelector('#industry').value = this.postJob.jobsDTO.industry;
           this.elem.nativeElement.querySelector('#category').value = this.postJob.jobsDTO.category;
