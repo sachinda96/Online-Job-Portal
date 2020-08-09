@@ -13,6 +13,7 @@ import {JobSeekerProfile} from "../../dto/job-seeker-profile";
 export class MainComponent implements OnInit {
 
   user:User=null;
+  isNotLogin:boolean =true;
   jobSeeker:JobSeekerProfile=new JobSeekerProfile();
   constructor(private authService:AuthService,private route:Router,private jobSeekerService:JobSeekerProfileService) { }
 
@@ -24,13 +25,15 @@ export class MainComponent implements OnInit {
   getLoginedSeeker(){
     this.user=new User();
     this.user=this.authService.getUser();
+    if(this.user == null){
+      this.isNotLogin =false;
+    }
   }
 
   getJobSeeker():void{
     this.jobSeekerService.searchJobSeeker(this.user.username).subscribe(
       (result)=>{
         this.jobSeeker=result;
-        console.log(result)
       }
     )
   }

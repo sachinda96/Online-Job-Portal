@@ -13,7 +13,7 @@ import {QulificationService} from "../../service/qulification.service";
 export class PosterJobDetailsComponent implements OnInit {
 
   postjob:PostJob=new PostJob();
-  constructor(private jobService:JobsService,private router:Router,private qulificationService:QulificationService) { }
+  constructor(private jobService:JobsService,private router:Router) { }
 
   ngOnInit() {
   this.getSelectedJobDetails();
@@ -35,16 +35,16 @@ export class PosterJobDetailsComponent implements OnInit {
   deletePost(){
      var id=this.postjob.jobsDTO.id;
 
-    this.qulificationService.deleteQulification(id).subscribe(
-      (result)=>{
-        if (result){
-          alert("Delete Sucsess")
-          this.router.navigate(['/JobPosterMain/ViewPostJobs'])
-        }else{
-          alert("Failed")
-        }
-      }
-    )
+    // this.qulificationService.deleteQulification(id).subscribe(
+    //   (result)=>{
+    //     if (result){
+    //       alert("Delete Sucsess")
+    //       this.router.navigate(['/JobPosterMain/ViewPostJobs'])
+    //     }else{
+    //       alert("Failed")
+    //     }
+    //   }
+    // )
   }
 
   setPostJob(id:String){

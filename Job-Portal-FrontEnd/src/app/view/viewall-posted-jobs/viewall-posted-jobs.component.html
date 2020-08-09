@@ -7,11 +7,11 @@
         <div class="row">
           <div class="col-lg-6 col-md-6" *ngFor="let jobs of allPostedJobs">
             <aside>
-              <img [src]="jobs.jobsDTO.iamgePath" class="img-responsive"  height="200" width="365">
+              <img [src]="jobs.jobsDTO.iamgePath" class="img-responsive"  height="200" width="350">
               <div class="content-title">
                 <div class="text-center">
                   <h3><a >{{jobs.jobsDTO.jobtitle}}</a></h3>
-                  <h3><a >{{jobs.jobsDTO.discription}}</a></h3>
+
                 </div>
               </div>
               <div class="content-footer">
@@ -27,10 +27,9 @@
         </div>
       </div>
 
-      <!--           // RECENT POST===========-->
       <div class="col-lg-4">
         <div class="widget-sidebar">
-          <h2 class="title-widget-sidebar">// RECENT POST</h2>
+          <h2 class="title-widget-sidebar">Latest Job Vacancies</h2>
           <div class="content-widget-sidebar">
             <ul>
               <li class="recent-post" *ngFor="let jobslates of allPostedJobs">
@@ -49,29 +48,6 @@
         </div>
 
 
-        <!--=====================
-               CATEGORIES
-          ======================-->
-        <div class="widget-sidebar">
-          <h2 class="title-widget-sidebar">// CATEGORIES</h2>
-          <button class="categories-btn">Audio</button>
-          <button class="categories-btn">Blog</button>
-          <button class="categories-btn">Gallery</button>
-          <button class="categories-btn">Images</button>
-        </div>
-
-        <!--=====================
-              NEWSLATTER
-       ======================-->
-        <div class="widget-sidebar">
-          <h2 class="title-widget-sidebar">// NEWSLATTER</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut .</p>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-            <input id="email" type="text" class="form-control" name="email" placeholder="Email">
-          </div>
-          <button type="button" class="btn btn-warning">Warning</button>
-        </div>
 
 
       </div>

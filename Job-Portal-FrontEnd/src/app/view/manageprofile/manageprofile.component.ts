@@ -18,6 +18,7 @@ export class ManageprofileComponent implements OnInit {
   file:File ;
   setImageFileName:string;
   loading : boolean =false;
+  path:String ="http://simpleicon.com/wp-content/uploads/account.png";
 
   constructor(private elem:ElementRef,private jobPosterService:JObPosterService,private jobPosterProfleService:JobPosterProfileService) { }
 
@@ -41,6 +42,8 @@ export class ManageprofileComponent implements OnInit {
         this.JObPOsterProfile.address = res.address;
         this.JObPOsterProfile.city = res.city;
         this.JObPOsterProfile.comapanyname =res.comapanyname;
+        this.JObPOsterProfile.imagePath= res.imagePath;
+        this.path = this.JObPOsterProfile.imagePath;
       }
     )
 
@@ -104,6 +107,13 @@ export class ManageprofileComponent implements OnInit {
   setImages(event){
     const fil = event.target.files[0]
     this.file=fil;
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+
+    reader.onload = () =>{
+      this.path = reader.result;
+    };
+
 
   }
 

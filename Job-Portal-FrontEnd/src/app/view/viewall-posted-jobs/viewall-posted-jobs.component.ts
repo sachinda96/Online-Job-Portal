@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {JobsService} from "../../service/jobs.service";
 import {PostJob} from "../../dto/post-job";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ApplyJobService} from "../../service/apply-job.service";
 
 @Component({
   selector: 'app-viewall-posted-jobs',
@@ -12,16 +13,28 @@ export class ViewallPostedJobsComponent implements OnInit {
 
   id:string;
   allPostedJobs:Array<PostJob>=[];
-  constructor(private jobService:JobsService,private router:Router) { }
+  constructor(private jobService:JobsService,private router:Router,private applyJobService:ApplyJobService,private routerActive :ActivatedRoute) { }
 
   ngOnInit() {
-    this.getAllJobs();
+
+    this.routerActive.params.subscribe(params =>{
+
+
+      if(params.name == null || params.name == undefined){
+        this.getAllJobs();
+      }else{
+        this.getAllJobsByName(params.name);
+      }
+      //this.getSelectedJob(params.id)
+
+    })
+
+
   }
 
   getAllJobs():void{
     this.jobService.getAllJobs().subscribe(
       (result)=>{
-        console.log(result)
         this.allPostedJobs=result
       }
     )
@@ -29,5 +42,20 @@ export class ViewallPostedJobsComponent implements OnInit {
 
   setSelectedJob(id:string):void {
     this.router.navigate(['/Main/SelectedJob/'+id]);
+  }
+
+  setImage(iamgePath: string):any {
+
+    // this.applyJobService.getFile(iamgePath).subscribe(res=>{
+    //   console.log(res)
+    //   return res;
+    // })
+
+  }
+
+  private getAllJobsByName(name: any) {
+    this.jobService.getAllJobsByName(name).subscribe(res=>{
+      this.allPostedJobs=res
+    })
   }
 }

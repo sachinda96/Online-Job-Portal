@@ -33,13 +33,14 @@ export class ApplyComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getUser();
-    this.getJobSeeker();
-    this.getCurrentDate();
     this.routerActive.params.subscribe(params =>{
       this.getSelectedJob(params.id)
 
     })
+    this.getUser();
+    this.getJobSeeker();
+    this.getCurrentDate();
+
 
   }
 
@@ -51,6 +52,7 @@ export class ApplyComponent implements OnInit {
   getJobSeeker():void{
     this.jobSeekerService.searchJobSeeker(this.user.username).subscribe(
       (result)=>{
+        console.log(result)
         this.jobseker=result;
       }
     )
@@ -60,6 +62,7 @@ export class ApplyComponent implements OnInit {
     this.jobService.getSelectedJobDetails(id).subscribe(
       (result)=>{
         if(result){
+          console.log(result)
           this.job=result;
         }
       },error => {
@@ -78,7 +81,7 @@ export class ApplyComponent implements OnInit {
     this.applyJobMain = new ApplyJobMain();
     this.applyJobMain.userName = this.user.username;
     this.applyJobMain.jobId = this.job.jobsDTO.id.toString();
-    
+
     this.applyJobService.saveApplyJob(this.applyJobMain).subscribe(
       (result)=>{
         if(result == 200){

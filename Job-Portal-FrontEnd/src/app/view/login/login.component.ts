@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe(
       (result)=>{
         this.failed = !result;
+      },error => {
+        alert("Invalid User Name or password")
       }
     );
   }

@@ -1,0 +1,23 @@
+
+<br>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Job Title</th>
+    <th scope="col">Category</th>
+    <th scope="col">Seeker Name</th>
+    <th scope="col">Applied Date</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of jobDetailsList">
+    <td>{{data.jobTitle}}</td>
+    <td>{{data.jobCategory}}</td>
+    <td>{{data.jobSeekerName}}</td>
+    <td>{{data.appliedDate}}</td>
+    <td><a style="cursor: pointer" href="{{data.cvPath}}">Download CV</a></td>
+  </tr>
+
+  </tbody>
+</table>

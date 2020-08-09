@@ -21,18 +21,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger " href="#about"><h3>About</h3></a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link js-scroll-trigger " href="#about"><h3>About</h3></a>-->
+<!--        </li>-->
 <!--        <li class="nav-item">-->
 <!--          <a class="nav-link js-scroll-trigger" href="#services"><h3>Services</h3></a>-->
 <!--        </li>-->
 <!--        <li class="nav-item">-->
 <!--          <a class="nav-link js-scroll-trigger" href="#portfolio"><h3>Portfolio</h3></a>-->
 <!--        </li>-->
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contact"><h3>Contact</h3></a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link js-scroll-trigger" href="#contact"><h3>Contact</h3></a>-->
+<!--        </li>-->
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#contact" routerLink="login"><h3>Login</h3></a>
         </li>
@@ -40,36 +40,50 @@
           <a class="nav-link js-scroll-trigger"  routerLink="registation"><h3>Register</h3></a>
         </li>
 
-      </ul>
-      <div class="dropdown" id="divButton" [hidden]="!user">
-        <button class="dropbtn"><i class="fas fa-user"></i> Welcome, {{user.username}}</button>
-        <div class="dropdown-content">
-          <div class="profile-userpic">
-            <img [src]="jobSeeker.imagePath" class="img-responsive" alt="">
-          </div>
-          <!-- END SIDEBAR USERPIC -->
-          <!-- SIDEBAR USER TITLE -->
-          <div class="profile-usertitle">
-            <div class="profile-usertitle-name">
-              {{jobSeeker.firstName}}
-            </div>
-            <div class="profile-usertitle-job">
-              I'm interestIn  {{jobSeeker.interstIn}}
-            </div>
-          </div>
-          <!-- END SIDEBAR USER TITLE -->
-          <!-- SIDEBAR BUTTONS -->
-          <div class="profile-userbuttons">
-            <button type="button" class="btn btn-success btn-sm" (click)="routeDashBoard()">DashBoard</button>
-            <button type="button" class="btn btn-danger btn-sm" (click)="logout()">Logout</button>
-          </div>
-          <!-- END SIDEBAR BUTTONS -->
+        <li class="nav-item dropdown" *ngIf="isNotLogin">
+          <a class="nav-link dropdown-toggle"  style="color:white;margin-top: -2px" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i> &nbsp;{{user.username}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" (click)="routeDashBoard()"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;Dashboard</a>
+            <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout</a>
 
-        </div>
-      </div>
+          </div>
+        </li>
+
+      </ul>
+
+<!--      <div class="dropdown" id="divButton" [hidden]="!user">-->
+<!--        <button class="dropbtn"><i class="fas fa-user"></i> Welcome, {{user.username}}</button>-->
+<!--        <div class="dropdown-content">-->
+<!--          <div class="profile-userpic">-->
+<!--            <img [src]="jobSeeker.imagePath" class="img-responsive" alt="">-->
+<!--          </div>-->
+<!--          &lt;!&ndash; END SIDEBAR USERPIC &ndash;&gt;-->
+<!--          &lt;!&ndash; SIDEBAR USER TITLE &ndash;&gt;-->
+<!--          <div class="profile-usertitle">-->
+<!--            <div class="profile-usertitle-name">-->
+<!--              {{jobSeeker.firstName}}-->
+<!--            </div>-->
+<!--            <div class="profile-usertitle-job">-->
+<!--              I'm interestIn  {{jobSeeker.interstIn}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; END SIDEBAR USER TITLE &ndash;&gt;-->
+<!--          &lt;!&ndash; SIDEBAR BUTTONS &ndash;&gt;-->
+<!--          <div class="profile-userbuttons">-->
+<!--            <button type="button" class="btn btn-success btn-sm" (click)="routeDashBoard()">DashBoard</button>-->
+<!--            <button type="button" class="btn btn-danger btn-sm" (click)="logout()">Logout</button>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; END SIDEBAR BUTTONS &ndash;&gt;-->
+
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 </nav>
+
+
 
 <br><br>
 <router-outlet></router-outlet>

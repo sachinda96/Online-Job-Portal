@@ -53,7 +53,7 @@
 
   <div id="loading" *ngIf="loading"></div>
   <div class="preview text-center">
-    <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="200"/>
+    <img class="preview-img" [src]="path" alt="Preview Image" width="200" height="200"/>
     <div class="browse-button">
       <input class="browse-input" type="file" required name="UploadedFile"  id="UploadedFile" (change)="setImages($event)"/>
     </div>

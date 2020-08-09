@@ -18,6 +18,7 @@ export class JobseekerManageProfileComponent implements OnInit {
   user:User;
   MainUser:User=new User();
   loading :boolean =false;
+  path: any = "http://simpleicon.com/wp-content/uploads/account.png";
   constructor(private authService:AuthService,private jobSeekerProfileService:JobSeekerProfileService,private jobPosterProfileService:JobPosterProfileService) { }
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class JobseekerManageProfileComponent implements OnInit {
   getJobSeeker():void{
   this.jobSeekerProfileService.searchJobSeeker(this.MainUser.username).subscribe(res=>{
     this.jobSeekerProfile = res;
+    this.path = this.jobSeekerProfile.imagePath;
   })
   }
 
@@ -36,17 +38,19 @@ export class JobseekerManageProfileComponent implements OnInit {
     const fil = event.target.files[0]
 
     this.imagefile=fil;
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
 
-    console.log(this.imagefile)
+    reader.onload = () =>{
+      this.path = reader.result;
+    };
+
 
   }
 
   setCV(event){
     const fil = event.target.files[0]
-
     this.CvFile=fil;
-
-    console.log(this.CvFile)
 
   }
 
@@ -55,42 +59,48 @@ export class JobseekerManageProfileComponent implements OnInit {
     this.loading = true;
     const formdata:FormData=new FormData();
     formdata.append("file",this.imagefile)
-    this.jobPosterProfileService.saveFile(formdata).subscribe(
-      (result)=>{
-        if(result){
-          this.jobSeekerProfile.imagePath = result.path
-          const  formdataCv:FormData=new FormData();
-          formdataCv.append("file",this.CvFile)
-          this.jobPosterProfileService.saveFile(formdataCv).subscribe(
-            (result)=>{
-              if(result){
-                this.jobSeekerProfile.cvPath = result.path;
-                this.jobSeekerProfile.userDTO=this.MainUser;
-                console.log(this.jobSeekerProfile)
-                this.jobSeekerProfileService.saveProfile(this.jobSeekerProfile).subscribe(
-                  (result)=>{
-                    this.loading =false;
-                    if(result == 200){
-                      alert("Successfully saved")
-                    }else{
-                      alert("Fail to save")
+
+    if(this.jobSeekerProfile.firstName == "" || this.jobSeekerProfile.lastName == ""){
+      alert("Validation failed some fields are empty");
+      this.loading = false;
+    }else {
+      this.jobPosterProfileService.saveFile(formdata).subscribe(
+        (result) => {
+          if (result) {
+            this.jobSeekerProfile.imagePath = result.path
+            const formdataCv: FormData = new FormData();
+            formdataCv.append("file", this.CvFile)
+            this.jobPosterProfileService.saveFile(formdataCv).subscribe(
+              (result) => {
+                if (result) {
+                  this.jobSeekerProfile.cvPath = result.path;
+                  this.jobSeekerProfile.userDTO = this.MainUser;
+                  console.log(this.jobSeekerProfile)
+                  this.jobSeekerProfileService.saveProfile(this.jobSeekerProfile).subscribe(
+                    (result) => {
+                      this.loading = false;
+                      if (result == 200) {
+                        alert("Successfully saved")
+                      } else {
+                        alert("Fail to save")
+                      }
+                    }, error => {
+                      this.loading = false;
+                      alert("Fail to file save")
                     }
-                  },error => {
-                    this.loading =false;
-                    alert("Fail to save")
-                  }
-                )
+                  )
+                }
+              }, error => {
+                this.loading = false;
+                alert("Fail to file save")
               }
-            },error => {
-              this.loading = false;
-              alert("Fail to save")
-            }
-          )
+            )
+          }
+        }, error => {
+          this.loading = false;
+          alert("Fail to save")
         }
-      },error => {
-        this.loading =true;
-        alert("Fail to save")
-      }
-    )
+      )
+    }
    }
 }

@@ -9,6 +9,7 @@ import {PostJob} from "../../dto/post-job";
 import {User} from "../../dto/user";
 import {JobPosterProfileService} from "../../service/job-poster-profile.service";
 import {ActivatedRoute} from "@angular/router";
+import {CategoryService} from "../../service/category.service";
 
 @Component({
   selector: 'app-postjob',
@@ -26,53 +27,67 @@ export class PostjobComponent implements OnInit {
   postJob:PostJob=new PostJob();
   loading : boolean =false ;
   userDto :User = new User();
+  categoryArray:Array<any> = new Array<any>();
 
 
 
   constructor(private jobService:JobsService,private  jobposterService:JObPosterService,private elem:ElementRef,private  jobPosterProfileService: JobPosterProfileService,
-              private routerActive:ActivatedRoute) { }
+              private routerActive:ActivatedRoute,private categoryService:CategoryService) { }
 
   ngOnInit() {
+    this.jobs.jobtitle ="";
+    this.getAllCategory();
     this.routerActive.params.subscribe(params =>{
-      this.jobService.getSelectedJobDetails(params.id).subscribe(res =>{
-          this.postJob =res;
-          this.jobs =this.postJob.jobsDTO;
-          this.elem.nativeElement.querySelector('#industry').value = this.postJob.jobsDTO.industry;
-          this.elem.nativeElement.querySelector('#category').value = this.postJob.jobsDTO.category;
-          this.elem.nativeElement.querySelector('#deddat').value = this.postJob.jobsDTO.dedlinedate;
-          this.elem.nativeElement.querySelector('#totvac').value = this.postJob.jobsDTO.totalvacncies;
+      if(params.id != null || params.id != undefined) {
 
-          this.qulifucation =this.postJob.qulificationDTO;
 
-          this.elem.nativeElement.querySelector('#minimumqulification').value = this.qulifucation.minimumqulification;
-          this.elem.nativeElement.querySelector('#reqexp').value = this.qulifucation.requiredexperience;
-          this.elem.nativeElement.querySelector('#educationalspecialization').value = this.qulifucation.educationalspecialization;
-          this.elem.nativeElement.querySelector('#skill').value = this.qulifucation.skill;
-          this.elem.nativeElement.querySelector('#genderpreference').value = this.qulifucation.genderpreference;
-          this.elem.nativeElement.querySelector('#maimumage').value =this.qulifucation.maximumage;
-          this.elem.nativeElement.querySelector('#minage').value =this.qulifucation.minimumage;
+        this.jobService.getSelectedJobDetails(params.id).subscribe(res => {
+            this.postJob = res;
+            this.jobs = this.postJob.jobsDTO;
+            this.elem.nativeElement.querySelector('#industry').value = this.postJob.jobsDTO.industry;
+            this.elem.nativeElement.querySelector('#category').value = this.postJob.jobsDTO.category;
+            this.elem.nativeElement.querySelector('#deddat').value = this.postJob.jobsDTO.dedlinedate;
+            this.elem.nativeElement.querySelector('#totvac').value = this.postJob.jobsDTO.totalvacncies;
+            this.elem.nativeElement.querySelector('#discription').value = this.postJob.jobsDTO.discription;
 
-        }
-      )
+            this.qulifucation = this.postJob.qulificationDTO;
+
+            this.elem.nativeElement.querySelector('#minimumqulification').value = this.qulifucation.minimumqulification;
+            this.elem.nativeElement.querySelector('#reqexp').value = this.qulifucation.requiredexperience;
+            this.elem.nativeElement.querySelector('#educationalspecialization').value = this.qulifucation.educationalspecialization;
+            this.elem.nativeElement.querySelector('#skill').value = this.qulifucation.skill;
+            this.elem.nativeElement.querySelector('#genderpreference').value = this.qulifucation.genderpreference;
+            this.elem.nativeElement.querySelector('#maimumage').value = this.qulifucation.maximumage;
+            this.elem.nativeElement.querySelector('#minage').value = this.qulifucation.minimumage;
+
+          }
+        )
+      }
     })
     this.userDto =JSON.parse(sessionStorage.getItem("token"));
-    //this.loadLoginedPoster();
+
 
   }
 
 
 
     addJOb():void{
+
+    try{
+
+
     this.loading =true;
     let industry=this.elem.nativeElement.querySelector('#industry').value;
     let category=this.elem.nativeElement.querySelector('#category').value;
     let dedlineDate=this.elem.nativeElement.querySelector('#deddat').value;
-      var totalvac: number =this.elem.nativeElement.querySelector('#totvac').value;
+    var totalvac: number =this.elem.nativeElement.querySelector('#totvac').value;
+    let discription =this.elem.nativeElement.querySelector('#discription').value;
 
     this.jobs.industry=industry;
     this.jobs.category=category;
     this.jobs.dedlinedate = dedlineDate;
     this.jobs.totalvacncies = totalvac;
+    this.jobs.discription = discription;
     let minimumqulification=this.elem.nativeElement.querySelector('#minimumqulification').value;
     let requiredexperience=this.elem.nativeElement.querySelector('#reqexp').value;
     let educationalspecialization=this.elem.nativeElement.querySelector('#educationalspecialization').value;
@@ -82,7 +97,7 @@ export class PostjobComponent implements OnInit {
     let minAge:number =this.elem.nativeElement.querySelector('#minage').value;
 
 
-    console.log(minAge)
+
     this.qulifucation.minimumqulification=minimumqulification;
     this.qulifucation.requiredexperience=requiredexperience;
     this.qulifucation.educationalspecialization=educationalspecialization;
@@ -99,33 +114,43 @@ export class PostjobComponent implements OnInit {
     this.postJob.qulificationDTO=this.qulifucation;
       const formData:FormData=new FormData();
       formData.append("file",this.imageFile);
-      this.jobPosterProfileService.saveFile(formData).subscribe(
-        (result)=>{
-            if(result){
+
+      if(this.jobs.jobtitle == "" || this.jobs.category == "" || this.qulifucation.minimumqulification == ""){
+
+        alert("Validate your form some fields are empty")
+      }else {
+
+
+        this.jobPosterProfileService.saveFile(formData).subscribe(
+          (result) => {
+            if (result) {
               this.jobs.iamgePath = result.path;
-              this.postJob.jobsDTO=this.jobs;
+              this.postJob.jobsDTO = this.jobs;
               console.log(this.postJob)
               this.jobService.addJob(this.postJob).subscribe(
-                (result)=>{
-                  this.loading =false;
-                  if(result){
+                (result) => {
+                  this.loading = false;
+                  if (result) {
                     confirm("New Job Added successfully")
-                  }else{
+                  } else {
                     confirm("Fail to Add Re-Try")
                   }
-                },error => {
+                }, error => {
                   this.loading = false;
                   confirm("Failed Save")
                 }
               )
             }
-        },error => {
-          this.loading = false;
-          confirm("Failed Save")
-        }
-      )
-
-
+          }, error => {
+            this.loading = false;
+            confirm("Failed Save")
+          }
+        )
+      }
+    }catch (e) {
+      this.loading =false;
+      alert("Validate your form some fields are empty")
+    }
   }
 
   loadLoginedPoster():void{
@@ -212,4 +237,9 @@ export class PostjobComponent implements OnInit {
   //   )
   // }
 
+  private getAllCategory() {
+    this.categoryService.getAll().subscribe(res=>{
+      this.categoryArray = res;
+    })
+  }
 }

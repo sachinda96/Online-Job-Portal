@@ -40,8 +40,12 @@ export class JobsService {
     return this.http.get<string>(MAIN_URL+URLS+"/Total")
   }
 
-  getAllJobs():Observable<Array<PostJob>>{
-    return this.http.get<Array<PostJob>>(MAIN_URL+URLS);
+  getAllJobs():Observable<any>{
+    return this.http.get<any>(MAIN_URL+URLS);
+  }
+
+  getAllJobsByName(name:String):Observable<any>{
+    return this.http.get<any>(MAIN_URL+URLS+"/getAllJobsByName/"+name);
   }
 
 

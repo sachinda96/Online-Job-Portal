@@ -6,6 +6,7 @@ import {MAIN_URL} from "./user-service.service";
 import {ApllyJob} from "../dto/aplly-job";
 
 const URLS="/api/v1/applyJob"
+const URLFile="/file"
 @Injectable()
 export class ApplyJobService {
 
@@ -17,6 +18,17 @@ export class ApplyJobService {
 
   getAllAppliedJobsByUser(user:String){
     return this.http.get<any>(MAIN_URL+URLS+"/getAllAppliedJobsByUser/"+user)
+  }
+
+  getAllAppliedEmployeeByUser(user:String){
+    return this.http.get<any>(MAIN_URL+URLS+"/getAllAppliedEmployeeByUser/"+user)
+  }
+
+  getFile(path:String){
+    const formData:FormData=new FormData();
+    // @ts-ignore
+    formData.append("path",path);
+    return this.http.post<any>(MAIN_URL+URLFile,formData);
   }
 
   getLastJob():Observable<ApllyJob>{
