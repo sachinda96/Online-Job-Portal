@@ -31,6 +31,9 @@ public class ApplyJobServiceImpl implements ApplyJobService {
     @Autowired
     private JobsRepository jobsRepository;
 
+    @Autowired
+    private JobPosterReposistory jobPosterReposistory;
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ResponseEntity<?> applyJob(ApplyJobMainDTO applyJobMainDTO) {
@@ -114,6 +117,50 @@ public class ApplyJobServiceImpl implements ApplyJobService {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Override
+    public ResponseEntity<?> getAllAppliedEmployeeByUser(String username) {
+
+        try {
+
+            Optional<JobPoster> jobPoster = jobPosterReposistory.findById(username);
+
+            List<NewEmployeeDTO> newEmployeeDTOList = new ArrayList<>();
+
+            if (jobPoster.isPresent()){
+
+               List<Jobs> jobs = jobsRepository.findAllByJobPoster(jobPoster.get());
+
+               if(jobs != null){
+
+                   List<ApplyJob> applyJobList = applyJobRepository.findAllByJobsIn(jobs);
+
+                   if(applyJobList != null){
+
+                       for (ApplyJob applyJob : applyJobList) {
+                           NewEmployeeDTO newEmployeeDTO = new NewEmployeeDTO();
+                           newEmployeeDTO.setAppliedDate(applyJob.getApplyDate());
+                           newEmployeeDTO.setCvPath(applyJob.getCvPath());
+                           newEmployeeDTO.setId(applyJob.getId());
+                           newEmployeeDTO.setJobCategory(applyJob.getJobs().getCategory());
+                           newEmployeeDTO.setJobSeekerName(applyJob.getJobSeeker().getFirstName()+" "+applyJob.getJobSeeker().getLastName());
+                           newEmployeeDTO.setJobTitle(applyJob.getJobs().getJobtitle());
+                           newEmployeeDTOList.add(newEmployeeDTO);
+                       }
+
+                   }
+
+               }
+
+            }
+
+            return new ResponseEntity<>(newEmployeeDTOList,HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     public String dateToString(Date date)throws Exception{

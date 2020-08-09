@@ -1,4 +1,14 @@
 package lk.ijse.jobportal.exception;
 
-public class FileNotFoundException {
+public class FileNotFoundException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
+    public FileNotFoundException(String message) {
+        super(message);
+    }
+
+    public FileNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

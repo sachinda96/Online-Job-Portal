@@ -10,5 +10,7 @@ public interface ApplyJobService {
 
     public ResponseEntity<?> getAllAppliedJobsByUser(String username);
 
+    public ResponseEntity<?> getAllAppliedEmployeeByUser(String username);
+
     public ApplyJobDTO getLastData();
 }

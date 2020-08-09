@@ -18,6 +18,8 @@ public class ApplyJob {
 
     private String cvPath;
 
+    private String status;
+
     public ApplyJob() {
     }
 
@@ -62,5 +64,13 @@ public class ApplyJob {
 
     public void setCvPath(String cvPath) {
         this.cvPath = cvPath;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

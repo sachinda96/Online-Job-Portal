@@ -10,6 +10,7 @@ public class Jobs {
     @Id
     private String id;
     private String jobtitle;
+
     private String discription;
     private String category;
     private String industry;
@@ -59,6 +60,7 @@ public class Jobs {
         this.jobtitle = jobtitle;
     }
 
+    @Column(columnDefinition = "LONGTEXT")
     public String getDiscription() {
         return discription;
     }

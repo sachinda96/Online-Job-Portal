@@ -96,7 +96,6 @@ public class JobsServiceImpl implements JobsService {
             qulifications.get().setMaximumage(qulificationDTO.getMaximumage());
             qulifications.get().setSkill(qulificationDTO.getSkill());
             qulifications.get().setJobs(jobs.get());
-            System.out.println(qulificationDTO.getMaximumage());
             qulifications.get().setMinimumage(qulificationDTO.getMinimumage());
 
             jobsRepository.save(jobs.get());
@@ -140,53 +139,126 @@ public class JobsServiceImpl implements JobsService {
         }
 
     @Override
-    public ArrayList<PostJobDTO> getAllPostJobs() {
+    public ResponseEntity<?> getAllPostJobs() {
 
-        List<Qulifications> qulifications=qulificationRepository.getAllPostJob();
+        try {
 
-         allPostJobs=new ArrayList<>();
+            List<PostJobDTO> postJobDTOList = new ArrayList<>();
 
+            List<Jobs> jobs = jobsRepository.findAll();
 
-        for (Qulifications qulification:qulifications
-             ) {
-            Jobs jobs=qulification.getJobs();
+            if(jobs!= null){
 
-            JobsDTO jobsDTOl=new JobsDTO();
-            jobsDTOl.setId(jobs.getId());
-            jobsDTOl.setJobtitle(jobs.getJobtitle());
-            jobsDTOl.setDiscription(jobs.getDiscription());
-            jobsDTOl.setBussinessfuntion(jobs.getBussinessFuntion());
-            jobsDTOl.setCategory(jobs.getCategory());
-            jobsDTOl.setIamgePath(jobs.getImagePath());
-            jobsDTOl.setIndustry(jobs.getIndustry());
-            jobsDTOl.setDedlinedate(jobs.getDedlinedate());
-            jobsDTOl.setMinsalary(jobs.getMinsalary());
-            jobsDTOl.setMaxsalary(jobs.getMaxsalary());
-            jobsDTOl.setRole(jobs.getRole());
-            jobsDTOl.setTotalvacncies(jobs.getTotalvacncies());
+                for (Jobs job:jobs) {
 
-            JobPoster jobPoster=jobs.getJobPoster();
-            JobPosterDTO jobPosterDTO=new JobPosterDTO(jobPoster.getUsername(),jobPoster.getEmail(),jobPoster.getCompanyname(),jobPoster.getPassword());
+                    PostJobDTO postJobDTO = new PostJobDTO();
+                    JobsDTO jobsDTOl = new JobsDTO();
+                    jobsDTOl.setId(job.getId());
+                    jobsDTOl.setJobtitle(job.getJobtitle());
+                    jobsDTOl.setDiscription(job.getDiscription());
+                    jobsDTOl.setBussinessfuntion(job.getBussinessFuntion());
+                    jobsDTOl.setCategory(job.getCategory());
+                    jobsDTOl.setIamgePath(job.getImagePath());
+                    jobsDTOl.setIndustry(job.getIndustry());
+                    jobsDTOl.setDedlinedate(job.getDedlinedate());
+                    jobsDTOl.setMinsalary(job.getMinsalary());
+                    jobsDTOl.setMaxsalary(job.getMaxsalary());
+                    jobsDTOl.setRole(job.getRole());
+                    jobsDTOl.setTotalvacncies(job.getTotalvacncies());
 
-            jobsDTOl.setJobPosterDTO(jobPosterDTO);
+                    JobPosterDTO jobPosterDTO = new JobPosterDTO();
+                    jobPosterDTO.setCompanyname(job.getJobPoster().getCompanyname());
+                    jobPosterDTO.setEmail(job.getJobPoster().getEmail());
+                    jobPosterDTO.setUsername(job.getJobPoster().getUsername());
+                    jobsDTOl.setJobPosterDTO(jobPosterDTO);
 
+                    postJobDTO.setJobsDTO(jobsDTOl);
 
-            QulificationDTO qulificationDTO=new QulificationDTO();
-            qulificationDTO.setId(qulification.getId());
-            qulificationDTO.setMinimumqulification(qulification.getMinimumqulification());
-            qulificationDTO.setEducationalspecialization(qulification.getEducationalspecialization());
-            qulificationDTO.setRequiredexperience(qulification.getRequiredexperience());
-            qulificationDTO.setGenderpreference(qulification.getGenderpreference());
-            qulificationDTO.setMaximumage(qulification.getMaximumage());
-            qulificationDTO.setSkill(qulification.getSkill());
+                    Optional<Qulifications> qulifications = qulificationRepository.findOneByJobs(job);
 
-            PostJobDTO postJobDTO=new PostJobDTO(jobsDTOl,qulificationDTO);
+                    if(qulifications.isPresent()){
+                        QulificationDTO qulificationDTOs = new QulificationDTO();
+                        qulificationDTOs.setId(qulifications.get().getId());
+                        qulificationDTOs.setMinimumqulification(qulifications.get().getMinimumqulification());
+                        qulificationDTOs.setEducationalspecialization(qulifications.get().getEducationalspecialization());
+                        qulificationDTOs.setRequiredexperience(qulifications.get().getRequiredexperience());
+                        qulificationDTOs.setGenderpreference(qulifications.get().getGenderpreference());
+                        qulificationDTOs.setMaximumage(qulifications.get().getMaximumage());
+                        qulificationDTOs.setMinimumage(qulifications.get().getMinimumage());
+                        qulificationDTOs.setSkill(qulifications.get().getSkill());
+                        postJobDTO.setQulificationDTO(qulificationDTOs);
+                    }
 
-            allPostJobs.add(postJobDTO);
+                    postJobDTOList.add(postJobDTO);
+                }
+            }
+            return new ResponseEntity<>(postJobDTOList,HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return  allPostJobs;
+    }
 
+    @Override
+    public ResponseEntity<?> getAllPostJobsByName(String name) {
+
+        try {
+
+            List<PostJobDTO> postJobDTOList = new ArrayList<>();
+
+            List<Jobs> jobs = jobsRepository.findAllByJobtitleContaining(name);
+
+            if(jobs!= null){
+
+                for (Jobs job:jobs) {
+
+                    PostJobDTO postJobDTO = new PostJobDTO();
+                    JobsDTO jobsDTOl = new JobsDTO();
+                    jobsDTOl.setId(job.getId());
+                    jobsDTOl.setJobtitle(job.getJobtitle());
+                    jobsDTOl.setDiscription(job.getDiscription());
+                    jobsDTOl.setBussinessfuntion(job.getBussinessFuntion());
+                    jobsDTOl.setCategory(job.getCategory());
+                    jobsDTOl.setIamgePath(job.getImagePath());
+                    jobsDTOl.setIndustry(job.getIndustry());
+                    jobsDTOl.setDedlinedate(job.getDedlinedate());
+                    jobsDTOl.setMinsalary(job.getMinsalary());
+                    jobsDTOl.setMaxsalary(job.getMaxsalary());
+                    jobsDTOl.setRole(job.getRole());
+                    jobsDTOl.setTotalvacncies(job.getTotalvacncies());
+
+                    JobPosterDTO jobPosterDTO = new JobPosterDTO();
+                    jobPosterDTO.setCompanyname(job.getJobPoster().getCompanyname());
+                    jobPosterDTO.setEmail(job.getJobPoster().getEmail());
+                    jobPosterDTO.setUsername(job.getJobPoster().getUsername());
+                    jobsDTOl.setJobPosterDTO(jobPosterDTO);
+
+                    postJobDTO.setJobsDTO(jobsDTOl);
+
+                    Optional<Qulifications> qulifications = qulificationRepository.findOneByJobs(job);
+
+                    if(qulifications.isPresent()){
+                        QulificationDTO qulificationDTOs = new QulificationDTO();
+                        qulificationDTOs.setId(qulifications.get().getId());
+                        qulificationDTOs.setMinimumqulification(qulifications.get().getMinimumqulification());
+                        qulificationDTOs.setEducationalspecialization(qulifications.get().getEducationalspecialization());
+                        qulificationDTOs.setRequiredexperience(qulifications.get().getRequiredexperience());
+                        qulificationDTOs.setGenderpreference(qulifications.get().getGenderpreference());
+                        qulificationDTOs.setMaximumage(qulifications.get().getMaximumage());
+                        qulificationDTOs.setMinimumage(qulifications.get().getMinimumage());
+                        qulificationDTOs.setSkill(qulifications.get().getSkill());
+                        postJobDTO.setQulificationDTO(qulificationDTOs);
+                    }
+
+                    postJobDTOList.add(postJobDTO);
+                }
+            }
+            return new ResponseEntity<>(postJobDTOList,HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override

@@ -35,7 +35,7 @@ public class USerServiceImpl implements UserService {
         if (!exists){
             jobPosterReposistory.existsById(username);
             JobPoster jobPoster = jobPosterReposistory.findById(username).get();
-            System.out.println("not Exsist");
+
             return jobPoster.getPassword().equals(pasword);
 
         }

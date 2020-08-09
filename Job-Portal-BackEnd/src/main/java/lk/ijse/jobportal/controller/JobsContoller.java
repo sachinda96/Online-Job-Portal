@@ -26,8 +26,13 @@ public class JobsContoller {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<PostJobDTO> getAllJobs() {
+    public ResponseEntity<?> getAllJobs() {
         return jobsService.getAllPostJobs();
+    }
+
+    @GetMapping(value = "/getAllJobsByName/{name}")
+    public ResponseEntity<?> getAllJobsByName(@PathVariable String name) {
+        return jobsService.getAllPostJobsByName(name);
     }
 
     @GetMapping(value = "/{username}",produces = MediaType.APPLICATION_JSON_VALUE)

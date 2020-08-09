@@ -14,7 +14,9 @@ public interface JobsService {
 
     public ArrayList<JobsDTO> getAllJObs();
 
-    public ArrayList<PostJobDTO> getAllPostJobs();
+    public ResponseEntity<?> getAllPostJobs();
+
+    public ResponseEntity<?> getAllPostJobsByName(String name);
 
     public ArrayList<PostJobDTO> getPosterPostedJobs(String username);
 

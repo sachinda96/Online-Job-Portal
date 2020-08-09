@@ -2,6 +2,7 @@ package lk.ijse.jobportal.repository;
 
 import lk.ijse.jobportal.entity.ApplyJob;
 import lk.ijse.jobportal.entity.JobSeeker;
+import lk.ijse.jobportal.entity.Jobs;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,4 +15,6 @@ public interface ApplyJobRepository extends JpaRepository<ApplyJob,String> {
     ApplyJob getJob();
 
     List<ApplyJob> findAllByJobSeeker(JobSeeker jobSeeker);
+
+    List<ApplyJob> findAllByJobsIn(List<Jobs> jobs);
 }

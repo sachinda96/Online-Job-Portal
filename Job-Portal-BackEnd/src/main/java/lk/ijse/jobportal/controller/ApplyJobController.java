@@ -32,4 +32,9 @@ public class ApplyJobController {
     public ResponseEntity<?> getAllAppliedJobsByUser(@PathVariable  String username){
         return applyJobService.getAllAppliedJobsByUser(username);
     }
+
+    @GetMapping(value = "/getAllAppliedEmployeeByUser/{username}")
+    public ResponseEntity<?> getAllAppliedEmployeeByUser(@PathVariable  String username){
+        return applyJobService.getAllAppliedEmployeeByUser(username);
+    }
 }

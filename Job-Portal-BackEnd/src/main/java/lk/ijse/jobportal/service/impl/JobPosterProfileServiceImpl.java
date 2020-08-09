@@ -147,7 +147,7 @@ public class JobPosterProfileServiceImpl implements JobPosterProfileService {
                     outputStream = new BufferedOutputStream(
                             new FileOutputStream(
                                     new File("src/main/resources/images", file.getOriginalFilename())));
-                    filePath = "http://localhost:8080/api/v1/profile/file?file=src/main/resources/images/" + file.getOriginalFilename();
+                    filePath = "http://localhost:8080/file?file=src/main/resources/images/" + file.getOriginalFilename();
                     //  System.out.println(multipartFile.getOriginalFilename());
                     outputStream.write(file.getBytes());
                     outputStream.flush();
