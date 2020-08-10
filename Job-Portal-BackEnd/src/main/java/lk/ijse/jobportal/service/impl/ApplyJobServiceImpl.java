@@ -163,6 +163,29 @@ public class ApplyJobServiceImpl implements ApplyJobService {
 
     }
 
+    @Override
+    public ResponseEntity<?> countByAllAppliedJobs(String userName) {
+
+        try {
+
+        Optional<User> user = userRepository.findById(userName);
+
+        if(user.isPresent()){
+
+           Optional<JobSeeker> jobSeeker = jObSeekerRepository.findTopByUser(user.get());
+
+           if (jobSeeker.isPresent()){
+              return new ResponseEntity<>(applyJobRepository.countByJobSeeker(jobSeeker.get()),HttpStatus.OK);
+           }
+
+        }
+            return new ResponseEntity<>(0,HttpStatus.NO_CONTENT);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public String dateToString(Date date)throws Exception{
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");

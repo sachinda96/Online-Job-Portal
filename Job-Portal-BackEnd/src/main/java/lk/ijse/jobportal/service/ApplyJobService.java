@@ -12,5 +12,8 @@ public interface ApplyJobService {
 
     public ResponseEntity<?> getAllAppliedEmployeeByUser(String username);
 
+    public ResponseEntity<?> countByAllAppliedJobs(String userName);
+
     public ApplyJobDTO getLastData();
+
 }

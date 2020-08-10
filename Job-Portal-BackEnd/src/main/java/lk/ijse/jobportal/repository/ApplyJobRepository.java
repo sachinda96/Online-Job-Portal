@@ -17,4 +17,6 @@ public interface ApplyJobRepository extends JpaRepository<ApplyJob,String> {
     List<ApplyJob> findAllByJobSeeker(JobSeeker jobSeeker);
 
     List<ApplyJob> findAllByJobsIn(List<Jobs> jobs);
+
+    long countByJobSeeker(JobSeeker jobSeeker);
 }

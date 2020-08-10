@@ -61,7 +61,12 @@ public class JobsContoller {
     }
 
     @GetMapping(value = "/Total",produces = MediaType.APPLICATION_JSON_VALUE)
-    public long getTotalJobs(){
-       return jobsService.getTotalJobs();
+    public ResponseEntity<?> getTotalJobs(){
+       return jobsService.getAllJobsCount();
+    }
+
+    @GetMapping(value = "/totalByUser/{userName}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getTotalJobsByUser(@PathVariable String userName){
+        return jobsService.getAllJobsByUser(userName);
     }
 }

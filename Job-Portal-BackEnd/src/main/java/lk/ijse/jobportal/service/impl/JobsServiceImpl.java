@@ -5,8 +5,10 @@ import lk.ijse.jobportal.dto.JobsDTO;
 import lk.ijse.jobportal.dto.PostJobDTO;
 import lk.ijse.jobportal.dto.QulificationDTO;
 import lk.ijse.jobportal.entity.JobPoster;
+import lk.ijse.jobportal.entity.JobSeeker;
 import lk.ijse.jobportal.entity.Jobs;
 import lk.ijse.jobportal.entity.Qulifications;
+import lk.ijse.jobportal.repository.JObSeekerRepository;
 import lk.ijse.jobportal.repository.JobPosterReposistory;
 import lk.ijse.jobportal.repository.JobsRepository;
 import lk.ijse.jobportal.repository.QulificationRepository;
@@ -44,6 +46,9 @@ public class JobsServiceImpl implements JobsService {
 
     @Autowired
     private JobPosterReposistory jobPosterReposistory;
+
+    @Autowired
+    private JObSeekerRepository jObSeekerRepository;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -259,6 +264,39 @@ public class JobsServiceImpl implements JobsService {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Override
+    public ResponseEntity<?> getAllJobsCount() {
+
+        try {
+
+            return new ResponseEntity<>(jobsRepository.count(),HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getAllJobsByUser(String userName) {
+
+        try {
+
+            Optional<JobPoster> jobPoster = jobPosterReposistory.findById(userName);
+
+            if(jobPoster.isPresent()){
+
+                return new ResponseEntity<>(jobsRepository.countByJobPoster(jobPoster.get()),HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>(0,HttpStatus.NO_CONTENT);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @Override

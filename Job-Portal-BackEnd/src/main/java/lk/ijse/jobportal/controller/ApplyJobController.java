@@ -37,4 +37,9 @@ public class ApplyJobController {
     public ResponseEntity<?> getAllAppliedEmployeeByUser(@PathVariable  String username){
         return applyJobService.getAllAppliedEmployeeByUser(username);
     }
+
+    @GetMapping(value = "/countByAllAppliedJobs/{username}")
+    public ResponseEntity<?> countByAllAppliedJobs(@PathVariable  String username){
+        return applyJobService.countByAllAppliedJobs(username);
+    }
 }

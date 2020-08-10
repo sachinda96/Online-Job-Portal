@@ -18,6 +18,10 @@ public interface JobsService {
 
     public ResponseEntity<?> getAllPostJobsByName(String name);
 
+    public ResponseEntity<?> getAllJobsCount();
+
+    public ResponseEntity<?> getAllJobsByUser(String userName);
+
     public ArrayList<PostJobDTO> getPosterPostedJobs(String username);
 
     public boolean uploadImage(MultipartFile file);
