@@ -24,6 +24,7 @@ export class ApplyComponent implements OnInit {
   user:User=new User();
   jobseker:JobSeekerProfile=new JobSeekerProfile();
   date:Date;
+  loading : boolean =false;
   job:PostJob=new PostJob();
   applyJobs:ApllyJob=new ApllyJob();
   applyJobsDetails:ApllyJobDetails=new ApllyJobDetails();
@@ -52,7 +53,6 @@ export class ApplyComponent implements OnInit {
   getJobSeeker():void{
     this.jobSeekerService.searchJobSeeker(this.user.username).subscribe(
       (result)=>{
-        console.log(result)
         this.jobseker=result;
       }
     )
@@ -78,18 +78,21 @@ export class ApplyComponent implements OnInit {
 
   applyNewJob():void{
 
+    this.loading =true;
     this.applyJobMain = new ApplyJobMain();
     this.applyJobMain.userName = this.user.username;
     this.applyJobMain.jobId = this.job.jobsDTO.id.toString();
 
     this.applyJobService.saveApplyJob(this.applyJobMain).subscribe(
       (result)=>{
+        this.loading=false;
         if(result == 200){
-          alert("Sucses");
+          alert("Successfully Applied Job");
         }else{
-          alert("Failed");
+          alert("Failed Applied Job");
         }
       },error => {
+        this.loading = false;
         alert("Failed to Apply to Job")
       }
     )

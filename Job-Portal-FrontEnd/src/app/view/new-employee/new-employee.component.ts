@@ -28,8 +28,5 @@ export class NewEmployeeComponent implements OnInit {
     )
   }
 
-  downloadCV() {
 
-
-  }
 }

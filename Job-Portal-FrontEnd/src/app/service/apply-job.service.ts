@@ -34,4 +34,8 @@ export class ApplyJobService {
   getLastJob():Observable<ApllyJob>{
     return this.http.get<ApllyJob>(MAIN_URL+URLS+"/Last")
   }
+
+  countByAllAppliedJobs(userName : String):Observable<any>{
+    return this.http.get<any>(MAIN_URL+URLS+"/countByAllAppliedJobs/"+userName);
+  }
 }

@@ -42,6 +42,7 @@ export class MainComponent implements OnInit {
     this.authService.logout();
    this.route.navigate(['Main/Dashboard']);
    this.user=null;
+   window.location.reload();
  }
 
   routeDashBoard():void{

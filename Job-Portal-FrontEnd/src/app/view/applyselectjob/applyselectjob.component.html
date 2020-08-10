@@ -19,12 +19,11 @@
                   </div>
                   <div class="news-content">
                     <p>{{postjob.jobsDTO.discription}}</p>
-
                   </div>
                   <hr>
-                  <div class="news-footer">
+                  <div class="news-footer" *ngIf="isselected">
                     <div class="news-likes">
-                      <button type="button" class="button" (click)="setPostJob(postjob.jobsDTO.id )"><i class="far fa-edit" ></i> <span class="badge ">Apply Now</span></button>
+                      <button type="button" class="button"  (click)="setPostJob(postjob.jobsDTO.id )"><i class="far fa-edit" ></i> <span class="badge ">Apply Now</span></button>
                     </div>
                   </div>
                   <hr>

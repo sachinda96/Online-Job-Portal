@@ -48,6 +48,9 @@ export class JobsService {
     return this.http.get<any>(MAIN_URL+URLS+"/getAllJobsByName/"+name);
   }
 
+  getAllJobsByUser(userName:String):Observable<any>{
+    return this.http.get<any>(MAIN_URL+URLS+"/totalByUser/"+userName);
+  }
 
 
   setId(id:string){
