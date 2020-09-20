@@ -1,8 +1,6 @@
 package lk.joinus.jobportal.service.impl;
 
-import lk.ijse.jobportal.dto.*;
-import lk.ijse.jobportal.entity.*;
-import lk.ijse.jobportal.repository.*;
+
 import lk.joinus.jobportal.dto.ApplyJobDTO;
 import lk.joinus.jobportal.dto.ApplyJobMainDTO;
 import lk.joinus.jobportal.dto.NewEmployeeDTO;

@@ -1,6 +1,5 @@
 package lk.joinus.jobportal.controller;
 
-import lk.ijse.jobportal.dto.*;
 import lk.joinus.jobportal.dto.JObPosterProfileDTO;
 import lk.joinus.jobportal.service.JobPosterProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
