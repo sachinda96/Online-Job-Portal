@@ -1,8 +1,10 @@
 package lk.joinus.jobportal.service.impl;
 
 import lk.joinus.jobportal.dto.UserDTO;
+import lk.joinus.jobportal.entity.EducationalPartnerEntity;
 import lk.joinus.jobportal.entity.JobPoster;
 import lk.joinus.jobportal.entity.User;
+import lk.joinus.jobportal.repository.EducationalPartnerRepository;
 import lk.joinus.jobportal.repository.JobPosterReposistory;
 import lk.joinus.jobportal.repository.UserRepository;
 import lk.joinus.jobportal.service.UserService;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -20,6 +24,10 @@ public class USerServiceImpl implements UserService {
 
     @Autowired
     private JobPosterReposistory jobPosterReposistory;
+
+    @Autowired
+    private EducationalPartnerRepository educationalPartnerRepository;
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public boolean addUser(UserDTO userDTO) {
@@ -76,7 +84,18 @@ public class USerServiceImpl implements UserService {
                     userDTO.setType("SEEKER");
                     return userDTO;
                 }
-                throw new Exception("Invalid UserName Or Password");
+
+            }else if(educationalPartnerRepository.existsById(username)){
+
+                Optional<EducationalPartnerEntity> educationalPartnerEntity = educationalPartnerRepository.findById(username);
+
+                UserDTO userDTO = new UserDTO();
+                userDTO.setEmail(educationalPartnerEntity.get().getEmail());
+                userDTO.setPassword(educationalPartnerEntity.get().getPassword());
+                userDTO.setUsername(educationalPartnerEntity.get().getUsername());
+                userDTO.setType("EP");
+                return userDTO;
+
             }
 
 

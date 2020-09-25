@@ -159,6 +159,25 @@ public class CoursesServiceImpl implements CoursesService {
         }
     }
 
+    @Override
+    public ResponseEntity<?> searchCourses(String id) {
+
+        try{
+
+            Optional<CoursesEntity> coursesEntity =coursesRepository.findById(id);
+
+            if(coursesEntity.isPresent()){
+                return new ResponseEntity<>(setCoursesDTO(coursesEntity.get()),HttpStatus.OK);
+            }
+
+            throw new Exception("Invalid Course Details");
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     private CoursesDTO setCoursesDTO(CoursesEntity coursesEntity) {
 
         CoursesDTO coursesDTO = new CoursesDTO();

@@ -12,4 +12,10 @@ public interface CoursesService {
     public ResponseEntity<?> allCoursesByEducationalCenter(String id);
 
     public ResponseEntity<?> allCourses();
+
+    public ResponseEntity<?> searchCourses(String id);
+
+
+
+
 }
