@@ -6,11 +6,15 @@ import org.springframework.http.ResponseEntity;
 
 public interface EducationalPartnerService {
 
-    public ResponseEntity<?> add(EducationalPartnerDTO educationalPartnerDTO);
+    public boolean add(EducationalPartnerDTO educationalPartnerDTO);
 
     public ResponseEntity<?> addEducationCenter(EducationCenterDTO educationCenterDTO);
 
     public ResponseEntity<?> allEducationCenterByUser(String userName);
+
+    public ResponseEntity<?> getEducationCenter(String id);
+
+    public ResponseEntity<?> deleteEducationCenter(String id);
 
 
 

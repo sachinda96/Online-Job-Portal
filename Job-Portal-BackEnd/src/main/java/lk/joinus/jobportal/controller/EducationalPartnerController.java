@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/EducationalPartner")
+@RequestMapping("/EducationalPartner")
 public class EducationalPartnerController {
 
     @Autowired
     private EducationalPartnerService educationalPartnerService;
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody EducationalPartnerDTO educationalPartnerDTO){
+    public Boolean add(@RequestBody EducationalPartnerDTO educationalPartnerDTO){
         return educationalPartnerService.add(educationalPartnerDTO);
     }
-
 
     @PostMapping(value = "/addEducationCenter")
     public ResponseEntity<?> addEducationCenter(@RequestBody EducationCenterDTO educationCenterDTO){
@@ -31,5 +30,13 @@ public class EducationalPartnerController {
         return educationalPartnerService.allEducationCenterByUser(userName);
     }
 
+    @GetMapping(value = "/educationCenter/{id}")
+    public ResponseEntity<?> educationCenter(@PathVariable String id){
+        return educationalPartnerService.getEducationCenter(id);
+    }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> deleteEducationCenter(@PathVariable String id){
+        return educationalPartnerService.deleteEducationCenter(id);
+    }
 }

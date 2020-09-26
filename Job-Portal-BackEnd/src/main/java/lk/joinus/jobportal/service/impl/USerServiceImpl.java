@@ -56,10 +56,9 @@ public class USerServiceImpl implements UserService {
 
     @Override
     public UserDTO loginUser(String username, String password)throws Exception {
-        boolean exists = userRepository.existsById(username);
 
-        if(!exists){
-            jobPosterReposistory.existsById(username);
+        if(jobPosterReposistory.existsById(username)){
+
             JobPoster jobPoster = jobPosterReposistory.findById(username).get();
 
             if(jobPoster.getPassword().equalsIgnoreCase(password)){

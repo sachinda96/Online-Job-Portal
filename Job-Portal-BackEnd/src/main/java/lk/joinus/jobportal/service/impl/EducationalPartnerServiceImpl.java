@@ -27,24 +27,24 @@ public class EducationalPartnerServiceImpl implements EducationalPartnerService 
     private EducationCenterRepository educationCenterRepository;
 
     @Override
-    public ResponseEntity<?> add(EducationalPartnerDTO educationalPartnerDTO) {
+    public boolean add(EducationalPartnerDTO educationalPartnerDTO) {
 
         try {
 
-            if(educationalPartnerRepository.existsById(educationalPartnerDTO.getUsername())){
+            if(!educationalPartnerRepository.existsById(educationalPartnerDTO.getUsername())){
                 EducationalPartnerEntity educationalPartnerEntity = new EducationalPartnerEntity();
                 educationalPartnerEntity.setEmail(educationalPartnerDTO.getEmail());
                 educationalPartnerEntity.setPassword(educationalPartnerDTO.getPassword());
                 educationalPartnerEntity.setUsername(educationalPartnerDTO.getUsername());
                 educationalPartnerRepository.save(educationalPartnerEntity);
-                return new ResponseEntity<>("Registration Successfully", HttpStatus.OK);
+                return true;
             }
 
             throw new Exception("UserName Already Taken");
 
         }catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return false;
         }
 
     }
@@ -59,11 +59,19 @@ public class EducationalPartnerServiceImpl implements EducationalPartnerService 
                 throw new Exception("Invalid educationalPartner details");
             }
 
-            EducationCenterEntity educationCenterEntity = new EducationCenterEntity();
+            EducationCenterEntity educationCenterEntity = null;
+
+            if(educationCenterDTO.getId()!= null && educationCenterDTO.getId()!=""){
+                educationCenterEntity= educationCenterRepository.findById(educationCenterDTO.getId()).get();
+            }else{
+                educationCenterEntity = new EducationCenterEntity();
+                educationCenterEntity.setId(UUID.randomUUID().toString());
+            }
+
+
             educationCenterEntity.setAddress(educationCenterDTO.getGetEducationalCenterAddress());
             educationCenterEntity.setEmail(educationCenterDTO.getGetEducationalCenterEmail());
             educationCenterEntity.setFaxNo(educationCenterDTO.getFaxNo());
-            educationCenterEntity.setId(UUID.randomUUID().toString());
             educationCenterEntity.setStatus("ACTIVE");
             educationCenterEntity.setName(educationCenterDTO.getEducationalCenterName());
             educationCenterEntity.setTelNo(educationCenterDTO.getTelNo());
@@ -109,6 +117,45 @@ public class EducationalPartnerServiceImpl implements EducationalPartnerService 
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Override
+    public ResponseEntity<?> getEducationCenter(String id) {
+        try {
+
+            Optional<EducationCenterEntity> educationCenterEntity =educationCenterRepository.findById(id);
+
+            if(educationCenterEntity.isPresent()){
+                return new ResponseEntity<>(setEducationCenter(educationCenterEntity.get()),HttpStatus.OK);
+            }
+            throw new Exception("Invalid id");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
+
+    @Override
+    public ResponseEntity<?> deleteEducationCenter(String id) {
+
+        try {
+
+            Optional<EducationCenterEntity> educationCenterEntity =educationCenterRepository.findById(id);
+
+            if(educationCenterEntity.isPresent()){
+                educationCenterEntity.get().setStatus("INACTIVE");
+                educationCenterRepository.save(educationCenterEntity.get());
+                return new ResponseEntity<>("Successfully Deleted",HttpStatus.OK);
+            }
+
+            throw  new Exception("Invalid Id");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     private EducationCenterDTO setEducationCenter(EducationCenterEntity educationCenterEntity) {
