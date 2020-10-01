@@ -21,8 +21,8 @@ export class AuthService {
           if (result){
             if(result.type === "SEEKER"){
               this.router.navigate(['/JobSeekerMain/dashboard']);
-            }else{
-              this.router.navigate(['/JobPosterMain/dashboard']);
+            }else if(result.type === "EP"){
+              this.router.navigate(['/EPMAIN/dashboard']);
             }
 
           }

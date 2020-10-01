@@ -1,0 +1,150 @@
+<!--<form (ngSubmit)="addJOb()">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="col">-->
+
+<!--        <input [(ngModel)]="jobs.jobtitle" name="jobtitle" class="set" placeholder="Job Title" type="text" required>-->
+<!--        <select #industry name="industry" id="industry" class="outer" required>-->
+<!--          <option>&#45;&#45;Select a Industry*&#45;&#45;</option>-->
+<!--          <option></option>-->
+<!--        </select>-->
+<!--        <input [(ngModel)]="jobs.role"  name="role" placeholder="Role" type="text" required>-->
+<!--        <input [(ngModel)]="jobs.minsalary" name="minsalary" placeholder="Salary min" type="text" required>-->
+<!--        <input [(ngModel)]="jobs.totalvacncis" name="totalvacncis" value="" placeholder="Total Vacanices" type="text" required>-->
+
+
+<!--      </div>-->
+<!--      <div class="col">-->
+<!--          <select  #category name="category" id="category" class="outer" data-cke-caption-placeholder="&#45;&#45;Select Category*&#45;&#45;" >-->
+<!--        <option value="&#45;&#45;Select Category*&#45;&#45;">&#45;&#45;Select Category*&#45;&#45;</option>-->
+<!--            <option></option>-->
+<!--      </select>-->
+<!--        <select #bussinessfuntion name="bussinessfuntion" id="bussinessfuntion"  class="set">-->
+<!--          <option>&#45;&#45;Select a Bussiness Funtion *&#45;&#45;</option>-->
+<!--          <option></option>-->
+<!--        </select>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <input [(ngModel)]="jobs.maxsalary" name="maxsalary"  placeholder="Salary Max" type="text" required>-->
+<!--        <input [(ngModel)]="jobs.dedlinedate" name="Role" placeholder="Dedline Date" type="text"  required>-->
+<!--      </div>-->
+<!--      <textarea rows="4" cols="50" [(ngModel)]="jobs.discription" class="background" name="discription" placeholder=" Jobs Discription"  type="text" required>-->
+<!--      </textarea>-->
+<!--    </div>-->
+
+
+
+<!--      <h5>Candidate Referances</h5>-->
+<!--      <hr>-->
+
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col">-->
+<!--          <select #minimumqulification name="minimumqulification" id="minimumqulification" class="outer" >-->
+<!--            <option>&#45;&#45;Select a Minimum Qulification*&#45;&#45;</option>-->
+
+<!--          </select>-->
+<!--          <select #educationalspecialization name="educationalspecialization" id="educationalspecialization" class="outer">-->
+<!--            <option>&#45;&#45;Select a Educational Specialization*&#45;&#45;</option>-->
+
+<!--          </select>-->
+<!--          <input #maimumage name="maimumage" id="maimumage" placeholder="Maximum Age"  type="text" required>-->
+
+
+
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--          <input #requiredexperience name="requiredexperience" id="requiredexperience" placeholder="Required experience (years)" type="text" required>-->
+<!--          <input #skill name="skill" id="skill" placeholder="Skil" type="text"  required>-->
+
+<!--          <select #genderpreference name="genderpreference" id="genderpreference" class="outer"  placeholder="Gender Preferances">-->
+<!--            <option>Select a Gender Preferances</option>-->
+<!--            <option>Male</option>-->
+<!--            <option>Female</option>-->
+<!--            <option>Any</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+
+
+<!--    <div class="col-md-6">-->
+<!--      <form method="post" action="#" id="#">-->
+<!--        <div class="form-group files color">-->
+<!--          <label>Upload Your File </label>-->
+<!--          <input type="file" class="form-control" multiple="" (change)="setIma($event)">-->
+<!--        </div>-->
+
+
+<!--      </form>-->
+
+
+
+<!--    </div>-->
+
+
+<!--  </div>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--  <button type="submit" class="button"><span>Save Details</span></button>-->
+<!--  </div>-->
+<!--    <div class="col">-->
+<!--      <button type="button" class="button" (click)="addJOb()"><span>Update Details</span></button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->
+
+
+
+<form >
+
+  <div id="loading" *ngIf="loading"></div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="firstName" style="color: black;">Name</label>
+      <input type="text" [(ngModel)]="educationCenter.educationalCenterName" name="educationalCenterName" class="form-control" id="educationalCenterName" >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="industry" style="color: black;">Type</label>
+      <input type="text" class="form-control" [(ngModel)]="educationCenter.educationalCenterType" name="educationalCenterType" id="educationalCenterType" >
+    </div>
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-8">
+      <label for="minsalary" style="color: black;">Address</label>
+      <input type="text" class="form-control"  [(ngModel)]="educationCenter.getEducationalCenterAddress" name="getEducationalCenterAddress" id="getEducationalCenterAddress">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="maxsalary" style="color: black;">Branch</label>
+      <input type="test" class="form-control"  [(ngModel)]="educationCenter.branch" name="branch" id="branch">
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="minimumqulification" style="color: black;">Email Address</label>
+      <input type="text" class="form-control" [(ngModel)]="educationCenter.getEducationalCenterEmail" name="getEducationalCenterEmail"  id="getEducationalCenterEmail">
+    </div>
+    <div class="form-group col-md-4" >
+      <label for="educationalspecialization" style="color: black;">Telephone No</label>
+      <input type="email" class="form-control" [(ngModel)]="educationCenter.telNo" name="telNo" id="telNo">
+    </div>
+    <div class="form-group col-md-4" >
+      <label for="skill" style="color: black;">Fax No</label>
+      <input type="email" class="form-control" [(ngModel)]="educationCenter.faxNo" name="faxNo" id="faxNo">
+    </div>
+  </div>
+
+
+
+
+ 
+
+  <button type="button" style="float: right;background-color:#0c5460;color: white" class="btn btn-primary" (click)="save()">SAVE</button>
+</form>
+

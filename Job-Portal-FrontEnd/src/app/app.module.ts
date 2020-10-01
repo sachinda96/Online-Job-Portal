@@ -34,6 +34,14 @@ import {ApplyJobService} from "./service/apply-job.service";
 import { ViewApplyedJobComponent } from './view/view-applyed-job/view-applyed-job.component';
 import { NewEmployeeComponent } from './view/new-employee/new-employee.component';
 import {CategoryService} from "./service/category.service";
+import { EducationalPartnerDashBoardComponent } from './view/educational-partner-dash-board/educational-partner-dash-board.component';
+import { EducationpartnerService } from './service/educationpartner.service';
+import { EducationPartnerMainComponent } from './view/education-partner-main/education-partner-main.component';
+import { EducationCentersComponent } from './view/education-centers/education-centers.component';
+import { NewCourseComponent } from './view/new-course/new-course.component';
+import { AllEducationCentersComponent } from './view/all-education-centers/all-education-centers.component';
+import { AllCourseComponent } from './view/all-course/all-course.component';
+import {CourseService} from "./service/course.service";
 
 
 @NgModule({
@@ -59,6 +67,12 @@ import {CategoryService} from "./service/category.service";
     JobseekerManageProfileComponent,
     ViewApplyedJobComponent,
     NewEmployeeComponent,
+    EducationalPartnerDashBoardComponent,
+    EducationPartnerMainComponent,
+    EducationCentersComponent,
+    NewCourseComponent,
+    AllEducationCentersComponent,
+    AllCourseComponent,
   ],
   imports: [
 
@@ -75,7 +89,9 @@ import {CategoryService} from "./service/category.service";
     CategoryService,
     JobSeekerProfileService,
     ApplyJobService,
-    AuthService
+    AuthService,
+    EducationpartnerService,
+    CourseService
   ],
   bootstrap: [AppComponent]
 })

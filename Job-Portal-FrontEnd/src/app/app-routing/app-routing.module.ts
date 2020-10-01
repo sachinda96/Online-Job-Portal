@@ -21,6 +21,11 @@ import {JobseekerManageProfileComponent} from "../view/jobseeker-manage-profile/
 import {ApplyComponent} from "../view/apply/apply.component";
 import {ViewApplyedJobComponent} from "../view/view-applyed-job/view-applyed-job.component";
 import {NewEmployeeComponent} from "../view/new-employee/new-employee.component";
+import { EducationalPartnerDashBoardComponent } from '../view/educational-partner-dash-board/educational-partner-dash-board.component';
+import { EducationPartnerMainComponent } from '../view/education-partner-main/education-partner-main.component';
+import { EducationCentersComponent } from '../view/education-centers/education-centers.component';
+import { AllEducationCentersComponent } from '../view/all-education-centers/all-education-centers.component';
+import {NewCourseComponent} from "../view/new-course/new-course.component";
 
 const routes: Routes = [
   {path : 'Main', component: MainComponent,
@@ -185,6 +190,34 @@ const routes: Routes = [
 
     ]
   },
+
+
+
+  {
+    path: "EPMAIN",
+    component: EducationPartnerMainComponent,
+    children: [
+       {path: "dashboard", component: EducationalPartnerDashBoardComponent},
+       {
+        path: "educationcenters",
+        component: EducationCentersComponent
+      },
+      {
+        path: "alleducationcenters",
+        component: AllEducationCentersComponent
+      },
+      {
+        path: "educationcenters/:id",
+        component: EducationCentersComponent
+      },
+      {
+        path: "newcourse",
+        component: NewCourseComponent
+      },
+    ]
+  },
+
+
 
   {path: "", pathMatch: "full", redirectTo: "/JobPosterMain/dashboard"},
 

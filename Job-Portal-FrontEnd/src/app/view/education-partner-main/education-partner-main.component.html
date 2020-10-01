@@ -1,0 +1,105 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Job Seeker Dashboard</title>
+  <!-- Meta Tags -->
+
+</head>
+
+<body>
+
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+
+    <div class="profile-bg">
+      <img  height="100" width="250">
+    </div>
+    <ul class="list-unstyled components">
+      <li >
+        <a href="#">
+          <i class="fas fa-home"></i>
+          Home
+        </a>
+      </li>
+      <li class="active">
+        <a routerLink="dashboard">
+          <i class="fas fa-th-large"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+      </li>
+      <li>
+        <a routerLink="educationcenters">
+          <i class="fas fa-users"></i>
+          Education Centers
+        </a>
+      </li>
+      <li>
+        <a routerLink="alleducationcenters">
+          <i class="fas fa-th"></i>
+          All Education Centers
+        </a>
+      </li>
+      <li>
+      </li>
+      <li>
+        <a routerLink="newcourse">
+          <i class="far fa-envelope"></i>
+          New Course
+        </a>
+      </li>
+      <li>
+        <a routerLink="allCourse">
+          <i class="far fa-window-restore"></i>
+          All Courses
+        </a>
+      </li>
+
+      <li>
+
+      </li>
+
+    </ul>
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="content">
+    <!-- top-bar -->
+    <nav class="navbar navbar-default mb-xl-5 mb-4">
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+          <button type="button"  class="btn btn-info navbar-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <!-- Search-from -->
+        <!--// Search-from -->
+      </div>
+    </nav>
+    <!--// top-bar -->
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+    <!--// Countdown -->
+    <!-- Copyright -->
+    <div class="copyright-w3layouts py-xl-3 py-2 mt-xl-5 mt-4 text-center">
+      <p>© 2020 JoinUs . All Rights Reserved | Design by
+        <a href="#"> JoinUs </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

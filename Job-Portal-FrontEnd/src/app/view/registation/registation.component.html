@@ -65,15 +65,22 @@
             <input #repassword type="password" class="form-control" placeholder=""  name="repassword" id="repassword">
           </div>
 
-          <div class="form-check">
-            <input (click)="selectJobSeeker()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
-            <label class="form-check-label" for="exampleRadios1">
-             JOB SEEKER
-            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input (click)="selectJobPoster()"class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" >
-            <label class="form-check-label" for="exampleRadios1">
-             JOB POSTER
-            </label>
+          <div class="form-group">
+<!--            <input (click)="selectJobSeeker()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >-->
+<!--            <label class="form-check-label" for="exampleRadios1">-->
+<!--             JOB SEEKER-->
+<!--            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--            <input (click)="selectJobPoster()"class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" >-->
+<!--            <label class="form-check-label" for="exampleRadios1">-->
+<!--             JOB POSTER-->
+<!--            </label>-->
+            <label for="password" class="text-uppercase">User Section</label>
+            <select class="form-control" id="usersection" name="usersection" #usersection>
+              <option value="SEEKER">Job Seeker</option>
+              <option value="POSTER">Job Poster</option>
+              <option value="EP">Education Partner</option>
+              <option>4</option>
+            </select>
           </div>
 
           <br>

@@ -4,6 +4,8 @@ import {NgForm} from "@angular/forms";
 import {UserServiceService} from "../../service/user-service.service";
 import {JobPoster} from "../../dto/job-poster";
 import {JObPosterService} from "../../service/job-poster.service";
+import { EducationalPartner } from 'src/app/dto/educational-partner';
+import { EducationpartnerService } from 'src/app/service/educationpartner.service';
 
 @Component({
   selector: 'app-registation',
@@ -17,8 +19,10 @@ export class RegistationComponent implements OnInit {
   isSeeker : boolean =false;
   isPoster: boolean =false;
   jobposter:JobPoster=new JobPoster();
+  educationPartner:EducationalPartner ;
 
-  constructor(private elem: ElementRef,private userService:UserServiceService,private jobPosterService:JObPosterService) { }
+  constructor(private elem: ElementRef,private userService:UserServiceService,private jobPosterService:JObPosterService,
+    private educationPartnerService:EducationpartnerService) { }
 
   ngOnInit() {
   }
@@ -29,11 +33,9 @@ export class RegistationComponent implements OnInit {
     let email = this.elem.nativeElement.querySelector('#email').value;
     let password = this.elem.nativeElement.querySelector('#password').value;
     let repassword = this.elem.nativeElement.querySelector('#repassword').value;
-    if(password==repassword){
-      if(this.isSeeker == true || this.isPoster == true){
-
-
-        if(this.isSeeker == true){
+    let userSection = this.elem.nativeElement.querySelector('#usersection').value;
+      if(password==repassword){
+        if(userSection == "SEEKER"){
           this.user.username=username;
           this.user.email=email;
           this.user.password=password;
@@ -47,7 +49,7 @@ export class RegistationComponent implements OnInit {
             }
 
           )
-        }else{
+        }else if(userSection == "POSTER"){
           this.jobposter.username = username;
           this.jobposter.companyname ="";
           this.jobposter.email =email;
@@ -63,11 +65,23 @@ export class RegistationComponent implements OnInit {
 
           )
 
+        }else{
+            this.educationPartner = new EducationalPartner();
+            this.educationPartner.email = email;
+            this.educationPartner.password=password;
+            this.educationPartner.username =username;
+
+            this.educationPartnerService.registor(this.educationPartner).subscribe(
+              res=>{
+                if(res){
+                  alert("Registation successfully");
+                }else{
+                  alert("Registation Failed");
+                }
+              }
+            );
         }
 
-      }else{
-        this.Cheakpassword="Fill Data Correctly";
-      }
 
     }else{
       this.Cheakpassword="Doesn't match passwords ";

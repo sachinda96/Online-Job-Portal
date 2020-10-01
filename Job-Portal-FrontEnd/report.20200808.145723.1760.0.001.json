@@ -1,0 +1,579 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200808.145723.1760.0.001.json",
+    "dumpEventTime": "2020-08-08T14:57:23Z",
+    "dumpEventTimeStamp": "1596878843642",
+    "processId": 1760,
+    "cwd": "E:\\Online-Job-Portal\\Job-Portal-FrontEnd",
+    "commandLine": [
+      "node",
+      "E:\\Online-Job-Portal\\Job-Portal-FrontEnd\\node_modules\\.bin\\\\..\\@angular\\cli\\bin\\ng",
+      "serve"
+    ],
+    "nodejsVersion": "v12.16.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.16.1",
+      "v8": "7.8.279.23-node.31",
+      "uv": "1.34.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.4",
+      "http_parser": "2.9.3",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.16.1/node-v12.16.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.16.1/node-v12.16.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.16.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.18362",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "AMD A6-7310 APU with AMD Radeon R4 Graphics    ",
+        "speed": 1996,
+        "user": 8252812,
+        "nice": 0,
+        "sys": 4610437,
+        "idle": 35391343,
+        "irq": 259093
+      },
+      {
+        "model": "AMD A6-7310 APU with AMD Radeon R4 Graphics    ",
+        "speed": 1996,
+        "user": 7655093,
+        "nice": 0,
+        "sys": 4632656,
+        "idle": 35966406,
+        "irq": 104625
+      },
+      {
+        "model": "AMD A6-7310 APU with AMD Radeon R4 Graphics    ",
+        "speed": 1996,
+        "user": 6498796,
+        "nice": 0,
+        "sys": 4636515,
+        "idle": 37118828,
+        "irq": 50062
+      },
+      {
+        "model": "AMD A6-7310 APU with AMD Radeon R4 Graphics    ",
+        "speed": 1996,
+        "user": 8802031,
+        "nice": 0,
+        "sys": 4634015,
+        "idle": 34818093,
+        "irq": 72343
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "3c:a0:67:d8:b4:95",
+        "address": "fe80::15c:f82c:3aad:41b1",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 8
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "3c:a0:67:d8:b4:95",
+        "address": "192.168.1.3",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DESKTOP-PEB3GVF"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6e9c319f9",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6e9c35e1c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6e9c34dd8",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6e9d334cb",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea549f4e",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea532021",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea3fe57c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea406521",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea3fbb13",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea3fa184",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea41b36d",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea180c51",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea994ddd",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea915934",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea9feaa3",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea919d8c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea919d8c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea9a6fcc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea919d8c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea919d8c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea919d8c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ea9130bc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x000000979c8e5767",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 186023936,
+    "totalCommittedMemory": 186023936,
+    "usedMemory": 181331152,
+    "availableMemory": 2015932688,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 32808,
+        "used": 32808,
+        "available": 0
+      },
+      "new_space": {
+        "memorySize": 1048576,
+        "committedMemory": 1048576,
+        "capacity": 1047456,
+        "used": 1047456,
+        "available": 0
+      },
+      "old_space": {
+        "memorySize": 135675904,
+        "committedMemory": 135675904,
+        "capacity": 134861192,
+        "used": 134395080,
+        "available": 466112
+      },
+      "code_space": {
+        "memorySize": 2789376,
+        "committedMemory": 2789376,
+        "capacity": 2422464,
+        "used": 2221024,
+        "available": 201440
+      },
+      "map_space": {
+        "memorySize": 4722688,
+        "committedMemory": 4722688,
+        "capacity": 4717120,
+        "used": 2290800,
+        "available": 2426320
+      },
+      "large_object_space": {
+        "memorySize": 41283584,
+        "committedMemory": 41283584,
+        "capacity": 41164976,
+        "used": 41164976,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 241664,
+        "committedMemory": 241664,
+        "capacity": 179008,
+        "used": 179008,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1047456,
+        "used": 0,
+        "available": 1047456
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 222.5,
+    "kernelCpuSeconds": 29.625,
+    "cpuConsumptionPercent": 1.69519,
+    "maxRss": 407035904,
+    "pageFaults": {
+      "IORequired": 967557,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 8196,
+      "writes": 87
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=E:": "E:\\Online-Job-Portal\\Job-Portal-FrontEnd",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\saniku\\AppData\\Roaming",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-PEB3GVF",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "dp0": "E:\\Online-Job-Portal\\Job-Portal-FrontEnd\\node_modules\\.bin\\",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "HOME": "C:\\Users\\saniku",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\saniku",
+    "IDEA_INITIAL_DIRECTORY": "C:\\Users\\saniku\\Desktop",
+    "INIT_CWD": "E:\\Online-Job-Portal\\Job-Portal-FrontEnd",
+    "LOCALAPPDATA": "C:\\Users\\saniku\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-PEB3GVF",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_config_access": "",
+    "npm_config_allow_same_version": "",
+    "npm_config_also": "",
+    "npm_config_always_auth": "",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start\",\"--scripts-prepend-node-path\",\"auto\"],\"original\":[\"run\",\"start\",\"--scripts-prepend-node-path=auto\"]}",
+    "npm_config_audit": "true",
+    "npm_config_audit_level": "low",
+    "npm_config_auth_type": "legacy",
+    "npm_config_before": "",
+    "npm_config_bin_links": "true",
+    "npm_config_browser": "",
+    "npm_config_ca": "",
+    "npm_config_cache": "C:\\Users\\saniku\\AppData\\Roaming\\npm-cache",
+    "npm_config_cache_lock_retries": "10",
+    "npm_config_cache_lock_stale": "60000",
+    "npm_config_cache_lock_wait": "10000",
+    "npm_config_cache_max": "Infinity",
+    "npm_config_cache_min": "10",
+    "npm_config_cafile": "",
+    "npm_config_cert": "",
+    "npm_config_cidr": "",
+    "npm_config_color": "true",
+    "npm_config_commit_hooks": "true",
+    "npm_config_depth": "Infinity",
+    "npm_config_description": "true",
+    "npm_config_dev": "",
+    "npm_config_dry_run": "",
+    "npm_config_editor": "notepad.exe",
+    "npm_config_engine_strict": "",
+    "npm_config_fetch_retries": "2",
+    "npm_config_fetch_retry_factor": "10",
+    "npm_config_fetch_retry_maxtimeout": "60000",
+    "npm_config_fetch_retry_mintimeout": "10000",
+    "npm_config_force": "",
+    "npm_config_format_package_lock": "true",
+    "npm_config_fund": "true",
+    "npm_config_git": "git",
+    "npm_config_git_tag_version": "true",
+    "npm_config_global": "",
+    "npm_config_globalconfig": "C:\\Users\\saniku\\AppData\\Roaming\\npm\\etc\\npmrc",
+    "npm_config_globalignorefile": "C:\\Users\\saniku\\AppData\\Roaming\\npm\\etc\\npmignore",
+    "npm_config_global_style": "",
+    "npm_config_group": "",
+    "npm_config_ham_it_up": "",
+    "npm_config_heading": "npm",
+    "npm_config_https_proxy": "",
+    "npm_config_if_present": "",
+    "npm_config_ignore_prepublish": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_author_email": "",
+    "npm_config_init_author_name": "",
+    "npm_config_init_author_url": "",
+    "npm_config_init_license": "ISC",
+    "npm_config_init_module": "C:\\Users\\saniku\\.npm-init.js",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_json": "",
+    "npm_config_key": "",
+    "npm_config_legacy_bundling": "",
+    "npm_config_link": "",
+    "npm_config_local_address": "",
+    "npm_config_loglevel": "notice",
+    "npm_config_logs_max": "10",
+    "npm_config_long": "",
+    "npm_config_maxsockets": "50",
+    "npm_config_message": "%s",
+    "npm_config_metrics_registry": "https://registry.npmjs.org/",
+    "npm_config_node_gyp": "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js",
+    "npm_config_node_options": "",
+    "npm_config_node_version": "12.16.1",
+    "npm_config_noproxy": "",
+    "npm_config_offline": "",
+    "npm_config_onload_script": "",
+    "npm_config_only": "",
+    "npm_config_optional": "true",
+    "npm_config_otp": "",
+    "npm_config_package_lock": "true",
+    "npm_config_package_lock_only": "",
+    "npm_config_parseable": "",
+    "npm_config_prefer_offline": "",
+    "npm_config_prefer_online": "",
+    "npm_config_prefix": "C:\\Users\\saniku\\AppData\\Roaming\\npm",
+    "npm_config_preid": "",
+    "npm_config_production": "",
+    "npm_config_progress": "true",
+    "npm_config_proxy": "",
+    "npm_config_read_only": "",
+    "npm_config_rebuild_bundle": "true",
+    "npm_config_registry": "https://registry.npmjs.org/",
+    "npm_config_rollback": "true",
+    "npm_config_save": "true",
+    "npm_config_save_bundle": "",
+    "npm_config_save_dev": "",
+    "npm_config_save_exact": "",
+    "npm_config_save_optional": "",
+    "npm_config_save_prefix": "^",
+    "npm_config_save_prod": "",
+    "npm_config_scope": "",
+    "npm_config_scripts_prepend_node_path": "auto",
+    "npm_config_script_shell": "",
+    "npm_config_searchexclude": "",
+    "npm_config_searchlimit": "20",
+    "npm_config_searchopts": "",
+    "npm_config_searchstaleness": "900",
+    "npm_config_send_metrics": "",
+    "npm_config_shell": "C:\\WINDOWS\\system32\\cmd.exe",
+    "npm_config_shrinkwrap": "true",
+    "npm_config_sign_git_commit": "",
+    "npm_config_sign_git_tag": "",
+    "npm_config_sso_poll_frequency": "500",
+    "npm_config_sso_type": "oauth",
+    "npm_config_strict_ssl": "true",
+    "npm_config_tag": "latest",
+    "npm_config_tag_version_prefix": "v",
+    "npm_config_timing": "",
+    "npm_config_tmp": "C:\\Users\\saniku\\AppData\\Local\\Temp",
+    "npm_config_umask": "0000",
+    "npm_config_unicode": "",
+    "npm_config_unsafe_perm": "true",
+    "npm_config_update_notifier": "true",
+    "npm_config_usage": "",
+    "npm_config_user": "",
+    "npm_config_userconfig": "C:\\Users\\saniku\\.npmrc",
+    "npm_config_user_agent": "npm/6.13.4 node/v12.16.1 win32 x64",
+    "npm_config_version": "",
+    "npm_config_versions": "",
+    "npm_config_viewer": "browser",
+    "npm_execpath": "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "npm_lifecycle_event": "start",
+    "npm_lifecycle_script": "ng serve",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_dependencies_admin_lte": "^2.4.18",
+    "npm_package_dependencies_bootstrap": "^4.1.1",
+    "npm_package_dependencies_core_js": "^2.5.4",
+    "npm_package_dependencies_ngx_bootstrap_alert": "0.0.1-3",
+    "npm_package_dependencies_rxjs": "^6.0.0",
+    "npm_package_dependencies_zone_js": "^0.8.26",
+    "npm_package_dependencies__angular_animations": "^6.0.3",
+    "npm_package_dependencies__angular_common": "^6.0.3",
+    "npm_package_dependencies__angular_compiler": "^6.0.3",
+    "npm_package_dependencies__angular_core": "^6.0.3",
+    "npm_package_dependencies__angular_forms": "^6.0.3",
+    "npm_package_dependencies__angular_http": "^6.0.3",
+    "npm_package_dependencies__angular_platform_browser": "^6.0.3",
+    "npm_package_dependencies__angular_platform_browser_dynamic": "^6.0.3",
+    "npm_package_dependencies__angular_router": "^6.0.3",
+    "npm_package_description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.",
+    "npm_package_devDependencies_codelyzer": "~4.2.1",
+    "npm_package_devDependencies_jasmine_core": "~2.99.1",
+    "npm_package_devDependencies_jasmine_spec_reporter": "~4.2.1",
+    "npm_package_devDependencies_karma": "~1.7.1",
+    "npm_package_devDependencies_karma_chrome_launcher": "~2.2.0",
+    "npm_package_devDependencies_karma_coverage_istanbul_reporter": "~2.0.0",
+    "npm_package_devDependencies_karma_jasmine": "~1.1.1",
+    "npm_package_devDependencies_karma_jasmine_html_reporter": "^0.2.2",
+    "npm_package_devDependencies_protractor": "~5.3.0",
+    "npm_package_devDependencies_tslint": "~5.9.1",
+    "npm_package_devDependencies_ts_node": "~5.0.1",
+    "npm_package_devDependencies_typescript": "~2.7.2",
+    "npm_package_devDependencies__angular_cli": "~6.0.8",
+    "npm_package_devDependencies__angular_compiler_cli": "^6.0.3",
+    "npm_package_devDependencies__angular_devkit_build_angular": "~0.6.8",
+    "npm_package_devDependencies__angular_language_service": "^6.0.3",
+    "npm_package_devDependencies__types_jasmine": "~2.8.6",
+    "npm_package_devDependencies__types_jasminewd2": "~2.0.3",
+    "npm_package_devDependencies__types_node": "~8.9.4",
+    "npm_package_name": "job-portal-front-end",
+    "npm_package_private": "true",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_scripts_build": "ng build",
+    "npm_package_scripts_e2e": "ng e2e",
+    "npm_package_scripts_lint": "ng lint",
+    "npm_package_scripts_ng": "ng",
+    "npm_package_scripts_start": "ng serve",
+    "npm_package_scripts_test": "ng test",
+    "npm_package_version": "0.0.0",
+    "NUMBER_OF_PROCESSORS": "4",
+    "OneDrive": "C:\\Users\\saniku\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;E:\\Online-Job-Portal\\Job-Portal-FrontEnd\\node_modules\\.bin;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Users\\saniku\\AppData\\Local\\Programs\\Python\\Python38-32\\Scripts\\;C:\\Users\\saniku\\AppData\\Local\\Programs\\Python\\Python38-32\\;C:\\Users\\saniku\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\saniku\\AppData\\Roaming\\npm;C:\\Program Files\\apache-maven-3.6.3;;C:\\Users\\saniku\\AppData\\Local\\Programs\\Microsoft VS Code\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "AMD64 Family 22 Model 48 Stepping 1, AuthenticAMD",
+    "PROCESSOR_LEVEL": "22",
+    "PROCESSOR_REVISION": "3001",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\saniku\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\saniku\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-PEB3GVF",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-PEB3GVF",
+    "USERNAME": "saniku",
+    "USERPROFILE": "C:\\Users\\saniku",
+    "windir": "C:\\WINDOWS",
+    "_prog": "node"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMMBASE.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\System32\\UMPDC.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll"
+  ]
+}

@@ -23,7 +23,6 @@
               "src/assets"
             ],
             "styles": [
-
               "src/assets/css/dropzone.css",
               "src/assets/css/bootstrap-material-datetimepicker.css",
               "src/assets/css/waitMe.css",
@@ -58,7 +57,9 @@
               "src/assets/js/script.js",
               "src/assets/js/SimpleChart.js",
               "src/assets/js/simplyCountdown.js",
-              "src/assets/js/skycons.js"
+              "src/assets/js/skycons.js",
+              "node_modules/admin-lte/dist/js/adminlte.js",
+              "node_modules/admin-lte/dist/js/demo.js"
 
             ]
           },
