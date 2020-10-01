@@ -2,7 +2,6 @@ package lk.joinus.jobportal.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class CoursesEntity {
@@ -17,12 +16,9 @@ public class CoursesEntity {
     private String maxAge;
     private String imagePath;
     private String status;
+    private String description;
 
-    @ElementCollection
-    private List<String> educationalQualifications;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private EducationCenterEntity educationCenterEntity;
+    private String educationalQualifications;
 
 
     public String getId() {
@@ -81,22 +77,6 @@ public class CoursesEntity {
         this.maxAge = maxAge;
     }
 
-    public List<String> getEducationalQualifications() {
-        return educationalQualifications;
-    }
-
-    public void setEducationalQualifications(List<String> educationalQualifications) {
-        this.educationalQualifications = educationalQualifications;
-    }
-
-    public EducationCenterEntity getEducationCenterEntity() {
-        return educationCenterEntity;
-    }
-
-    public void setEducationCenterEntity(EducationCenterEntity educationCenterEntity) {
-        this.educationCenterEntity = educationCenterEntity;
-    }
-
     public String getImagePath() {
         return imagePath;
     }
@@ -111,5 +91,21 @@ public class CoursesEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getEducationalQualifications() {
+        return educationalQualifications;
+    }
+
+    public void setEducationalQualifications(String educationalQualifications) {
+        this.educationalQualifications = educationalQualifications;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

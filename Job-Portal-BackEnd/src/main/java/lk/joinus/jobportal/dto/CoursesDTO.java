@@ -6,7 +6,7 @@ import java.util.List;
 public class CoursesDTO {
 
     private String userName;
-    private List<String> eduCenterIds;
+    private List<EducationCenterDTO> educationCenterDTOList;
     private String id;
     private String name;
     private Date startDate;
@@ -14,8 +14,9 @@ public class CoursesDTO {
     private String level;
     private String minAge;
     private String maxAge;
-    private List<String> educationalQualifications;
+    private String educationalQualifications;
     private String imagePath;
+    private String description;
 
 
     public String getUserName() {
@@ -26,12 +27,12 @@ public class CoursesDTO {
         this.userName = userName;
     }
 
-    public List<String> getEduCenterIds() {
-        return eduCenterIds;
+    public List<EducationCenterDTO> getEducationCenterDTOList() {
+        return educationCenterDTOList;
     }
 
-    public void setEduCenterIds(List<String> eduCenterIds) {
-        this.eduCenterIds = eduCenterIds;
+    public void setEducationCenterDTOList(List<EducationCenterDTO> educationCenterDTOList) {
+        this.educationCenterDTOList = educationCenterDTOList;
     }
 
     public String getName() {
@@ -82,11 +83,11 @@ public class CoursesDTO {
         this.maxAge = maxAge;
     }
 
-    public List<String> getEducationalQualifications() {
+    public String getEducationalQualifications() {
         return educationalQualifications;
     }
 
-    public void setEducationalQualifications(List<String> educationalQualifications) {
+    public void setEducationalQualifications(String educationalQualifications) {
         this.educationalQualifications = educationalQualifications;
     }
 
@@ -104,5 +105,13 @@ public class CoursesDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
