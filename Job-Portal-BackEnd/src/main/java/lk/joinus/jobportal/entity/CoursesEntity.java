@@ -17,6 +17,7 @@ public class CoursesEntity {
     private String imagePath;
     private String status;
     private String description;
+    private String user;
 
     private String educationalQualifications;
 
@@ -107,5 +108,13 @@ public class CoursesEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

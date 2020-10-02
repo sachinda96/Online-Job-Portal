@@ -36,6 +36,13 @@ public class CoursesServiceImpl implements CoursesService {
 
         try {
 
+            if(coursesDTO.getId()!=null && coursesDTO.getId()!=""){
+
+                if(!deleteCourse(coursesDTO.getId())){
+                    throw new Exception("Update Failed");
+                }
+
+            }
 
 
             if(!coursesDTO.getEducationCenterDTOList().isEmpty()){
@@ -50,6 +57,7 @@ public class CoursesServiceImpl implements CoursesService {
                 coursesEntity.setStartDate(coursesDTO.getStartDate());
                 coursesEntity.setType(coursesDTO.getType());
                 coursesEntity.setStatus("ACTIVE");
+                coursesEntity.setUser(coursesDTO.getUserName());
                 coursesEntity.setDescription(coursesDTO.getDescription());
                 coursesRepository.save(coursesEntity);
                 for (EducationCenterDTO educationCenterDTO:coursesDTO.getEducationCenterDTOList()) {
@@ -74,6 +82,27 @@ public class CoursesServiceImpl implements CoursesService {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public boolean deleteCourse(String id) throws Exception {
+        Optional<CoursesEntity> coursesEntity =coursesRepository.findById(id);
+
+        if(coursesEntity.isPresent()){
+
+            coursesEntity.get().setStatus("INACTIVE");
+            coursesRepository.save(coursesEntity.get());
+
+            List<CourseEducationCenterEntity> courseEducationCenterEntities = courseEducationCenterRepository.findAllByCoursesEntity(coursesEntity.get());
+
+            if(courseEducationCenterEntities!=null){
+                courseEducationCenterRepository.deleteAll(courseEducationCenterEntities);
+
+                return true;
+            }
+
+        }
+
+return false;
     }
 
     @Override
@@ -188,6 +217,49 @@ public class CoursesServiceImpl implements CoursesService {
         }
     }
 
+    @Override
+    public ResponseEntity<?> getAllCourseByUser(String userName) {
+
+        try {
+
+            List<CoursesEntity> coursesEntities = coursesRepository.findAllByStatusAndUser("ACTIVE",userName);
+
+
+            List<CoursesDTO> coursesDTOList = new ArrayList<>();
+
+            for (CoursesEntity coursesEntity : coursesEntities) {
+                coursesDTOList.add(setCoursesDTO(coursesEntity));
+            }
+
+            return new ResponseEntity<>(coursesDTOList,HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
+
+    @Override
+    public ResponseEntity<?> delete(String id) {
+
+        try {
+
+            if(deleteCourse(id)){
+                return new ResponseEntity<>("Successfully Deleted",HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>("Failed to Deleted",HttpStatus.NO_CONTENT);
+
+        } catch (Exception e){
+        e.printStackTrace();
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    }
+
     private CoursesDTO setCoursesDTO(CoursesEntity coursesEntity) {
 
         CoursesDTO coursesDTO = new CoursesDTO();
@@ -199,7 +271,37 @@ public class CoursesServiceImpl implements CoursesService {
         coursesDTO.setName(coursesEntity.getName());
         coursesDTO.setStartDate(coursesEntity.getStartDate());
         coursesDTO.setType(coursesEntity.getType());
+        coursesDTO.setId(coursesEntity.getId());
+        coursesDTO.setDescription(coursesEntity.getDescription());
+
+        List<CourseEducationCenterEntity> courseEducationCenterEntities = courseEducationCenterRepository.findAllByCoursesEntity(coursesEntity);
+
+        List<EducationCenterDTO> educationCenterDTOList = new ArrayList<>();
+        if(courseEducationCenterEntities!=null){
+            for (CourseEducationCenterEntity courseEducationCenterEntity : courseEducationCenterEntities) {
+                   educationCenterDTOList.add(setEducationCenter(courseEducationCenterEntity));
+            }
+
+        }
+
+        coursesDTO.setEducationCenterDTOList(educationCenterDTOList);
+
+
         return coursesDTO;
 
+    }
+
+    private EducationCenterDTO setEducationCenter(CourseEducationCenterEntity courseEducationCenterEntity) {
+
+        EducationCenterDTO educationCenterDTO = new EducationCenterDTO();
+        educationCenterDTO.setTelNo(courseEducationCenterEntity.getEducationCenterEntity().getTelNo());
+        educationCenterDTO.setId(courseEducationCenterEntity.getEducationCenterEntity().getId());
+        educationCenterDTO.setGetEducationalCenterEmail(courseEducationCenterEntity.getEducationCenterEntity().getEmail());
+        educationCenterDTO.setGetEducationalCenterAddress(courseEducationCenterEntity.getEducationCenterEntity().getAddress());
+        educationCenterDTO.setFaxNo(courseEducationCenterEntity.getEducationCenterEntity().getFaxNo());
+        educationCenterDTO.setEducationalCenterType(courseEducationCenterEntity.getEducationCenterEntity().getType());
+        educationCenterDTO.setEducationalCenterName(courseEducationCenterEntity.getEducationCenterEntity().getName());
+        educationCenterDTO.setBranch(courseEducationCenterEntity.getEducationCenterEntity().getBranch());
+        return educationCenterDTO;
     }
 }

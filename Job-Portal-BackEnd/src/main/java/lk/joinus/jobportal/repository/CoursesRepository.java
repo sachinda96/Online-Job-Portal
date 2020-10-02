@@ -9,4 +9,6 @@ import java.util.List;
 public interface CoursesRepository extends JpaRepository<CoursesEntity,String> {
 
     List<CoursesEntity> findAllByStatus(String active);
+
+    List<CoursesEntity> findAllByStatusAndUser(String active, String userName);
 }

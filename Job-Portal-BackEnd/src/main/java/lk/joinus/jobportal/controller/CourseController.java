@@ -39,4 +39,14 @@ public class CourseController {
         return coursesService.searchCourses(id);
     }
 
+    @GetMapping(value = "/getAllByUser/{userName}")
+    public ResponseEntity<?> getAllByUser(@PathVariable String userName){
+        return coursesService.getAllCourseByUser(userName);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id){
+        return coursesService.delete(id);
+    }
+
 }

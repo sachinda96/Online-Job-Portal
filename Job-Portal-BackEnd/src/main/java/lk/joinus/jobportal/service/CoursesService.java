@@ -15,6 +15,10 @@ public interface CoursesService {
 
     public ResponseEntity<?> searchCourses(String id);
 
+    public ResponseEntity<?> getAllCourseByUser(String userName);
+
+    public ResponseEntity<?> delete(String id);
+
 
 
 
