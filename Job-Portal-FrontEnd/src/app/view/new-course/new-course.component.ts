@@ -5,6 +5,7 @@ import {EducationCenter} from "../../dto/education-center";
 import {Course} from "../../dto/course";
 import {CourseService} from "../../service/course.service";
 import {error} from "util";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-new-course',
@@ -21,10 +22,23 @@ export class NewCourseComponent implements OnInit {
   course:Course =new Course();
 
 
-  constructor(private elem: ElementRef,private educationpartnerService:EducationpartnerService,private courseService:CourseService) { }
+  constructor(private elem: ElementRef,private educationpartnerService:EducationpartnerService,private courseService:CourseService,private routerActive:ActivatedRoute) { }
 
   ngOnInit() {
     this.userDto =JSON.parse(sessionStorage.getItem("token"));
+
+    this.routerActive.params.subscribe(params =>{
+
+      if(params.id != null || params.id != undefined) {
+        this.courseService.searchCourses(params.id).subscribe(
+          res=>{
+            this.course =res;
+            this.tempEducationalCenterArray=this.course.educationCenterDTOList;
+          }
+        );
+      }
+    });
+
     this.getAllEducationCenter();
   }
 
@@ -43,6 +57,7 @@ export class NewCourseComponent implements OnInit {
 
   save() {
     this.loading=true;
+    this.course.userName=this.userDto.username;
     this.course.educationCenterDTOList=this.tempEducationalCenterArray;
     this.courseService.save(this.course).subscribe(res=>{
       this.loading=false;

@@ -26,6 +26,7 @@ import { EducationPartnerMainComponent } from '../view/education-partner-main/ed
 import { EducationCentersComponent } from '../view/education-centers/education-centers.component';
 import { AllEducationCentersComponent } from '../view/all-education-centers/all-education-centers.component';
 import {NewCourseComponent} from "../view/new-course/new-course.component";
+import {AllCourseComponent} from "../view/all-course/all-course.component";
 
 const routes: Routes = [
   {path : 'Main', component: MainComponent,
@@ -213,6 +214,14 @@ const routes: Routes = [
       {
         path: "newcourse",
         component: NewCourseComponent
+      },
+      {
+        path: "newcourse/:id",
+        component: NewCourseComponent
+      },
+      {
+        path: "allcourse",
+        component: AllCourseComponent
       },
     ]
   },

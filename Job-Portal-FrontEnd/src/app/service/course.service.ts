@@ -14,4 +14,12 @@ export class CourseService {
   save(course:Course){
    return this.http.post<any>(MAIN_URL+URL,course,{responseType: 'text' as 'json' });
   }
+
+  getAllByUser(user:String){
+    return this.http.get<any>(MAIN_URL+URL+"/getAllByUser/"+user);
+  }
+
+  searchCourses(id:String){
+    return this.http.get<any>(MAIN_URL+URL+"/searchCourses/"+id);
+  }
 }

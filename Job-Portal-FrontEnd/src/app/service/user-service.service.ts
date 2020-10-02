@@ -15,6 +15,8 @@ export class UserServiceService {
   addUser(user: User): Observable<boolean>{
     return this.http.post<boolean>(MAIN_URL + URL,user);
   }
+
+
 }
 
 
