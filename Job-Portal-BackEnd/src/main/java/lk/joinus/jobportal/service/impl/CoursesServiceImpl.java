@@ -260,6 +260,28 @@ return false;
 
     }
 
+    @Override
+    public ResponseEntity<?> countAllByActive() {
+        try {
+
+            return new ResponseEntity<>(coursesRepository.countByStatus("ACTIVE"),HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> countAllByInActive() {
+        try {
+
+            return new ResponseEntity<>(coursesRepository.countByStatus("INACTIVE"),HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     private CoursesDTO setCoursesDTO(CoursesEntity coursesEntity) {
 
         CoursesDTO coursesDTO = new CoursesDTO();

@@ -39,4 +39,9 @@ public class EducationalPartnerController {
     public ResponseEntity<?> deleteEducationCenter(@PathVariable String id){
         return educationalPartnerService.deleteEducationCenter(id);
     }
+
+    @GetMapping(value = "/countAll")
+    public ResponseEntity<?> countAll(){
+        return educationalPartnerService.countAll();
+    }
 }

@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface EducationCenterRepository extends JpaRepository<EducationCenterEntity,String >{
     List<EducationCenterEntity> findAllByEducationalPartnerEntityAndStatus(EducationalPartnerEntity educationalPartnerEntity, String active);
+
+    long countByStatus(String active);
 }

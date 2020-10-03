@@ -145,6 +145,17 @@
       <input type="text" class="form-control" [(ngModel)]="course.educationalQualifications"  name="educationalQualifications"  id="educationalQualifications">
     </div>
   </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div class="form-group files color">
+        <label>Upload Job Image </label>
+        <input type="file" class="form-control" multiple="" (change)="setIma($event)">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+  <img [src]="course.imagePath" style="width: 200px;height: 200px" class="img-thumbnail">
+    </div>
+  </div>
 
   <h5>Education Center</h5>
   <hr>

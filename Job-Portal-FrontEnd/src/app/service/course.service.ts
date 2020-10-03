@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Course} from "../dto/course";
 import {MAIN_URL} from "./user-service.service";
-import {Observable} from "rxjs";
 
 const URL="/course";
 
@@ -21,5 +20,21 @@ export class CourseService {
 
   searchCourses(id:String){
     return this.http.get<any>(MAIN_URL+URL+"/searchCourses/"+id);
+  }
+
+  delete(id:String){
+    return this.http.delete<any>(MAIN_URL+URL+"/"+id,{responseType: 'text' as 'json' });
+  }
+
+  getAll() {
+    return this.http.get<any>(MAIN_URL+URL);
+  }
+
+  countAllActive() {
+    return this.http.get<any>(MAIN_URL+URL+"/countAllByActive");
+  }
+
+  countAllInActive() {
+    return this.http.get<any>(MAIN_URL+URL+"/countAllByInActive");
   }
 }

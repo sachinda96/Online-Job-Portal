@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<br><br>
+<section id="blog-section" >
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-6 col-md-6" *ngFor="let data of allCourses">
+            <aside>
+              <img [src]="data.imagePath" class="img-responsive"  height="200" width="350">
+              <div class="content-title">
+                <div class="text-center">
+                  <h3><a >{{data.name}}</a></h3>
+
+                </div>
+              </div>
+              <div class="content-footer">
+                <span class="pull-right">
+				<a  data-toggle="tooltip" data-placement="left" title="Comments" (click)="setSelected(data.id)"><i class="fas fa-angle-double-right" ></i> View Details</a>
+				</span>
+
+              </div>
+            </aside>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+
+
+<script src="js/jquery-3.1.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+
+
+
+
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    }
+  }
+</script>
+
+
+</html>

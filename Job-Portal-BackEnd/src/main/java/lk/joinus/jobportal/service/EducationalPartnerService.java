@@ -16,6 +16,8 @@ public interface EducationalPartnerService {
 
     public ResponseEntity<?> deleteEducationCenter(String id);
 
+    public ResponseEntity<?> countAll();
+
 
 
 }

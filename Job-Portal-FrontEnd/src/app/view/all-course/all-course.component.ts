@@ -21,8 +21,13 @@ export class AllCourseComponent implements OnInit {
     this.getAllCourses();
   }
 
-  delete(data: any) {
-
+  delete(id: any) {
+      this.courseService.delete(id).subscribe(res=>{
+        alert(res);
+        this.ngOnInit();
+      },error => {
+        alert(error)
+      })
   }
 
   edit(id: any) {

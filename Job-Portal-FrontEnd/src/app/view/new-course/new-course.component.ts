@@ -6,6 +6,7 @@ import {Course} from "../../dto/course";
 import {CourseService} from "../../service/course.service";
 import {error} from "util";
 import {ActivatedRoute} from "@angular/router";
+import {JobPosterProfileService} from "../../service/job-poster-profile.service";
 
 @Component({
   selector: 'app-new-course',
@@ -20,9 +21,11 @@ export class NewCourseComponent implements OnInit {
   tempEducationalCenterArray:Array<EducationCenter> = new Array<EducationCenter>();
   tempEducationCenter:EducationCenter = new EducationCenter();
   course:Course =new Course();
+  imageFile: File;
 
 
-  constructor(private elem: ElementRef,private educationpartnerService:EducationpartnerService,private courseService:CourseService,private routerActive:ActivatedRoute) { }
+  constructor(private elem: ElementRef,private educationpartnerService:EducationpartnerService,private courseService:CourseService,private routerActive:ActivatedRoute,
+              private jobPosterProfileService:JobPosterProfileService) { }
 
   ngOnInit() {
     this.userDto =JSON.parse(sessionStorage.getItem("token"));
@@ -62,6 +65,9 @@ export class NewCourseComponent implements OnInit {
     this.courseService.save(this.course).subscribe(res=>{
       this.loading=false;
       alert(res);
+      this.course= new Course();
+      this.tempEducationalCenterArray = new Array<EducationCenter>();
+
     },error=>{
       console.log(error)
       this.loading=false;
@@ -75,5 +81,17 @@ export class NewCourseComponent implements OnInit {
 
   add() {
     this.tempEducationalCenterArray.push(this.tempEducationCenter)
+  }
+
+  setIma(event) {
+    const fil = event.target.files[0]
+    this.imageFile = fil;
+    const formData:FormData=new FormData();
+    formData.append("file",this.imageFile);
+    this.jobPosterProfileService.saveFile(formData).subscribe(
+      (result) => {
+        if (result) {
+          this.course.imagePath = result.path;
+        }});
   }
 }

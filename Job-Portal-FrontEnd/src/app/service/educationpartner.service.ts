@@ -34,4 +34,8 @@ export class EducationpartnerService {
   deleteEducationCenter(id:String){
     return this.http.delete<any>(MAIN_URL+URL+"/"+id,{responseType: 'text' as 'json' });
   }
+
+  countAll() {
+    return this.http.get<any>(MAIN_URL+URL+"/countAll");
+  }
 }

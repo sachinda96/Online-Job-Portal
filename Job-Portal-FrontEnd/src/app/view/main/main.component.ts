@@ -46,6 +46,15 @@ export class MainComponent implements OnInit {
  }
 
   routeDashBoard():void{
-    this.route.navigate(['/JobSeekerMain/dashboard'])
+    this.user=new User();
+    this.user=this.authService.getUser();
+    if(this.user.type === "SEEKER"){
+      this.route.navigate(['/JobSeekerMain/dashboard']);
+    }else if(this.user.type === "EP"){
+      this.route.navigate(['/EPMAIN/dashboard']);
+    }else{
+      this.route.navigate(['/JobPosterMain/dashboard']);
+    }
+
   }
 }

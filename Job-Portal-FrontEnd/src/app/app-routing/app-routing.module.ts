@@ -27,6 +27,8 @@ import { EducationCentersComponent } from '../view/education-centers/education-c
 import { AllEducationCentersComponent } from '../view/all-education-centers/all-education-centers.component';
 import {NewCourseComponent} from "../view/new-course/new-course.component";
 import {AllCourseComponent} from "../view/all-course/all-course.component";
+import {ViewAllCoursesComponent} from "../view/view-all-courses/view-all-courses.component";
+import {ViewSelectedCourseComponent} from "../view/view-selected-course/view-selected-course.component";
 
 const routes: Routes = [
   {path : 'Main', component: MainComponent,
@@ -37,6 +39,11 @@ const routes: Routes = [
           path: 'ViewAllJobs',
           pathMatch : 'full',
           redirectTo: '/Main/ViewAllJobs'
+        },
+        {
+          path: 'ViewAllCourse',
+          pathMatch : 'full',
+          redirectTo: '/Main/ViewAllCourse'
         },
         {
           path: 'ViewAllJobs/:name',
@@ -70,13 +77,7 @@ const routes: Routes = [
           pathMatch : 'full',
           redirectTo: '/Main/SelectRegistation'
         },
-
-
-
-
       ]},
-
-
 
       {
         path: 'registation',
@@ -92,6 +93,18 @@ const routes: Routes = [
             redirectTo: '/Main/SelectedJob'
           },
       ]},
+      {
+        path: 'ViewAllCourse',
+        component: ViewAllCoursesComponent,
+        children: [
+          {
+            path:'viewSelectedCourse',
+            pathMatch: 'full',
+            redirectTo:  '/Main/viewSelectedCourse'
+          }
+        ]
+      },
+
 
       {
         path: 'ViewAllJobs/:name',
@@ -118,6 +131,11 @@ const routes: Routes = [
             redirectTo: '/Main/ApplyJob'
           },
         ]},
+
+      {
+        path: 'viewSelectedCourse/:id',
+        component: ViewSelectedCourseComponent,
+        },
 
       {
         path: 'ApplyJob',
@@ -260,4 +278,6 @@ const routes: Routes = [
     RouterModule
   ]
 })
+
+
 export class AppRoutingModule { }

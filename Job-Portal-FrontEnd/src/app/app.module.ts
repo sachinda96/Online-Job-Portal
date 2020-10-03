@@ -42,6 +42,8 @@ import { NewCourseComponent } from './view/new-course/new-course.component';
 import { AllEducationCentersComponent } from './view/all-education-centers/all-education-centers.component';
 import { AllCourseComponent } from './view/all-course/all-course.component';
 import {CourseService} from "./service/course.service";
+import { ViewAllCoursesComponent } from './view/view-all-courses/view-all-courses.component';
+import { ViewSelectedCourseComponent } from './view/view-selected-course/view-selected-course.component';
 
 
 @NgModule({
@@ -73,6 +75,8 @@ import {CourseService} from "./service/course.service";
     NewCourseComponent,
     AllEducationCentersComponent,
     AllCourseComponent,
+    ViewAllCoursesComponent,
+    ViewSelectedCourseComponent,
   ],
   imports: [
 

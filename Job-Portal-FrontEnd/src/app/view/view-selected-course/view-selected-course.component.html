@@ -1,0 +1,120 @@
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="news-title">
+                    <h2>{{course.name}}</h2>
+                  </div>
+                  <hr>
+                  <div class="news-image">
+                    <img [src]="course.imagePath" height="600" width="600">
+                  </div>
+                  <div class="news-content">
+                    <p>{{course.description}}</p>
+                  </div>
+                  <hr>
+                  <hr>
+                  <div class="news-tags">
+                    <h5>Educational Qualifications</h5>
+                    <p>&#9830;{{course.educationalQualifications}}</p>
+                    <br><br>
+                    <h5>Education Centers Details</h5>
+                    <br>
+                    <div class="section">
+                      <div class="top-border left"></div>
+                      <div class="top-border right"></div>
+                      <div class="row">
+                        <table class="table">
+                          <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Branch</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telephone No</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let data of course.educationCenterDTOList">
+                            <td>{{data.educationalCenterName}}</td>
+                            <td>{{data.educationalCenterType}}</td>
+                            <td>{{data.branch}}</td>
+                            <td>{{data.getEducationalCenterAddress}}</td>
+                            <td>{{data.getEducationalCenterEmail}}</td>
+                            <td>{{data.telNo}}</td>
+
+                          </tr>
+                          </tbody>
+                        </table>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5>Course Details</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group">
+              <label>Name</label>
+              <a >	&nbsp;<li>{{course.name}}</li></a>
+              <br>
+              <!--              <label>Bussiness Funtion</label>-->
+              <!--              <a>	&nbsp;<li>{{postjob.jobsDTO.bussinessfuntion}}</li></a>-->
+              <!--              <br>-->
+              <label>Type</label>
+              <a>	&nbsp;<li>{{course.type}}</li></a>
+              <br>
+              <label>Start Date</label>
+              <a>	&nbsp;<li>{{course.startDate}}</li></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <label>Min Age</label>
+              <a><li>{{course.minAge}}</li></a>
+              <br>
+              <label>Max Age</label>
+              <a><li>{{course.maxAge}}</li></a>
+              <br>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

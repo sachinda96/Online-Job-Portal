@@ -158,6 +158,17 @@ public class EducationalPartnerServiceImpl implements EducationalPartnerService 
 
     }
 
+    @Override
+    public ResponseEntity<?> countAll() {
+        try {
+
+            return new ResponseEntity<>(educationCenterRepository.countByStatus("ACTIVE"),HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     private EducationCenterDTO setEducationCenter(EducationCenterEntity educationCenterEntity) {
 
         EducationCenterDTO educationCenterDTO = new EducationCenterDTO();

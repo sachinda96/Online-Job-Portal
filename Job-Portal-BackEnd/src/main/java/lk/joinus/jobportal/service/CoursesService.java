@@ -19,6 +19,11 @@ public interface CoursesService {
 
     public ResponseEntity<?> delete(String id);
 
+    public ResponseEntity<?> countAllByActive();
+
+    public ResponseEntity<?> countAllByInActive();
+
+
 
 
 

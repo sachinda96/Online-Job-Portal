@@ -49,4 +49,14 @@ public class CourseController {
         return coursesService.delete(id);
     }
 
+
+    @GetMapping(value = "/countAllByActive")
+    public ResponseEntity<?> countAllByActive(){
+        return coursesService.countAllByActive();
+    }
+
+    @GetMapping(value = "/countAllByInActive")
+    public ResponseEntity<?> countAllByInActive(){
+        return coursesService.countAllByInActive();
+    }
 }
